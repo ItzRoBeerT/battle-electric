@@ -1,3 +1,7 @@
+---
+import './src/styles/global.css'
+import Header from '../components/Header.astro'
+---
 <!doctype html>
 <html lang="en">
 	<head>
@@ -5,16 +9,19 @@
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>Electrical Service Experts | Battle Electric</title>
 	</head>
 	<body>
+		<Header />
 		<slot />
 	</body>
 </html>
 
-<style>
+<style is:global>
 	html,
 	body {
+		background-color: #111;
+		color: #fff;
 		margin: 0;
 		width: 100%;
 		height: 100%;
