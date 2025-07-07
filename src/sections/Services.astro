@@ -1,0 +1,584 @@
+---
+import { Image } from 'astro:assets';
+
+import galleryImage1 from '../assets/services/Leviton Smart Panel.jpg';
+import galleryImage2 from '../assets/services/WhatsApp Image 2025-06-23 at 4.17.59 PM.jpeg';
+
+// Estructura de datos simple y escalable
+const services = [
+	{
+		title: 'Leviton Smart Panel',
+		description: 'Advanced smart electrical panels with remote monitoring and energy management capabilities.',
+		image: galleryImage1,
+		features: ['Remote Control', 'Energy Monitoring', 'Smart Home Integration'],
+	},
+	{
+		title: 'EV Charger Installation',
+		description: 'Professional electric vehicle charging stations for residential and commercial properties.',
+		image: galleryImage2,
+		features: ['Level 2 Charging', 'Smart Scheduling', 'Weather Resistant'],
+	},
+];
+---
+
+<section class="services-section" data-services-section>
+	<div class="container">
+		<!-- Header -->
+		<div class="section-header" data-header>
+			<h2 class="section-title" data-title>
+				Your Reliable Commercial and
+				<span class="text-blue-600" data-highlight>Residential Electricians</span>
+			</h2>
+			<p class="section-description" data-description>
+				Battle Electric is your one-stop electrical services company. We offer expert electrical solutions for
+				residential and commercial properties in <strong>Miami-Dade, Broward, and Monroe County, Florida</strong
+				>. From panel installations and repairs to safety inspections, you can rely on us for comprehensive
+				services that meet all your electrical needs.
+			</p>
+		</div>
+
+		<!-- Services Grid -->
+		<div class="services-grid" data-grid>
+			{
+				services.map((service, index) => (
+					<article class="service-card" data-card={index}>
+						<div class="image-wrapper">
+							<Image
+								src={service.image}
+								width={400}
+								height={300}
+								alt={`${service.title} - Professional installation by Battle Electric`}
+								loading="lazy"
+								class="service-image"
+								data-image
+							/>
+						</div>
+
+						<div class="card-content" data-content>
+							<h3 class="service-title">{service.title}</h3>
+							<p class="service-description">{service.description}</p>
+
+							<ul class="features-list">
+								{service.features.map((feature) => (
+									<li class="feature-item">
+										<svg class="check-icon" viewBox="0 0 20 20" fill="currentColor">
+											<path
+												fill-rule="evenodd"
+												d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+												clip-rule="evenodd"
+											/>
+										</svg>
+										{feature}
+									</li>
+								))}
+							</ul>
+
+							<button class="cta-button" type="button" data-cta>
+								Get Free Quote
+							</button>
+						</div>
+					</article>
+				))
+			}
+		</div>
+
+		<!-- Trust Indicators -->
+		<div class="trust-indicators" data-trust>
+			<div class="trust-item" data-trust-item="0">
+				<span class="trust-number" data-number>25+</span>
+				<span class="trust-label">Years Experience</span>
+			</div>
+			<div class="trust-item" data-trust-item="1">
+				<span class="trust-number" data-number>100%</span>
+				<span class="trust-label">Licensed & Insured</span>
+			</div>
+			<div class="trust-item" data-trust-item="2">
+				<span class="trust-number" data-number>24/7</span>
+				<span class="trust-label">Emergency Service</span>
+			</div>
+		</div>
+
+		<!-- Call to Action Button -->
+		<div class="cta-section" data-cta-section>
+			<a href="/services" class="explore-services-btn" data-explore-btn>
+				<span class="btn-text">Explore Our Services</span>
+				<svg class="btn-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"
+					></path>
+				</svg>
+				<div class="btn-bg"></div>
+			</a>
+		</div>
+	</div>
+</section>
+
+<style>
+	.services-section {
+		padding: 4rem 0;
+		background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+	}
+
+	.container {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 1.5rem;
+	}
+
+	.section-header {
+		text-align: center;
+		margin-bottom: 3rem;
+		max-width: 800px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.section-title {
+		font-size: 2.5rem;
+		font-weight: 700;
+		line-height: 1.2;
+		color: #1e293b;
+		margin-bottom: 1.5rem;
+	}
+
+	.section-description {
+		font-size: 1.125rem;
+		line-height: 1.7;
+		color: #475569;
+	}
+
+	.services-grid {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 2rem;
+		margin-bottom: 3rem;
+	}
+
+	.service-card {
+		background: white;
+		border-radius: 1rem;
+		box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+		overflow: hidden;
+		transition: all 0.3s ease;
+	}
+
+	.service-card:hover {
+		transform: translateY(-4px);
+		box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+	}
+
+	.image-wrapper {
+		position: relative;
+		height: 250px;
+		overflow: hidden;
+	}
+
+	.service-image {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		transition: transform 0.3s ease;
+	}
+
+	.card-content {
+		padding: 1.5rem;
+	}
+
+	.service-title {
+		font-size: 1.5rem;
+		font-weight: 600;
+		color: #1e293b;
+		margin-bottom: 0.75rem;
+	}
+
+	.service-description {
+		color: #64748b;
+		line-height: 1.6;
+		margin-bottom: 1rem;
+	}
+
+	.features-list {
+		list-style: none;
+		padding: 0;
+		margin: 0 0 1.5rem 0;
+	}
+
+	.feature-item {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		color: #475569;
+		font-size: 0.875rem;
+		margin-bottom: 0.5rem;
+	}
+
+	.check-icon {
+		width: 1rem;
+		height: 1rem;
+		color: #10b981;
+		flex-shrink: 0;
+	}
+
+	.cta-button {
+		width: 100%;
+		background: #2563eb;
+		color: white;
+		border: none;
+		padding: 0.75rem 1.5rem;
+		border-radius: 0.5rem;
+		font-weight: 600;
+		cursor: pointer;
+		transition: all 0.2s ease;
+	}
+
+	.cta-button:hover {
+		background: #1d4ed8;
+		transform: translateY(-1px);
+	}
+
+	.cta-button:active {
+		transform: translateY(0);
+	}
+
+	.trust-indicators {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 2rem;
+		text-align: center;
+	}
+
+	.trust-item {
+		padding: 1rem;
+	}
+
+	.trust-number {
+		display: block;
+		font-size: 2rem;
+		font-weight: 700;
+		color: #2563eb;
+		margin-bottom: 0.25rem;
+	}
+
+	.trust-label {
+		font-size: 0.875rem;
+		color: #64748b;
+		font-weight: 500;
+	}
+
+	/* CTA Section */
+	.cta-section {
+		text-align: center;
+		margin-top: 3rem;
+		padding-top: 2rem;
+		border-top: 1px solid #e2e8f0;
+	}
+
+	.explore-services-btn {
+		position: relative;
+		display: inline-flex;
+		align-items: center;
+		gap: 0.75rem;
+		padding: 1rem 2rem;
+		background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+		color: white;
+		font-weight: 600;
+		font-size: 1.125rem;
+		border-radius: 1rem;
+		text-decoration: none;
+		box-shadow: 0 10px 15px -3px rgb(37 99 235 / 0.3);
+		transition: all 0.3s ease;
+		overflow: hidden;
+		will-change: transform;
+	}
+
+	.explore-services-btn:hover {
+		transform: translateY(-2px);
+		box-shadow: 0 20px 25px -5px rgb(37 99 235 / 0.4);
+	}
+
+	.explore-services-btn:active {
+		transform: translateY(0);
+	}
+
+	.btn-text {
+		position: relative;
+		z-index: 10;
+	}
+
+	.btn-arrow {
+		width: 1.25rem;
+		height: 1.25rem;
+		position: relative;
+		z-index: 10;
+		transition: transform 0.3s ease;
+	}
+
+	.explore-services-btn:hover .btn-arrow {
+		transform: translateX(4px);
+	}
+
+	.btn-bg {
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+		transform: scaleX(0);
+		transform-origin: left;
+		transition: transform 0.3s ease;
+		z-index: 5;
+	}
+
+	.explore-services-btn:hover .btn-bg {
+		transform: scaleX(1);
+	}
+
+	/* Focus states for accessibility */
+	.explore-services-btn:focus {
+		outline: none;
+		ring: 2px solid #3b82f6;
+		ring-offset: 2px;
+	}
+
+	/* Responsive Design */
+	@media (min-width: 640px) {
+		.services-grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+
+		.section-title {
+			font-size: 3rem;
+		}
+	}
+
+	@media (max-width: 640px) {
+		.services-section {
+			padding: 2rem 0;
+		}
+
+		.section-title {
+			font-size: 2rem;
+		}
+
+		.trust-indicators {
+			grid-template-columns: 1fr;
+			gap: 1rem;
+		}
+	}
+
+	/* GSAP Animation States */
+	[data-services-section] {
+		opacity: 1;
+	}
+
+	/* Accessibility: Respect reduced motion preference */
+	@media (prefers-reduced-motion: reduce) {
+		.service-card {
+			transition: none;
+		}
+
+		.service-image {
+			transition: none;
+		}
+	}
+</style>
+
+<script>
+	import { gsap, ScrollTrigger } from '../utils/gsap';
+
+	// Wait for DOM to be ready
+	document.addEventListener('DOMContentLoaded', () => {
+		// Check for reduced motion preference
+		const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+		if (!prefersReducedMotion) {
+			const section = document.querySelector('[data-services-section]');
+			if (!section) return;
+
+			// Animation elements
+			const title = section.querySelector('[data-title]');
+			const highlight = section.querySelector('[data-highlight]');
+			const description = section.querySelector('[data-description]');
+			const cards = section.querySelectorAll('[data-card]');
+			const trustItems = section.querySelectorAll('[data-trust-item]');
+			const ctaSection = section.querySelector('[data-cta-section]');
+			const exploreBtn = section.querySelector('[data-explore-btn]');
+
+			// Set initial states
+			gsap.set([title, description, cards, trustItems, ctaSection], {
+				opacity: 0,
+				y: 30,
+			});
+
+			gsap.set(highlight, {
+				opacity: 0,
+				scale: 0.8,
+			});
+
+			// Main timeline
+			const tl = gsap.timeline({
+				scrollTrigger: {
+					trigger: section,
+					start: 'top 80%',
+					toggleActions: 'play none none reverse',
+				},
+			});
+
+			// Header animations
+			tl.to(title, {
+				opacity: 1,
+				y: 0,
+				duration: 0.8,
+				ease: 'power2.out',
+			})
+				.to(
+					highlight,
+					{
+						opacity: 1,
+						scale: 1,
+						duration: 0.6,
+						ease: 'back.out(1.7)',
+					},
+					'-=0.3'
+				)
+				.to(
+					description,
+					{
+						opacity: 1,
+						y: 0,
+						duration: 0.6,
+					},
+					'-=0.4'
+				)
+				.to(
+					cards,
+					{
+						opacity: 1,
+						y: 0,
+						duration: 0.6,
+						stagger: 0.2,
+						ease: 'power2.out',
+					},
+					'-=0.3'
+				)
+				.to(
+					trustItems,
+					{
+						opacity: 1,
+						y: 0,
+						duration: 0.5,
+						stagger: 0.1,
+					},
+					'-=0.2'
+				)
+				.to(
+					ctaSection,
+					{
+						opacity: 1,
+						y: 0,
+						duration: 0.6,
+						ease: 'back.out(1.7)',
+					},
+					'-=0.1'
+				);
+
+			// Card interactions (solo CTA buttons)
+			cards.forEach((card) => {
+				const cta = card.querySelector('[data-cta]');
+
+				// CTA button interaction
+				if (cta) {
+					cta.addEventListener('click', () => {
+						gsap.to(cta, {
+							scale: 0.95,
+							duration: 0.1,
+							yoyo: true,
+							repeat: 1,
+							ease: 'power2.inOut',
+						});
+					});
+				}
+			});
+
+			// Trust numbers counter animation
+			const numbers = section.querySelectorAll('[data-number]');
+			numbers.forEach((number) => {
+				const text = number.textContent;
+				if (!text) return; // Guard clause para null/undefined
+
+				const hasPlus = text.includes('+');
+				const hasPercent = text.includes('%');
+				const numValue = parseInt(text);
+
+				if (!isNaN(numValue)) {
+					gsap.fromTo(
+						number,
+						{ textContent: 0 },
+						{
+							textContent: numValue,
+							duration: 2,
+							ease: 'power2.out',
+							snap: { textContent: 1 },
+							scrollTrigger: {
+								trigger: number,
+								start: 'top 90%',
+							},
+							onUpdate: function () {
+								const current = Math.round(this.targets()[0].textContent);
+								let displayValue = current.toString();
+								if (hasPlus) displayValue += '+';
+								if (hasPercent) displayValue += '%';
+								if (current === 24) displayValue = '24/7';
+								number.textContent = displayValue;
+							},
+						}
+					);
+				}
+			});
+
+			// Explore Services Button interactions
+			if (exploreBtn) {
+				const btnArrow = exploreBtn.querySelector('.btn-arrow');
+
+				exploreBtn.addEventListener('mouseenter', () => {
+					gsap.to(exploreBtn, {
+						scale: 1.05,
+						duration: 0.3,
+						ease: 'power2.out',
+					});
+
+					if (btnArrow) {
+						gsap.to(btnArrow, {
+							x: 6,
+							duration: 0.3,
+							ease: 'power2.out',
+						});
+					}
+				});
+
+				exploreBtn.addEventListener('mouseleave', () => {
+					gsap.to(exploreBtn, {
+						scale: 1,
+						duration: 0.3,
+						ease: 'power2.out',
+					});
+
+					if (btnArrow) {
+						gsap.to(btnArrow, {
+							x: 0,
+							duration: 0.3,
+							ease: 'power2.out',
+						});
+					}
+				});
+
+				exploreBtn.addEventListener('click', () => {
+					gsap.to(exploreBtn, {
+						scale: 0.98,
+						duration: 0.1,
+						yoyo: true,
+						repeat: 1,
+						ease: 'power2.inOut',
+					});
+				});
+			}
+		}
+	});
+</script>

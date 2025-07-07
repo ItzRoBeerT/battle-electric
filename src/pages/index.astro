@@ -1,12 +1,19 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Hero from '../sections/Hero.astro';
+import Services from '../sections/Services.astro';
+import Tesla from '../sections/Tesla.astro';
+import ContactUs from '../sections/ContactUs.astro';
 
 const title = 'Electrical Service Experts | Battle Electric';
-const description = 'Your trusted partner for all electrical services, from installations to repairs. Serving residential and commercial clients with expertise and reliability.';
+const description =
+	'Your trusted partner for all electrical services, from installations to repairs. Serving residential and commercial clients with expertise and reliability.';
 const canonical = 'https://battleelectricfl.com/';
 ---
 
 <Layout title={title} description={description} canonical={canonical}>
-	<h1 class="font-bold text-4xl">Battle Electric</h1>
-	
+	<Hero />
+	<Tesla />
+	<Services />
+	<ContactUs />
 </Layout>

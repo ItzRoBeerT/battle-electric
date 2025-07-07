@@ -1,18 +1,62 @@
-<!-- Modern Professional Header - Battle Electric -->
+---
+
+---
+
 <header
-	class="sticky top-0 z-50
-               backdrop-blur-md backdrop-saturate-150
-               border-b border-white/12
-               shadow-[0_8px_32px_rgba(15,23,42,0.12)]
-               transition-all duration-300 ease-out"
+	class="sticky top-0 z-50 p-4 bg-white border-b border-white/12 shadow-[0_8px_32px_rgba(15,23,42,0.12)] transition-all duration-300 ease-out"
 >
 	<!-- Logo Section -->
-	<nav class="flex items-center">
+	<nav class="flex items-center justify-between">
 		<a href="/">
-			<img src="/logo.webp" alt="logo" />
+			<img src="/logo_final.png" alt="logo" class="h-20" />
 		</a>
-		<a href="/services">
-			Services
-		</a>
+		<div class="flex gap-4">
+			<a
+				href="/services"
+				class="nav-link-underline hover:text-blue-600 font-medium transition-colors duration-300"
+			>
+				Services
+			</a>
+			<a
+				href="/services"
+				class="nav-link-underline hover:text-blue-600 font-medium transition-colors duration-300"
+			>
+				About Us
+			</a>
+			<a
+				href="/services"
+				class="nav-link-underline hover:text-blue-600 font-medium transition-colors duration-300"
+			>
+				Contact Us</a
+			>
+		</div>
+		<button class="rounded border p-2 cursor-pointer"> Get free quote </button>
 	</nav>
 </header>
+
+<script>
+	import { gsap } from 'gsap';
+</script>
+
+<style>
+	.nav-link-underline {
+		position: relative;
+		padding: 0.25rem 0.5rem;
+	}
+
+	.nav-link-underline::before {
+		content: '';
+		position: absolute;
+		bottom: 0;
+		left: 50%;
+		width: 0;
+		height: 2px;
+		background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+		transform: translateX(-50%);
+		transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+	}
+
+	.nav-link-underline:hover::before {
+		width: 80%;
+	}
+</style>
