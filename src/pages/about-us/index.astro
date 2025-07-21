@@ -1,0 +1,54 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+const title = 'About Us - Battle Electric | 35+ Years of Electrical Expertise';
+const description =
+	'Meet the Battle Electric team. Family-owned electrical contractors serving Florida with 35+ years of experience. Learn about our commitment to integrity, reliability, and exceptional electrical services.';
+const canonical = 'https://battleelectricfl.com/about-us/';
+
+import house_image from '../../assets/services/house.jpeg';
+import tesla_image from '../../assets/services/tesla.jpeg';
+---
+
+<Layout title={title} description={description} canonical={canonical}>
+	<section class="h-full min-h-screen flex flex-col flex-wrap justify-center items-center" id="hero">
+		<div class="flex max-w-full w-3/4">
+			<h1 class="text-8xl font-bold text-white" id="title">An Overview of Our Electrical Services Company</h1>
+		</div>
+	</section>
+
+	<section class="bg-white py-16 px-8 flex flex-col lg:flex-row justify-between items-center gap-8" id="about-us">
+		<div class="lg:w-1/2">
+			<h3 class="text-sm font-semibold uppercase tracking-wide mb-2">About Us</h3>
+			<h2 class="text-4xl lg:text-6xl font-bold text-gray-900 leading-tight">The Story Behind the Spark</h2>
+		</div>
+
+		<div class="lg:w-1/2">
+			<p class="text-lg text-gray-600 leading-relaxed">
+				Battle Electric is a <strong>family-owned business</strong> with more than <strong
+					>35 years of experience</strong
+				> in the electrical industry. With extensive knowledge and expertise in the trade, our experienced team has
+				become recognized for providing exceptional residential and commercial electrical solutions. We offer our
+				wide range of services throughout <strong>Miami-Dade, Broward, and Monroe County, Florida</strong>.
+			</p>
+		</div>
+	</section>
+
+	<section>
+		<h2 class="text-6xl font-bold">What Set Us Apart</h2>
+
+		<p>
+			Our company is committed to providing top-quality electrical solutions that come with exceptional customer
+			service. We practice the values of excellence, integrity, fairness, and honesty when doing business with our
+			clients. In addition to this, we pay close attention to their interests and base our tasks on their
+			concerns.
+		</p>
+	</section>
+</Layout>
+
+<style>
+	#hero {
+		background-image: url('/src/assets/electric_bg.jpg');
+		background-repeat: repeat;
+	}
+</style>
