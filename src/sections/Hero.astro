@@ -15,7 +15,7 @@ const { class: className = '' } = Astro.props;
 	<div class="hero-background absolute inset-0"></div>
 
 	<!-- Overlay -->
-	<div class="absolute inset-0 bg-black/60 opacity-20"></div>
+	<div class="absolute inset-0 bg-black/60"></div>
 
 	<!-- Content -->
 	<div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
@@ -27,14 +27,13 @@ const { class: className = '' } = Astro.props;
 			Top-Quality Services for All Your Electrical Needs
 		</p>
 
-		<button
-			id="hero-cta"
-			class="hero-cta border border-white/30 bg-white/10 backdrop-blur-sm px-8 py-4 rounded-lg text-white font-semibold hover:bg-white hover:text-gray-900 transition-all duration-300 cursor-pointer shadow-lg hover:shadow-xl"
-			type="button"
+		<a
+			href="/contact-us"
+			class="hero-cta inline-block border-2 border-white/30 bg-white/10 backdrop-blur-sm px-8 py-4 rounded-lg text-white font-semibold hover:bg-white hover:text-gray-900 transition-all duration-300 shadow-lg hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-blue-500/50"
 			aria-label="Get a Free Quote - Contact Battle Electric"
 		>
 			Get a Free Quote
-		</button>
+		</a>
 	</div>
 
 	<!-- Scroll Indicator -->
@@ -52,30 +51,28 @@ const { class: className = '' } = Astro.props;
 	}
 
 	.hero-background {
-		background-image: url('/src/assets/background.jpg');
+		background-image: url('/background.jpg');
 		background-size: cover;
 		background-position: center;
 		background-attachment: fixed;
 		background-repeat: no-repeat;
-		will-change: transform;
-		transform: translateZ(0);
 	}
 
-	/* Estados iniciales para animaciones */
+	/* Content is now visible by default */
 	.hero-title,
 	.hero-subtitle,
 	.hero-cta {
-		opacity: 0;
-		transform: translateY(30px);
+		opacity: 1;
+		transform: none;
 	}
 
 	/* CTA Styling */
 	.hero-cta {
 		position: relative;
 		overflow: hidden;
-		border: 2px solid rgba(255, 255, 255, 0.3);
 		backdrop-filter: blur(10px);
 		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+		text-decoration: none;
 	}
 
 	.hero-cta::before {
@@ -93,11 +90,6 @@ const { class: className = '' } = Astro.props;
 		left: 100%;
 	}
 
-	.hero-cta:focus {
-		outline: 3px solid rgba(59, 130, 246, 0.5);
-		outline-offset: 2px;
-	}
-
 	/* Responsive */
 	@media (max-width: 768px) {
 		.hero-background {
@@ -106,6 +98,16 @@ const { class: className = '' } = Astro.props;
 
 		.scroll-indicator {
 			bottom: 1rem;
+		}
+
+		.hero-title {
+			font-size: 2.5rem;
+			line-height: 1.1;
+		}
+
+		.hero-subtitle {
+			font-size: 1.125rem;
+			margin-bottom: 2rem;
 		}
 	}
 
@@ -119,76 +121,21 @@ const { class: className = '' } = Astro.props;
 			transition: none;
 		}
 
-		.hero-title,
-		.hero-subtitle,
-		.hero-cta {
-			opacity: 1;
-			transform: none;
+		.hero-cta::before {
+			transition: none;
+		}
+
+		.hero-background {
+			background-attachment: scroll;
 		}
 	}
+
+	/* Loading fallback */
+	.hero-background::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(135deg, #1f2937 0%, #374151 50%, #1f2937 100%);
+		z-index: -1;
+	}
 </style>
-
-<script>
-	import { gsap } from "../utils/gsap";
-
-	document.addEventListener('DOMContentLoaded', () => {
-		// Solo animar si no está en modo reducido de movimiento
-		const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-		if (!prefersReducedMotion) {
-			// Timeline de animación
-			const tl = gsap.timeline({ delay: 0.2 });
-
-			// Título
-			tl.fromTo(
-				'#hero-title',
-				{ opacity: 0, y: 50, scale: 0.9 },
-				{ opacity: 1, y: 0, scale: 1, duration: 1.2, ease: 'power2.out' }
-			);
-
-			// Subtítulo
-			tl.fromTo(
-				'#hero-subtitle',
-				{ opacity: 0, y: 30 },
-				{ opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' },
-				'-=0.6'
-			);
-
-			// CTA
-			tl.fromTo(
-				'#hero-cta',
-				{ opacity: 0, scale: 0.8, y: 20 },
-				{ opacity: 1, scale: 1, y: 0, duration: 0.6, ease: 'back.out(1.7)' },
-				'-=0.4'
-			);
-		} else {
-			gsap.set(['#hero-title', '#hero-subtitle', '#hero-cta'], {
-				opacity: 1,
-				y: 0,
-				scale: 1,
-			});
-		}
-
-		const ctaButton = document.getElementById('hero-cta');
-
-		if (ctaButton && !prefersReducedMotion) {
-			ctaButton.addEventListener('mouseenter', () => {
-				gsap.to(ctaButton, {
-					scale: 1.05,
-					y: -2,
-					duration: 0.3,
-					ease: 'power2.out',
-				});
-			});
-
-			ctaButton.addEventListener('mouseleave', () => {
-				gsap.to(ctaButton, {
-					scale: 1,
-					y: 0,
-					duration: 0.3,
-					ease: 'power2.out',
-				});
-			});
-		}
-	});
-</script>
