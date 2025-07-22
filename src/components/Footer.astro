@@ -14,6 +14,7 @@ const contactInfo = {
 		weekdays: 'Monday to Saturday 7:00 AM - 7:00 PM',
 		weekend: 'Sunday - Closed',
 	},
+	license: 'License #EC13010206',
 };
 
 const navigation = {
@@ -265,6 +266,9 @@ const currentYear = new Date().getFullYear();
 					<p class="text-gray-400 text-sm text-center md:text-left">
 						© {currentYear} Battle Electric. All rights reserved.
 					</p>
+					<span class="text-gray-400 text-sm">
+						{contactInfo.license}
+					</span>
 
 					<!-- Legal Links -->
 					<nav aria-label="Legal information">
