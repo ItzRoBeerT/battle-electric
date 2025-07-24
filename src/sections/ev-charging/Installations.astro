@@ -1,21 +1,16 @@
 ---
-// src/components/sections/EVInstallationTypes.astro
-// Sección actualizada con información técnica específica de Battle Electric
+import Star from '../../assets/icons/star.svg';
 ---
 
-<section class="py-16 bg-gradient-to-br from-green-50 to-emerald-50">
+<section class="py-16 bg-gray-600">
 	<div class="container mx-auto px-4 max-w-5xl">
-		<h2 class="text-3xl/tight md:text-4xl/tight font-bold text-gray-900 mb-2 text-center">
-			Types of <span class="text-green-600">EV Installations</span>
-		</h2>
-
-		<div class="w-20 h-1 bg-green-600 mx-auto mb-12"></div>
+		<h2 class="text-3xl/tight md:text-4xl/tight text-stroke mb-10 text-center">TYPES OF EV INSTALLATIONS</h2>
 
 		<div class="text-center mb-12">
-			<p class="text-xl/relaxed text-gray-700 max-w-3xl mx-auto text-pretty">
-				There are <strong class="text-green-600">three levels of installations</strong> and each of them have their
-				pros and cons. Knowing what each has to offer will assist you in deciding which one of the three installations
-				will be more beneficial to you.
+			<p class="text-xl/relaxed text-white max-w-3xl mx-auto text-pretty">
+				There are <strong>three levels of installations</strong> and each of them have their pros and cons. Knowing
+				what each has to offer will assist you in deciding which one of the three installations will be more beneficial
+				to you.
 			</p>
 		</div>
 
@@ -26,15 +21,11 @@
 			>
 				<div class="text-center">
 					<div
-						class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-blue-200 group-hover:scale-110 transition-all duration-300"
+						class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-yellow-200 group-hover:scale-110 transition-all duration-300"
 					>
-						<span class="text-2xl font-bold text-blue-600 group-hover:text-blue-700">1</span>
+						<span class="text-2xl font-bold text-gray-600 group-hover:text-gray-700">1</span>
 					</div>
-					<h3
-						class="text-xl font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors duration-300"
-					>
-						Level 1 Charging
-					</h3>
+					<h3 class="text-xl font-bold text-gray-900 mb-4">Level 1 Charging</h3>
 
 					<!-- Quick specs -->
 					<div class="space-y-2 text-gray-600 mb-6 h-36">
@@ -45,7 +36,7 @@
 					</div>
 					<a
 						href="/services/ev-charging/level-1/"
-						class="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 hover:shadow-lg transform hover:scale-105 transition-all duration-200"
+						class="inline-flex items-center px-6 py-3 bg-battle-yellow font-semibold rounded-lg hover:bg-battle-yellow-hover hover:shadow-lg transform hover:scale-105 transition-all duration-200"
 					>
 						Learn More
 						<svg
@@ -69,22 +60,21 @@
 				<div
 					class="absolute -top-3 left-1/2 transform -translate-x-1/2 group-hover:scale-110 transition-transform duration-300"
 				>
-					<span class="bg-green-600 text-white px-4 py-1 rounded-full text-sm font-semibold shadow-lg"
-						>⭐ Recommended</span
+					<span
+						class="whitespace-nowrap bg-green-600 text-white px-4 py-1 rounded-full text-sm font-semibold flex items-center gap-1"
 					>
+						<Star class="w-4 h-4" style={{ color: '#f5ee31' }} />
+						Recommended
+					</span>
 				</div>
 
 				<div class="text-center">
 					<div
-						class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-green-200 group-hover:scale-110 transition-all duration-300"
+						class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-yellow-200 group-hover:scale-110 transition-all duration-300"
 					>
-						<span class="text-2xl font-bold text-green-600 group-hover:text-green-700">2</span>
+						<span class="text-2xl font-bold text-gray-600 group-hover:text-gray-700">2</span>
 					</div>
-					<h3
-						class="text-xl font-bold text-gray-900 mb-4 group-hover:text-green-600 transition-colors duration-300"
-					>
-						Level 2 Charging
-					</h3>
+					<h3 class="text-xl font-bold text-gray-900 mb-4">Level 2 Charging</h3>
 
 					<!-- Quick specs -->
 					<div class="space-y-2 text-gray-600 mb-6 h-36">
@@ -96,7 +86,7 @@
 
 					<a
 						href="/services/ev-charging/level-2/"
-						class="inline-flex items-center px-6 py-3 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 hover:shadow-lg transform hover:scale-105 transition-all duration-200"
+						class="inline-flex items-center px-6 py-3 bg-battle-yellow font-semibold rounded-lg hover:bg-battle-yellow-hover hover:shadow-lg transform hover:scale-105 transition-all duration-200"
 					>
 						Learn More
 						<svg
@@ -118,15 +108,11 @@
 			>
 				<div class="text-center">
 					<div
-						class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-purple-200 group-hover:scale-110 transition-all duration-300"
+						class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-yellow-200 group-hover:scale-110 transition-all duration-300"
 					>
-						<span class="text-2xl font-bold text-purple-600 group-hover:text-purple-700">3</span>
+						<span class="text-2xl font-bold text-gray-600 group-hover:text-gray-700">3</span>
 					</div>
-					<h3
-						class="text-xl font-bold text-gray-900 mb-4 group-hover:text-purple-600 transition-colors duration-300"
-					>
-						Level 3 Charging
-					</h3>
+					<h3 class="text-xl font-bold text-gray-900 mb-4">Level 3 Charging</h3>
 
 					<!-- Quick specs -->
 					<div class="space-y-2 text-gray-600 mb-6 h-36">
@@ -138,7 +124,7 @@
 
 					<a
 						href="/services/ev-charging/level-3/"
-						class="inline-flex items-center px-6 py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 hover:shadow-lg transform hover:scale-105 transition-all duration-200"
+						class="inline-flex items-center px-6 py-3 bg-battle-yellow font-semibold rounded-lg hover:bg-battle-yellow-hover hover:shadow-lg transform hover:scale-105 transition-all duration-200"
 					>
 						Learn More
 						<svg
@@ -164,9 +150,9 @@
 					<thead>
 						<tr class="border-b border-gray-200">
 							<th class="pb-4 font-semibold text-gray-900">Feature</th>
-							<th class="pb-4 font-semibold text-blue-600 text-center">Level 1</th>
-							<th class="pb-4 font-semibold text-green-600 text-center">Level 2</th>
-							<th class="pb-4 font-semibold text-purple-600 text-center">Level 3</th>
+							<th class="pb-4 font-semibold text-gray-900 text-center">Level 1</th>
+							<th class="pb-4 font-semibold text-gray-900 text-center">Level 2</th>
+							<th class="pb-4 font-semibold text-gray-900 text-center">Level 3</th>
 						</tr>
 					</thead>
 					<tbody class="divide-y divide-gray-100">
@@ -212,3 +198,12 @@
 		</div>
 	</div>
 </section>
+
+<style>
+	.text-stroke {
+		font-family: 'Arial Black', 'Helvetica', sans-serif;
+		color: #fff;
+		-webkit-text-stroke: 1.8px black;
+		text-stroke: 1.8px black;
+	}
+</style>

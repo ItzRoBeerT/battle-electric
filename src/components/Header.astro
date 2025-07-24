@@ -1,8 +1,8 @@
 <!-- Top Bar -->
-<div class="bg-blue-600 text-white py-2 px-4">
+<div class="bg-gray-500 text-white py-2 px-4">
 	<div class="flex items-center justify-between max-w-7xl mx-auto">
 		<div class="flex items-center gap-6 text-sm">
-			<a href="tel:7864043885" class="flex items-center gap-2 hover:text-blue-200 transition-colors">
+			<a href="tel:7864043885" class="flex items-center gap-2 hover:text-yellow-400 transition-colors">
 				<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 					<path
 						stroke-linecap="round"
@@ -13,12 +13,12 @@
 				</svg>
 				(786) 404-3885
 			</a>
-			<span class="hidden md:block text-blue-200">|</span>
-			<span class="hidden md:block text-blue-200">Licensed & Insured Electrical Contractor</span>
+			<span class="hidden md:block">|</span>
+			<span class="hidden md:block">Licensed & Insured Electrical Contractor</span>
 		</div>
-		<span class="md:block text-sm text-blue-200">License #EC13010206</span>
-		<div class="hidden md:block text-sm text-blue-200">Mon-Fri: 7AM-6PM | Emergency 24/7</div>
-	</div> 
+		<span class="md:block text-sm">License NO. EC13010206</span>
+		<div class="hidden md:block text-sm">Mon-Sat: 7AM-7PM | Emergency 24/7</div>
+	</div>
 </div>
 
 <header class="sticky top-0 z-50 p-4 bg-white border-b border-white/12 shadow-lg transition-all duration-300">
@@ -34,7 +34,7 @@
 			<div class="relative group" id="services-dropdown">
 				<a
 					href="/services"
-					class="hover:text-blue-600 font-medium flex items-center gap-1 transition-colors duration-300"
+					class="hover:text-gray-600 font-medium flex items-center gap-1 transition-colors duration-300"
 				>
 					Services
 					<svg
@@ -54,9 +54,11 @@
 					<div class="p-3">
 						<a
 							href="/services/ev-charging"
-							class="block p-3 rounded-lg hover:bg-gray-50 transition-colors duration-200 group/item"
+							class="block p-3 rounded-lg hover:bg-yellow-50 transition-colors duration-200 group/item"
 						>
-							<h3 class="font-medium text-gray-900 group-hover/item:text-blue-600 transition-colors">
+							<h3
+								class="font-medium text-gray-900 group-hover/item:text-gray-600 transition-colors duration-200"
+							>
 								EV Charging
 							</h3>
 							<p class="text-sm text-gray-600 mt-1">Electric vehicle charging solutions</p>
@@ -64,9 +66,11 @@
 
 						<a
 							href="/services/electrical-panel"
-							class="block p-3 rounded-lg hover:bg-gray-50 transition-colors duration-200 group/item"
+							class="block p-3 rounded-lg hover:bg-yellow-50 transition-colors duration-200 group/item"
 						>
-							<h3 class="font-medium text-gray-900 group-hover/item:text-blue-600 transition-colors">
+							<h3
+								class="font-medium text-gray-900 group-hover/item:text-gray-600 transition-colors duration-200"
+							>
 								Electrical Panel
 							</h3>
 							<p class="text-sm text-gray-600 mt-1">Panel installation & upgrades</p>
@@ -74,9 +78,11 @@
 
 						<a
 							href="/services/undergrounding-utilities"
-							class="block p-3 rounded-lg hover:bg-gray-50 transition-colors duration-200 group/item"
+							class="block p-3 rounded-lg hover:bg-yellow-50 transition-colors duration-200 group/item"
 						>
-							<h3 class="font-medium text-gray-900 group-hover/item:text-blue-600 transition-colors">
+							<h3
+								class="font-medium text-gray-900 group-hover/item:text-gray-600 transition-colors duration-200"
+							>
 								Undergrounding Utilities
 							</h3>
 							<p class="text-sm text-gray-600 mt-1">Underground electrical services</p>
@@ -85,11 +91,11 @@
 				</div>
 			</div>
 
-			<a href="/about-us" class="nav-link hover:text-blue-600 font-medium transition-colors duration-300">
+			<a href="/about-us" class="nav-link hover:text-gray-600 font-medium transition-colors duration-300">
 				About Us
 			</a>
 
-			<a href="/contact-us" class="nav-link hover:text-blue-600 font-medium transition-colors duration-300">
+			<a href="/contact-us" class="nav-link hover:text-gray-600 font-medium transition-colors duration-300">
 				Contact Us
 			</a>
 		</div>
@@ -97,15 +103,15 @@
 		<!-- Desktop CTA -->
 		<a
 			href="/contact-us"
-			class="hidden md:inline-block px-4 py-2 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-600 hover:text-white transition-all duration-300 font-medium"
+			class="hidden md:inline-block px-4 py-2 border rounded bg-battle-yellow hover:bg-gray-500 hover:text-white transition-all duration-300 font-medium"
 		>
-			Get Free Quote
+			GET FREE QUOTE
 		</a>
 
 		<!-- Mobile Menu Button -->
 		<button
 			id="mobile-menu-button"
-			class="md:hidden flex items-center justify-center w-10 h-10 rounded-lg hover:bg-gray-100 transition-colors duration-200"
+			class="md:hidden flex items-center justify-center w-10 h-10 rounded-lg transition-colors duration-200"
 			aria-label="Toggle mobile menu"
 			aria-expanded="false"
 		>
@@ -136,53 +142,36 @@
 		<div class="flex flex-col space-y-4">
 			<!-- Mobile Services -->
 			<div>
-				<a
-					href="/services"
-					class="block py-2 px-4 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-lg transition-colors font-medium"
-				>
-					Services
-				</a>
+				<a href="/services" class="block py-2 px-4 rounded-lg transition-colors font-medium"> Services </a>
 				<div class="ml-4 mt-2 space-y-2">
 					<a
 						href="/services/ev-charging"
-						class="block py-2 px-4 text-sm text-gray-600 hover:text-blue-600 hover:bg-gray-50 rounded-lg transition-colors"
+						class="block py-2 px-4 text-sm text-gray-700 rounded-lg transition-colors"
 					>
 						EV Charging
 					</a>
 					<a
 						href="/services/electrical-panel"
-						class="block py-2 px-4 text-sm text-gray-600 hover:text-blue-600 hover:bg-gray-50 rounded-lg transition-colors"
+						class="block py-2 px-4 text-sm text-gray-700 rounded-lg transition-colors"
 					>
 						Electrical Panel
 					</a>
 					<a
 						href="/services/undergrounding-utilities"
-						class="block py-2 px-4 text-sm text-gray-600 hover:text-blue-600 hover:bg-gray-50 rounded-lg transition-colors"
+						class="block py-2 px-4 text-sm text-gray-700 rounded-lg transition-colors"
 					>
 						Undergrounding Utilities
 					</a>
 				</div>
 			</div>
 
-			<a
-				href="/about-us"
-				class="block py-2 px-4 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-lg transition-colors font-medium"
-			>
-				About Us
-			</a>
+			<a href="/about-us" class="block py-2 px-4 rounded-lg transition-colors font-medium"> About Us </a>
 
-			<a
-				href="/contact-us"
-				class="block py-2 px-4 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-lg transition-colors font-medium"
-			>
-				Contact Us
-			</a>
+			<a href="/contact-us" class="block py-2 px-4
+				 rounded-lg transition-colors font-medium"> Contact Us </a>
 
 			<!-- Mobile CTA -->
-			<a
-				href="/contact-us"
-				class="block mx-4 mt-4 px-4 py-3 bg-blue-600 text-white text-center rounded-lg hover:bg-blue-700 transition-colors duration-300 font-medium"
-			>
+			<a href="/contact-us" class="block mx-4 mt-4 px-4 py-3 bg-battle-yellow text-center rounded-lg font-medium">
 				Get Free Quote
 			</a>
 		</div>
@@ -192,7 +181,7 @@
 <style>
 	.nav-link {
 		position: relative;
-	
+
 		text-decoration: none;
 		display: inline-flex;
 	}
@@ -204,7 +193,7 @@
 		left: 50%;
 		width: 0;
 		height: 2px;
-		background: #3b82f6;
+		background: #e6d428;
 		transform: translateX(-50%);
 		transition: width 0.3s ease;
 	}
