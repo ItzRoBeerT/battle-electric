@@ -1,0 +1,43 @@
+<a
+	href="/contact-us"
+	class="hero-cta inline-block
+		bg-battle-yellow border border-black
+		hover:bg-gray-500 hover:text-white
+		px-8 py-4 rounded-lg font-semibold
+				
+		focus:ring-4 focus:ring-battle-yellow/50
+		transition-all duration-300 shadow-lg"
+	aria-label="Get a Free Quote - Contact Battle Electric"
+>
+	GET A FREE QUOTE
+</a>
+
+<style>
+	.hero-cta {
+		opacity: 1;
+		transform: none;
+	}
+	
+	.hero-cta {
+		position: relative;
+		overflow: hidden;
+		backdrop-filter: blur(10px);
+		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+		text-decoration: none;
+	}
+
+	.hero-cta::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: -100%;
+		width: 100%;
+		height: 100%;
+		background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+		transition: left 0.5s;
+	}
+
+	.hero-cta:hover::before {
+		left: 100%;
+	}
+</style>
