@@ -1,287 +1,95 @@
 ---
-import { Image } from 'astro:assets';
 import thumbstackLogo from '../assets/thumbtack.webp';
+import facebook from '../assets/facebook.png';
+import instagram from '../assets/instagram.png';
+import ArrowRight from '../assets/icons/arrow-right.svg';
+import MediaLink from '../components/MediaLink.astro';
+
+const contactLinks = [
+	{
+		imageSrc: instagram,
+		imageAlt: 'Battle Electric on Instagram - Follow us for updates and tips on electrical services',
+		hoverText: 'Follow Us on Instagram',
+		href: 'https://instagram.com/battleelectric',
+		title: 'Follow Battle Electric on Instagram for the latest updates and electrical tips',
+		ariaLabel: 'Visit our Instagram profile for updates and electrical tips',
+	},
+	{
+		imageSrc: facebook,
+		imageAlt: 'Battle Electric on Facebook - Like our page for updates and community engagement',
+		hoverText: 'Like Us on Facebook',
+		href: 'https://www.facebook.com/people/Battle-Electric-LLC/100076241703095/?_rdr',
+		title: 'Like Battle Electric on Facebook for updates and community engagement',
+		ariaLabel: 'Visit our Facebook page for updates and community engagement',
+	},
+	{
+		imageSrc: thumbstackLogo,
+		imageAlt:
+			'Battle Electric on Thumbtack - Professional electrical services in Miami-Dade, Broward, and Monroe County with verified customer reviews',
+		hoverText: 'View Our Reviews',
+		href: 'https://www.thumbtack.com/fl/homestead/electrical-repairs/battle-electric/service/446001654848380937',
+		title: 'View Battle Electric profile and reviews on Thumbtack - Miami-Dade electrical services',
+		ariaLabel: 'Visit our Thumbtack profile to see customer reviews and hire our electrical services',
+	},
+];
 ---
 
-<section class="contact-section" data-contact-section>
-	<div class="container">
-		<div class="content-wrapper" data-content>
-			<h2 class="section-title" data-title>
+<section class="relative overflow-hidden py-20 bg-gradient-to-br from-gray-50 to-gray-100">
+	<div class="relative z-10 container mx-auto px-6 max-w-4xl">
+		<div class="bg-white/80 backdrop-blur-xl rounded-3xl p-8 md:p-12 shadow-2xl border border-white/50 text-center">
+			<h2 class="text-4xl md:text-5xl font-black text-gray-900 mb-6 leading-tight">
 				Connect With Us for
-				<span class="highlight">More Information</span>
+				<span class="relative inline-block">
+					<span class="bg-gradient-to-r from-battle-yellow to-yellow-400 bg-clip-text text-transparent">
+						More Information
+					</span>
+				</span>
 			</h2>
-
-			<p class="section-description" data-description>
+			<p class="text-lg md:text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto mb-8">
 				Let us know how we can help. If you have any questions or concerns about the residential and commercial
-				electrical services we offer in <strong>Miami-Dade, Broward, and Monroe County, Florida</strong>, please
-				do not hesitate to contact us. We will get back to you as soon as possible.
+				electrical services we offer in <strong class="text-gray-800 font-semibold"
+					>Miami-Dade, Broward, and Monroe County, Florida</strong
+				>, please do not hesitate to contact us. We will get back to you as soon as possible.
 			</p>
-
-			<div class="cta-wrapper" data-cta>
-				<a href="/contact-us" class="contact-btn" data-contact-btn>
-					<span class="btn-text">Reach Out to Us</span>
-					<svg class="btn-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-						<path
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							stroke-width="2"
-							d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-					</svg>
-					<div class="btn-glow"></div>
+			<div class="mb-12">
+				<a
+					href="/contact-us"
+					class="group relative inline-flex items-center gap-3 px-8 py-4 bg-battle-yellow hover:bg-battle-yellow-hover text-black font-bold text-lg rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-battle-yellow/50 focus:ring-offset-2"
+				>
+					<span class="relative z-10">Reach Out to Us</span>
+					<ArrowRight
+						class="relative z-10 w-5 h-5 transition-transform duration-300 group-hover:translate-x-1"
+					/>
 				</a>
 			</div>
 		</div>
-		<!-- Thumbtack Social Proof -->
-		<div class="mt-12 pt-8 border-t border-gray-200 text-center" data-social-proof>
-			<p class="text-sm text-gray-500 mb-4 font-medium">Also find us on:</p>
-			<a
-				href="https://www.thumbtack.com/fl/homestead/electrical-repairs/battle-electric/service/446001654848380937"
-				target="_blank"
-				rel="noopener noreferrer"
-				class="relative inline-block p-4 bg-white rounded-xl shadow-md border-2 border-gray-100 hover:border-gray-200 hover:shadow-lg transition-all duration-300 overflow-hidden group focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
-				data-thumbtack-link
-				title="View Battle Electric profile and reviews on Thumbtack - Miami-Dade electrical services"
-				aria-label="Visit our Thumbtack profile to see customer reviews and hire our electrical services"
-			>
-				<Image
-					src={thumbstackLogo}
-					alt="Battle Electric on Thumbtack - Professional electrical services in Miami-Dade, Broward, and Monroe County with verified customer reviews"
-					width={200}
-					height={60}
-					loading="lazy"
-					format="webp"
-					quality={90}
-					class="block transition-all duration-300 group-hover:brightness-110"
-				/>
 
-				<!-- Overlay que aparece en hover -->
-				<div
-					class="absolute inset-0 bg-gradient-to-br from-blue-500/90 to-blue-700/90 backdrop-blur-sm flex flex-col items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-				>
-					<span class="text-white font-semibold text-sm">View Our Reviews</span>
-					<svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-						<path
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							stroke-width="2"
-							d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-					</svg>
-				</div>
-			</a>
+		<div class="mt-12 pt-8 border-t border-gray-200 text-center">
+			<p class="text-sm text-gray-500 mb-6 font-medium">Also find us on:</p>
+			<div class="flex flex-wrap justify-center gap-6">
+				{
+					contactLinks.map((link) => (
+						<MediaLink
+							imageSrc={link.imageSrc}
+							imageAlt={link.imageAlt}
+							hoverText={link.hoverText}
+							href={link.href}
+							title={link.title}
+							ariaLabel={link.ariaLabel}
+						/>
+					))
+				}
+			</div>
 		</div>
 	</div>
+
+	<style>
+		@media (prefers-reduced-motion: reduce) {
+			* {
+				animation-duration: 0.01ms !important;
+				animation-iteration-count: 1 !important;
+				transition-duration: 0.01ms !important;
+			}
+		}
+	</style>
 </section>
-
-<style>
-	.contact-section {
-		padding: 5rem 0;
-		background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-		position: relative;
-		overflow: hidden;
-	}
-
-	.contact-section::before {
-		content: '';
-		position: absolute;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		background-image: radial-gradient(circle at 30% 20%, rgba(59, 130, 246, 0.1) 0%, transparent 60%),
-			radial-gradient(circle at 70% 80%, rgba(16, 185, 129, 0.1) 0%, transparent 60%);
-		pointer-events: none;
-	}
-
-	.container {
-		position: relative;
-		max-width: 1000px;
-		margin: 0 auto;
-		padding: 0 1.5rem;
-		z-index: 10;
-	}
-
-	.content-wrapper {
-		text-align: center;
-		background: white;
-		border-radius: 2rem;
-		padding: 4rem 3rem;
-		box-shadow:
-			0 10px 15px -3px rgb(0 0 0 / 0.1),
-			0 4px 6px -2px rgb(0 0 0 / 0.05);
-		border: 1px solid rgba(255, 255, 255, 0.8);
-		backdrop-filter: blur(10px);
-	}
-
-	.section-title {
-		font-size: 2.75rem;
-		font-weight: 700;
-		line-height: 1.2;
-		color: #1e293b;
-		margin-bottom: 2rem;
-	}
-
-	.highlight {
-		background: linear-gradient(135deg, #059669 0%, #10b981 100%);
-		background-clip: text;
-		-webkit-background-clip: text;
-		color: transparent;
-		position: relative;
-	}
-
-	.highlight::after {
-		content: '';
-		position: absolute;
-		bottom: -4px;
-		left: 0;
-		right: 0;
-		height: 3px;
-		background: linear-gradient(135deg, #059669 0%, #10b981 100%);
-		border-radius: 2px;
-		opacity: 0.3;
-	}
-
-	.section-description {
-		font-size: 1.125rem;
-		line-height: 1.7;
-		color: #64748b;
-		max-width: 700px;
-		margin: 0 auto 3rem auto;
-	}
-
-	.section-description strong {
-		color: #374151;
-		font-weight: 600;
-	}
-
-	.cta-wrapper {
-		margin-top: 2.5rem;
-	}
-
-	.contact-btn {
-		position: relative;
-		display: inline-flex;
-		align-items: center;
-		gap: 0.75rem;
-		padding: 1.25rem 2.5rem;
-		background: linear-gradient(135deg, #059669 0%, #10b981 100%);
-		color: white;
-		font-weight: 600;
-		font-size: 1.125rem;
-		border-radius: 1rem;
-		text-decoration: none;
-		box-shadow:
-			0 10px 15px -3px rgb(5 150 105 / 0.4),
-			0 4px 6px -2px rgb(5 150 105 / 0.2);
-		transition: all 0.3s ease;
-		overflow: hidden;
-		will-change: transform;
-	}
-
-	.contact-btn:hover {
-		box-shadow:
-			0 20px 25px -5px rgb(5 150 105 / 0.4),
-			0 10px 10px -5px rgb(5 150 105 / 0.2);
-	}
-
-	.btn-text {
-		position: relative;
-		z-index: 20;
-	}
-
-	.btn-arrow {
-		width: 1.25rem;
-		height: 1.25rem;
-		position: relative;
-		z-index: 20;
-		transition: transform 0.3s ease;
-	}
-
-	.btn-glow {
-		position: absolute;
-		inset: 0;
-		background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-		opacity: 0;
-		transition: opacity 0.3s ease;
-		z-index: 10;
-	}
-
-	.contact-btn:hover .btn-glow {
-		opacity: 1;
-	}
-
-	.contact-btn:focus {
-		outline: none;
-		ring: 3px solid rgba(16, 185, 129, 0.3);
-		ring-offset: 2px;
-	}
-
-	/* Responsive Design */
-	@media (max-width: 768px) {
-		.contact-section {
-			padding: 3rem 0;
-		}
-
-		.content-wrapper {
-			padding: 3rem 2rem;
-			border-radius: 1.5rem;
-		}
-
-		.section-title {
-			font-size: 2.25rem;
-		}
-
-		.contact-btn {
-			padding: 1rem 2rem;
-			font-size: 1rem;
-		}
-	}
-
-	@media (max-width: 640px) {
-		.section-title {
-			font-size: 2rem;
-		}
-
-		.section-description {
-			font-size: 1rem;
-		}
-
-		.content-wrapper {
-			padding: 2.5rem 1.5rem;
-		}
-	}
-
-	/* Accessibility: Respect reduced motion preference */
-	@media (prefers-reduced-motion: reduce) {
-		.contact-btn {
-			transition: none;
-		}
-
-		.btn-arrow {
-			transition: none;
-		}
-	}
-
-	/* Dark mode support */
-	@media (prefers-color-scheme: dark) {
-		.contact-section {
-			background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
-		}
-
-		.content-wrapper {
-			background: rgba(30, 41, 59, 0.8);
-			border-color: rgba(71, 85, 105, 0.3);
-		}
-
-		.section-title {
-			color: #f1f5f9;
-		}
-
-		.section-description {
-			color: #cbd5e1;
-		}
-
-		.section-description strong {
-			color: #e2e8f0;
-		}
-	}
-</style>

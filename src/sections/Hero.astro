@@ -1,4 +1,6 @@
 ---
+import FreeQuoteButton from '../components/FreeQuoteButton.astro';
+
 export interface Props {
 	class?: string;
 }
@@ -26,23 +28,16 @@ const { class: className = '' } = Astro.props;
 		<p id="hero-subtitle" class="hero-subtitle text-xl md:text-2xl text-gray-200 mb-8 max-w-2xl mx-auto">
 			Top-Quality Services for All Your Electrical Needs
 		</p>
-
-		<a
-			href="/contact-us"
-			class="hero-cta inline-block border-2 border-white/30 bg-white/10 backdrop-blur-sm px-8 py-4 rounded-lg text-white font-semibold hover:bg-white hover:text-gray-900 transition-all duration-300 shadow-lg hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-blue-500/50"
-			aria-label="Get a Free Quote - Contact Battle Electric"
-		>
-			Get a Free Quote
-		</a>
-	</div>
-
-	<!-- Scroll Indicator -->
-	<div class="scroll-indicator absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-		<svg class="w-6 h-6 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-			<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-		</svg>
+		<FreeQuoteButton />
 	</div>
 </section>
+
+<!-- Scroll Indicator -->
+<div class="scroll-indicator absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+	<svg class="w-6 h-6 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+		<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+	</svg>
+</div>
 
 <style>
 	.hero-section {
@@ -60,34 +55,9 @@ const { class: className = '' } = Astro.props;
 
 	/* Content is now visible by default */
 	.hero-title,
-	.hero-subtitle,
-	.hero-cta {
+	.hero-subtitle {
 		opacity: 1;
 		transform: none;
-	}
-
-	/* CTA Styling */
-	.hero-cta {
-		position: relative;
-		overflow: hidden;
-		backdrop-filter: blur(10px);
-		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-		text-decoration: none;
-	}
-
-	.hero-cta::before {
-		content: '';
-		position: absolute;
-		top: 0;
-		left: -100%;
-		width: 100%;
-		height: 100%;
-		background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-		transition: left 0.5s;
-	}
-
-	.hero-cta:hover::before {
-		left: 100%;
 	}
 
 	/* Responsive */
@@ -108,25 +78,6 @@ const { class: className = '' } = Astro.props;
 		.hero-subtitle {
 			font-size: 1.125rem;
 			margin-bottom: 2rem;
-		}
-	}
-
-	/* Accessibility */
-	@media (prefers-reduced-motion: reduce) {
-		.scroll-indicator {
-			animation: none;
-		}
-
-		.hero-cta {
-			transition: none;
-		}
-
-		.hero-cta::before {
-			transition: none;
-		}
-
-		.hero-background {
-			background-attachment: scroll;
 		}
 	}
 
