@@ -2,9 +2,9 @@
 import { Image } from 'astro:assets';
 
 import galleryImage1 from '../assets/services/Leviton Smart Panel.jpg';
-import galleryImage2 from '../assets/services/WhatsApp Image 2025-06-23 at 4.17.59 PM.jpeg';
+import galleryImage2 from '../assets/services/ev-charging/level-2-tesla.jpeg';
 
-import ArrowRight from '../assets/icons/arrow-right.svg';
+import Anchor from '../components/Anchor.astro';
 
 const services = [
 	{
@@ -44,7 +44,9 @@ services.forEach((service, index) => {
 <section class="relative py-8 sm:py-12 md:py-16 lg:py-20 bg-gradient-to-br from-gray-50 to-gray-100 overflow-hidden">
 	<div class="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
 		<div class="text-center mb-8 sm:mb-12 md:mb-16 max-w-4xl mx-auto">
-			<h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-gray-900 mb-4 sm:mb-6 leading-tight">
+			<h2
+				class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-gray-900 mb-4 sm:mb-6 leading-tight"
+			>
 				Your Reliable Commercial and
 				<span class="relative inline-block">
 					<span class="bg-gradient-to-r from-battle-yellow to-yellow-400 bg-clip-text text-transparent">
@@ -54,15 +56,18 @@ services.forEach((service, index) => {
 			</h2>
 			<p class="text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
 				Battle Electric is your one-stop electrical services company. We offer expert electrical solutions for
-				residential and commercial properties in <strong class="text-gray-800 font-semibold">Miami-Dade, Broward, and Monroe County, Florida</strong>. 
-				From panel installations and repairs to safety inspections, you can rely on us for comprehensive services
-				that meet all your electrical needs.
+				residential and commercial properties in <strong class="text-gray-800 font-semibold"
+					>Miami-Dade, Broward, and Monroe County, Florida</strong
+				>. From panel installations and repairs to safety inspections, you can rely on us for comprehensive
+				services that meet all your electrical needs.
 			</p>
 		</div>
-		<div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 mb-8 sm:mb-12 md:mb-16">
+		<div
+			class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 mb-8 sm:mb-12 md:mb-16"
+		>
 			{
 				services.map((service, index) => (
-					<article 
+					<article
 						class="group bg-white/80 backdrop-blur-sm rounded-xl md:rounded-2xl shadow-lg hover:shadow-2xl border border-white/50 overflow-hidden transition-all duration-300 hover:-translate-y-2 focus-within:ring-2 focus-within:ring-battle-yellow/50"
 						role="article"
 						aria-labelledby={`service-title-${index}`}
@@ -73,15 +78,15 @@ services.forEach((service, index) => {
 								width={400}
 								height={300}
 								alt={`${service.title} - Professional electrical installation by Battle Electric in Miami-Dade County`}
-								loading={index === 0 ? "eager" : "lazy"}
+								loading={index === 0 ? 'eager' : 'lazy'}
 								sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 400px"
 								class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
 							/>
-							<div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+							<div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 						</div>
 
 						<div class="p-3 sm:p-4 md:p-6">
-							<h3 
+							<h3
 								id={`service-title-${index}`}
 								class="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-2 sm:mb-3 group-hover:text-gray-700 transition-colors duration-300 line-clamp-2"
 							>
@@ -94,7 +99,10 @@ services.forEach((service, index) => {
 
 							<ul class="space-y-1 sm:space-y-1.5 md:space-y-2 mb-3 sm:mb-4 md:mb-6" role="list">
 								{service.features.map((feature) => (
-									<li class="flex items-start gap-2 sm:gap-3 text-xs sm:text-sm text-gray-600" role="listitem">	
+									<li
+										class="flex items-start gap-2 sm:gap-3 text-xs sm:text-sm text-gray-600"
+										role="listitem"
+									>
 										<span class="flex-1">{feature}</span>
 									</li>
 								))}
@@ -114,30 +122,29 @@ services.forEach((service, index) => {
 		</div>
 
 		<div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 md:gap-8 mb-8 sm:mb-12 md:mb-16">
-			<div class="text-center p-3 sm:p-4 md:p-6 bg-white/60 backdrop-blur-sm rounded-xl border border-white/50 hover:bg-white/70 transition-colors duration-300">
+			<div
+				class="text-center p-3 sm:p-4 md:p-6 bg-white/60 backdrop-blur-sm rounded-xl border border-white/50 hover:bg-white/70 transition-colors duration-300"
+			>
 				<div class="text-2xl sm:text-3xl md:text-4xl font-black text-battle-yellow mb-1 sm:mb-2">35+</div>
 				<div class="text-xs sm:text-sm font-medium text-gray-600">Years Experience</div>
 			</div>
-			<div class="text-center p-3 sm:p-4 md:p-6 bg-white/60 backdrop-blur-sm rounded-xl border border-white/50 hover:bg-white/70 transition-colors duration-300">
+			<div
+				class="text-center p-3 sm:p-4 md:p-6 bg-white/60 backdrop-blur-sm rounded-xl border border-white/50 hover:bg-white/70 transition-colors duration-300"
+			>
 				<div class="text-2xl sm:text-3xl md:text-4xl font-black text-battle-yellow mb-1 sm:mb-2">100%</div>
 				<div class="text-xs sm:text-sm font-medium text-gray-600">Licensed & Insured</div>
 			</div>
-			<div class="text-center p-3 sm:p-4 md:p-6 bg-white/60 backdrop-blur-sm rounded-xl border border-white/50 hover:bg-white/70 transition-colors duration-300">
+			<div
+				class="text-center p-3 sm:p-4 md:p-6 bg-white/60 backdrop-blur-sm rounded-xl border border-white/50 hover:bg-white/70 transition-colors duration-300"
+			>
 				<div class="text-2xl sm:text-3xl md:text-4xl font-black text-battle-yellow mb-1 sm:mb-2">24/7</div>
 				<div class="text-xs sm:text-sm font-medium text-gray-600">Emergency Service</div>
 			</div>
 		</div>
 
-		<footer class="text-center pt-6 sm:pt-8 border-t border-gray-200">
-			<a
-				href="/services"
-				class="group inline-flex items-center justify-center gap-2 sm:gap-3 px-4 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-4 bg-battle-yellow hover:bg-battle-yellow-hover text-black font-bold text-sm sm:text-base md:text-lg rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-battle-yellow/50 focus:ring-offset-2 min-w-0"
-				aria-label="View all our electrical services"
-			>
-				<span class="whitespace-nowrap">Explore Our Services</span>
-				<ArrowRight class="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 transition-transform duration-300 group-hover:translate-x-1 flex-shrink-0" aria-hidden="true" />
-			</a>
-		</footer>
+		<div class="text-center pt-6 sm:pt-8 border-t border-gray-200">
+			<Anchor />
+		</div>
 	</div>
 </section>
 
@@ -166,7 +173,7 @@ services.forEach((service, index) => {
 		.group:hover .group-hover\:scale-110 {
 			transform: none;
 		}
-		
+
 		.hover\:-translate-y-2:hover {
 			transform: none;
 		}
@@ -188,7 +195,7 @@ services.forEach((service, index) => {
 			background-color: #000;
 			color: #fff;
 		}
-		
+
 		.text-battle-yellow {
 			color: #000;
 		}

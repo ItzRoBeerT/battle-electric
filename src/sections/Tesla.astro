@@ -1,5 +1,6 @@
 ---
 import Chevron from '../assets/icons/chevron.svg';
+import AnchorOutlined from '../components/AnchorOutlined.astro';
 
 export interface Props {
 	class?: string;
@@ -22,14 +23,7 @@ const { class: className = '' } = Astro.props;
 			customer service in every electrical task, big or small.
 		</p>
 
-		<a
-			href="/about-us"
-			class="inline-flex items-center gap-2 border-2 border-battle-yellow text-black px-6 py-3 rounded-lg font-semibold hover:bg-battle-yellow transition-all duration-300 group"
-			aria-label="Read more about Battle Electric"
-		>
-			Read More About Us
-			<Chevron class="w-4 h-4 transition-transform group-hover:translate-x-1" />
-		</a>
+		<AnchorOutlined />
 	</div>
 
 	<div class="tesla-image-container flex justify-center">

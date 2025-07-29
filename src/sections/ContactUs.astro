@@ -1,7 +1,37 @@
 ---
-import { Image } from 'astro:assets';
 import thumbstackLogo from '../assets/thumbtack.webp';
+import facebook from '../assets/facebook.png';
+import instagram from '../assets/instagram.png';
 import ArrowRight from '../assets/icons/arrow-right.svg';
+import MediaLink from '../components/MediaLink.astro';
+
+const contactLinks = [
+	{
+		imageSrc: instagram,
+		imageAlt: 'Battle Electric on Instagram - Follow us for updates and tips on electrical services',
+		hoverText: 'Follow Us on Instagram',
+		href: 'https://instagram.com/battleelectric',
+		title: 'Follow Battle Electric on Instagram for the latest updates and electrical tips',
+		ariaLabel: 'Visit our Instagram profile for updates and electrical tips',
+	},
+	{
+		imageSrc: facebook,
+		imageAlt: 'Battle Electric on Facebook - Like our page for updates and community engagement',
+		hoverText: 'Like Us on Facebook',
+		href: 'https://www.facebook.com/people/Battle-Electric-LLC/100076241703095/?_rdr',
+		title: 'Like Battle Electric on Facebook for updates and community engagement',
+		ariaLabel: 'Visit our Facebook page for updates and community engagement',
+	},
+	{
+		imageSrc: thumbstackLogo,
+		imageAlt:
+			'Battle Electric on Thumbtack - Professional electrical services in Miami-Dade, Broward, and Monroe County with verified customer reviews',
+		hoverText: 'View Our Reviews',
+		href: 'https://www.thumbtack.com/fl/homestead/electrical-repairs/battle-electric/service/446001654848380937',
+		title: 'View Battle Electric profile and reviews on Thumbtack - Miami-Dade electrical services',
+		ariaLabel: 'Visit our Thumbtack profile to see customer reviews and hire our electrical services',
+	},
+];
 ---
 
 <section class="relative overflow-hidden py-20 bg-gradient-to-br from-gray-50 to-gray-100">
@@ -36,51 +66,30 @@ import ArrowRight from '../assets/icons/arrow-right.svg';
 
 		<div class="mt-12 pt-8 border-t border-gray-200 text-center">
 			<p class="text-sm text-gray-500 mb-6 font-medium">Also find us on:</p>
-			<a
-				href="https://www.thumbtack.com/fl/homestead/electrical-repairs/battle-electric/service/446001654848380937"
-				target="_blank"
-				rel="noopener noreferrer"
-				class="group relative inline-block p-6 bg-white rounded-2xl shadow-md border-2 border-gray-100 hover:border-battle-yellow/50 hover:shadow-xl transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-battle-yellow/30 focus:ring-offset-2"
-				title="View Battle Electric profile and reviews on Thumbtack - Miami-Dade electrical services"
-				aria-label="Visit our Thumbtack profile to see customer reviews and hire our electrical services"
-			>
-				<Image
-					src={thumbstackLogo}
-					alt="Battle Electric on Thumbtack - Professional electrical services in Miami-Dade, Broward, and Monroe County with verified customer reviews"
-					width={100}
-					height={60}
-					loading="lazy"
-					format="webp"
-					quality={90}
-					class="block transition-all duration-300 group-hover:brightness-110 group-hover:scale-105"
-				/>
-				<div
-					class="absolute inset-0 bg-gradient-to-br from-battle-yellow/90 to-yellow-400/90 backdrop-blur-sm flex flex-col items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300 rounded-2xl"
-				>
-					<span class="text-black font-bold text-sm">View Our Reviews</span>
-					<svg class="w-5 h-5 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-						<path
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							stroke-width="2"
-							d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-					</svg>
-				</div>
-				<div
-					class="absolute -top-2 -right-2 w-4 h-4 bg-battle-yellow rounded-full border-2 border-white shadow-sm group-hover:scale-110 transition-transform duration-300"
-				>
-				</div>
-			</a>
+			<div class="flex flex-wrap justify-center gap-6">
+				{
+					contactLinks.map((link) => (
+						<MediaLink
+							imageSrc={link.imageSrc}
+							imageAlt={link.imageAlt}
+							hoverText={link.hoverText}
+							href={link.href}
+							title={link.title}
+							ariaLabel={link.ariaLabel}
+						/>
+					))
+				}
+			</div>
 		</div>
 	</div>
-</section>
 
-<style>
-	@media (prefers-reduced-motion: reduce) {
-		* {
-			animation-duration: 0.01ms !important;
-			animation-iteration-count: 1 !important;
-			transition-duration: 0.01ms !important;
+	<style>
+		@media (prefers-reduced-motion: reduce) {
+			* {
+				animation-duration: 0.01ms !important;
+				animation-iteration-count: 1 !important;
+				transition-duration: 0.01ms !important;
+			}
 		}
-	}
-</style>
+	</style>
+</section>
