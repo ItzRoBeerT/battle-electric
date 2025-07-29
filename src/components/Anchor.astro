@@ -1,0 +1,27 @@
+---
+import ArrowRight from '../assets/icons/arrow-right.svg';
+
+export interface Props {
+	text?: string;
+	href?: string;
+	ariaLabel?: string;
+}
+
+const {
+	text = 'Explore Our Services',
+	href = '/services',
+	ariaLabel = `View all our electrical services`,
+} = Astro.props;
+---
+
+<a
+	href={href}
+	class="group inline-flex items-center justify-center gap-2 sm:gap-3 px-4 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-4 bg-battle-yellow hover:bg-battle-yellow-hover text-black font-bold text-sm sm:text-base md:text-lg rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-battle-yellow/50 focus:ring-offset-2 min-w-0"
+	aria-label={ariaLabel}
+>
+	<span class="whitespace-nowrap">{text}</span>
+	<ArrowRight
+		class="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 transition-transform duration-300 group-hover:translate-x-1 flex-shrink-0"
+		aria-hidden="true"
+	/>
+</a>

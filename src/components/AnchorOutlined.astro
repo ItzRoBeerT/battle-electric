@@ -1,0 +1,20 @@
+---
+import Chevron from '../assets/icons/chevron.svg';
+
+export interface Props {
+	text?: string;
+	href?: string;
+	ariaLabel?: string;
+}
+
+const { text = 'Read More About Us', href = '/about-us', ariaLabel = 'Read more about Battle Electric' } = Astro.props;
+---
+
+<a
+	href={href}
+	class="inline-flex items-center gap-2 border-2 border-battle-yellow text-black px-6 py-3 rounded-lg font-semibold hover:bg-battle-yellow transition-all duration-300 group"
+	aria-label={ariaLabel}
+>
+	{text}
+	<Chevron class="w-4 h-4 transition-transform group-hover:translate-x-1" />
+</a>
