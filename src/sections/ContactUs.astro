@@ -40,7 +40,7 @@ const contactLinks = [
 			<h2 class="text-4xl md:text-5xl font-black text-gray-900 mb-6 leading-tight">
 				Connect With Us for
 				<span class="relative inline-block">
-					<span class="bg-gradient-to-r from-battle-yellow to-yellow-400 bg-clip-text text-transparent">
+					<span class="bg-gradient-to-r bg-clip-text text-transparent luminance-stroke stroke">
 						More Information
 					</span>
 				</span>
@@ -84,6 +84,28 @@ const contactLinks = [
 	</div>
 
 	<style>
+		.luminance-stroke {
+			position: relative;
+			display: inline-block;
+			color: #f5ee31;
+			line-height: 1;
+		}
+
+		.luminance-stroke::before {
+			content: attr(data-text);
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: -1;
+			color: black;
+			-webkit-text-stroke: 6px black;
+			text-stroke: 6px black;
+		}
+		.stroke {
+			-webkit-text-stroke: 3px black;
+			paint-order: stroke fill;
+		}
+
 		@media (prefers-reduced-motion: reduce) {
 			* {
 				animation-duration: 0.01ms !important;

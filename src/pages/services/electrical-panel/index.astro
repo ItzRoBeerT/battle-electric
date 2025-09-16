@@ -1,0 +1,39 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Hero from '../../../sections/electrical-panel/Hero.astro';
+import WhyReplace from '../../../sections/electrical-panel/WhyReplace.astro';
+import Services from '../../../sections/electrical-panel/Services.astro';
+import WhyChoose from '../../../sections/electrical-panel/WhyChoose.astro';
+import CTA from '../../../sections/electrical-panel/CTA.astro';
+
+const title = 'Electrical Panel Installation & Replacement | Battle Electric FL';
+const description =
+	'Expert electrical panel installation and replacement services in Florida. Free safety inspections, insurance-required upgrades, and modern panel solutions for homes and businesses.';
+const canonical = 'https://battleelectricfl.com/services/electrical-panel';
+
+const structuredData = {
+	'@context': 'https://schema.org',
+	'@type': 'Service',
+	name: 'Electrical Panel Installation',
+	provider: {
+		'@type': 'LocalBusiness',
+		name: 'Battle Electric',
+		url: 'https://battleelectricfl.com',
+	},
+	description: description,
+	areaServed: 'Florida',
+};
+---
+
+<Layout title={title} description={description} canonical={canonical}>
+	<script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+
+	<Hero />
+	<main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+		<WhyReplace />
+		<Services />
+		<WhyChoose />
+		<CTA />
+	</main>
+</Layout>
+
