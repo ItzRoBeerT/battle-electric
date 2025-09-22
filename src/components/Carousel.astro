@@ -1,21 +1,31 @@
 ---
 export interface CarouselSlide {
 	id: string;
-	src: string;
+	src?: string;
+	content?: string;
 	alt: string;
 	title?: string;
 	description?: string;
+	contentType?: 'image' | 'html' | 'review' | 'text';
 }
 
 export interface Props {
 	slides: CarouselSlide[];
 	id: string;
+	showArrows?: boolean;
 	ariaLabel?: string;
 	autoPlay?: boolean;
 	autoPlayInterval?: number;
 }
 
-const { slides, id, ariaLabel = 'Image carousel', autoPlay = true, autoPlayInterval = 5000 } = Astro.props;
+const {
+	slides,
+	id,
+	ariaLabel = 'Image carousel',
+	autoPlay = true,
+	autoPlayInterval = 5000,
+	showArrows = true,
+} = Astro.props;
 
 if (!slides || slides.length === 0) {
 	throw new Error('Carousel: slides are required');
@@ -36,62 +46,103 @@ if (!id) {
 >
 	<ul class="carousel-track" role="list" aria-live="polite">
 		{
-			slides.map((slide, index) => (
-				<li
-					class="carousel-slide"
-					role="listitem"
-					id={`${id}-slide-${index}`}
-					aria-label={`Slide ${index + 1} of ${slides.length}: ${slide.alt}`}
-				>
-					<img
-						src={slide.src}
-						alt={slide.alt}
-						width="800"
-						height="600"
-						class="object-cover"
-						loading={index === 0 ? 'eager' : 'lazy'}
-						decoding="async"
-					/>
+			slides.map((slide, index) => {
+				const slideType = slide.contentType || (slide.src ? 'image' : 'content');
 
-					{(slide.title || slide.description) && (
-						<div class="carousel-caption">
-							{slide.title && <h3>{slide.title}</h3>}
-							{slide.description && <p>{slide.description}</p>}
+				return slide.src ? (
+					<li
+						class={`carousel-slide carousel-slide--image carousel-slide--${slideType} bg-white`}
+						role="listitem"
+						id={`${id}-slide-${index}`}
+						aria-label={`Slide ${index + 1} of ${slides.length}: ${slide.alt}`}
+					>
+						<img
+							src={slide.src}
+							alt={slide.alt}
+							width="800"
+							height="600"
+							class="object-cover"
+							loading={index === 0 ? 'eager' : 'lazy'}
+							decoding="async"
+						/>
+
+						{(slide.title || slide.description) && (
+							<div class="carousel-caption">
+								{slide.title && <h3>{slide.title}</h3>}
+								{slide.description && <p>{slide.description}</p>}
+							</div>
+						)}
+					</li>
+				) : (
+					<li
+						class={`carousel-slide carousel-slide--content carousel-slide--${slideType}`}
+						role="listitem"
+						id={`${id}-slide-${index}`}
+						aria-label={`Slide ${index + 1} of ${slides.length}: ${slide.alt}`}
+					>
+						<div class="h-full">
+							{slide.content ? (
+								<div class="h-full" set:html={slide.content} />
+							) : (
+								<div class="carousel-content carousel-content--fallback">
+									<div class="fallback-content">
+										<div class="fallback-icon">📄</div>
+										<span>No content available</span>
+									</div>
+								</div>
+							)}
 						</div>
-					)}
-				</li>
-			))
+						{(slide.title || slide.description) && (
+							<div class="carousel-caption carousel-caption--content">
+								{slide.title && <h3>{slide.title}</h3>}
+								{slide.description && <p>{slide.description}</p>}
+							</div>
+						)}
+					</li>
+				);
+			})
 		}
 	</ul>
 
-	<div class="carousel-controls" role="group" aria-label="Carousel controls">
-		<button
-			class="carousel-btn carousel-btn-prev"
-			type="button"
-			aria-label="Go to previous slide"
-			data-carousel-prev
-		>
-			<svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-				<path
-					stroke="currentColor"
-					stroke-width="2"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					d="M15 19l-7-7 7-7"></path>
-			</svg>
-		</button>
+	{
+		showArrows && (
+			<div class="carousel-controls" role="group" aria-label="Carousel controls">
+				<button
+					class="carousel-btn carousel-btn-prev"
+					type="button"
+					aria-label="Go to previous slide"
+					data-carousel-prev
+				>
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+						<path
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							d="M15 19l-7-7 7-7"
+						/>
+					</svg>
+				</button>
 
-		<button class="carousel-btn carousel-btn-next" type="button" aria-label="Go to next slide" data-carousel-next>
-			<svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-				<path
-					stroke="currentColor"
-					stroke-width="2"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					d="M9 5l7 7-7 7"></path>
-			</svg>
-		</button>
-	</div>
+				<button
+					class="carousel-btn carousel-btn-next"
+					type="button"
+					aria-label="Go to next slide"
+					data-carousel-next
+				>
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+						<path
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							d="M9 5l7 7-7 7"
+						/>
+					</svg>
+				</button>
+			</div>
+		)
+	}
 
 	<div class="carousel-indicators" role="group" aria-label="Slide indicators">
 		{
@@ -117,7 +168,7 @@ if (!id) {
 		position: relative;
 		max-width: 100%;
 		margin: 0 auto;
-		background: white;
+
 		border-radius: 1rem;
 		overflow: hidden;
 		box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
