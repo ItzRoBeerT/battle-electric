@@ -78,7 +78,12 @@ const slides: CarouselSlide[] = reviews.map((review, index) => ({
 			</header>
 
 			<div class="review-content">
-				<p>${review.text.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')}</p>
+				<div class="review-text-wrapper">
+					<p class="review-text line-clamp-3 md:line-clamp-none">${review.text.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')}</p>
+					<button class="show-more-btn md:hidden mt-2 text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded px-1">
+						Show More
+					</button>
+				</div>
 			</div>
 		</article>
 	`,
@@ -102,3 +107,70 @@ const slides: CarouselSlide[] = reviews.map((review, index) => ({
 		)
 	}
 </div>
+
+<script>
+	function initShowMoreButtons() {
+		const buttons = document.querySelectorAll('.show-more-btn') as NodeListOf<HTMLButtonElement>;
+
+		buttons.forEach((button) => {
+			const reviewText = button.previousElementSibling as HTMLElement;
+
+			if (!reviewText) return;
+
+			// Solo mostrar el botón si el texto está realmente truncado
+			if (reviewText.scrollHeight > reviewText.clientHeight) {
+				button.style.display = 'inline-block';
+			} else {
+				button.style.display = 'none';
+			}
+
+			button.addEventListener('click', () => {
+				const isExpanded = reviewText.classList.contains('line-clamp-none');
+
+				if (isExpanded) {
+					reviewText.classList.remove('line-clamp-none');
+					reviewText.classList.add('line-clamp-3');
+					button.textContent = 'Show More';
+				} else {
+					reviewText.classList.remove('line-clamp-3');
+					reviewText.classList.add('line-clamp-none');
+					button.textContent = 'Show Less';
+				}
+			});
+		});
+	}
+
+	// Inicializar al cargar la página
+	initShowMoreButtons();
+
+	// Re-inicializar cuando cambian las slides del carousel
+	document.addEventListener('carousel-slide-changed', () => {
+		setTimeout(() => initShowMoreButtons(), 100);
+	});
+
+	// Re-inicializar en resize para verificar si el botón debe mostrarse
+	let resizeTimeout: number;
+	window.addEventListener('resize', () => {
+		clearTimeout(resizeTimeout);
+		resizeTimeout = window.setTimeout(() => {
+			initShowMoreButtons();
+		}, 250);
+	});
+</script>
+
+<style>
+	.review-text {
+		word-break: break-word;
+		overflow-wrap: break-word;
+	}
+
+	.show-more-btn {
+		display: none;
+	}
+
+	@media (max-width: 767px) {
+		.show-more-btn {
+			display: inline-block;
+		}
+	}
+</style>
