@@ -27,13 +27,33 @@ const structuredData = {
 
 <Layout title={title} description={description} canonical={canonical}>
 	<script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
-
 	<Hero />
-	<main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-		<WhyReplace />
-		<Services />
-		<WhyChoose />
-		<CTA />
-	</main>
+	<div class="relative">
+		<div class="img-background absolute inset-0"></div>
+		<div class="absolute inset-0 bg-black/30"></div>
+
+		<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 relative z-10">
+			<WhyReplace />
+			<Services />
+			<WhyChoose />
+			<CTA />
+		</div>
+	</div>
 </Layout>
 
+<style>
+	.img-background {
+		background-image: url('/background.jpg');
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+	}
+
+	.img-background::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(135deg, #1f2937 0%, #374151 50%, #1f2937 100%);
+		z-index: -1;
+	}
+</style>
