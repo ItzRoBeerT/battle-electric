@@ -2,8 +2,11 @@
 import Star from '../../assets/icons/star.svg';
 ---
 
-<section class="py-16 bg-gray-600">
-	<div class="container mx-auto px-4 max-w-5xl">
+<section class="py-16 bg-gray-600 relative">
+	<div class="img-background absolute inset-0"></div>
+	<div class="absolute inset-0 bg-black/30"></div>
+
+	<div class="container mx-auto px-4 max-w-5xl z-10 relative">
 		<h2 class="text-3xl/tight md:text-4xl/tight text-stroke mb-10 text-center">TYPES OF EV INSTALLATIONS</h2>
 
 		<div class="text-center mb-12">
@@ -205,5 +208,20 @@ import Star from '../../assets/icons/star.svg';
 		color: #fff;
 		-webkit-text-stroke: 1.8px black;
 		text-stroke: 1.8px black;
+	}
+
+	.img-background {
+		background-image: url('/background.jpg');
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+	}
+
+	.img-background::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(135deg, #1f2937 0%, #374151 50%, #1f2937 100%);
+		z-index: -1;
 	}
 </style>
