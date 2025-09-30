@@ -1,6 +1,6 @@
 <section class="py-16 bg-white">
 	<div class="container mx-auto px-4 max-w-4xl">
-		<h2 class="text-3xl/tight md:text-5xl/tight font-bold text-stroke text-center mb-10">
+		<h2 class="text-3xl/tight md:text-5xl/tight font-bold text-center mb-10 bg-gradient-to-r bg-clip-text text-transparent luminance-stroke stroke w-full">
 			OUR EV CHARGING SERVICES
 		</h2>
 
@@ -28,12 +28,25 @@
 </section>
 
 <style>
-	.text-stroke {
-		font-family: 'Arial Black', 'Helvetica', sans-serif;
+	.luminance-stroke {
+		position: relative;
+		display: inline-block;
+		font-weight: 900;
 		color: #f5ee31;
-		-webkit-text-stroke: 1.8px black;
-		text-stroke: 1.8px black;
+		line-height: 1;
 	}
-
-	
+	.luminance-stroke::before {
+		content: attr(data-text);
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: -1;
+		color: black;
+		-webkit-text-stroke: 6px black;
+		text-stroke: 6px black;
+	}
+	.stroke {
+		-webkit-text-stroke: 3px black;
+		paint-order: stroke fill;
+	}
 </style>
