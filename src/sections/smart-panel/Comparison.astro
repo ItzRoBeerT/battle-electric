@@ -1,0 +1,126 @@
+---
+import Clock from '../../assets/icons/clock.svg';
+import Battery2 from '../../assets/icons/battery-2.svg';
+import Battery4 from '../../assets/icons/battery-4.svg';
+import CoinOff from '../../assets/icons/coin-off.svg';
+---
+
+<section class="bg-black pb-6px md:pb-16 lg:pb-20 xl:pb-24">
+	<div class="img-bg h-[600px] md:h-[800px]">
+		<div class="text-white p-8 md:p-16 flex flex-col justify-between h-full container mx-auto">
+			<div>
+				<img alt="span-logo" src="/span/span-logo.png" width="150" />
+			</div>
+
+			<div class="text-6xl md:text-7xl font-bold mb-16">
+				<h2>More control.</h2>
+				<h2>More Power.</h2>
+			</div>
+		</div>
+	</div>
+
+	<div class="container mx-auto -mt-6 relative z-10">
+		<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-7xl px-8 md:px-16">
+			<div class="flex flex-col gap-6">
+				<h3 class="text-3xl md:text-4xl font-bold leading-tight text-white">
+					SPAN integrates with leading home battery systems for the ultimate backup experience
+				</h3>
+				<p class="text-lg leading-relaxed text-white mb-8">
+					SPAN extends your battery life by <span class="font-bold">40% during an outage</span> and gives you precise
+					control over your energy. Back up your entire home, change room and appliance priorities on the fly,
+					and instantly check how long your battery will last.
+				</p>
+				<img alt="App-info" src="/span/app-info.png" loading="lazy" />
+			</div>
+
+			<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+				<div>
+					<div class="pl-6 border-l-4 border-red-500">
+						<h4 class="text-xl font-bold mb-6 text-white">Traditional panel + battery</h4>
+
+						<p class="text-md font-semibold tracking-wider text-white">BATTERY LIFE</p>
+
+						<div class="flex flex-col items-start gap-3">
+							<Clock class="text-red-500" />
+
+							<p class="text-sm leading-snug text-white">Limited backup duration</p>
+						</div>
+
+						<div class="mt-8">
+							<p class="text-md font-semibold tracking-wider text-white mb-4">BACKUP POWER MANAGEMENT</p>
+							<p class="text-2xl font-bold text-red-500 mb-4">$$$</p>
+							<p class="text-sm leading-snug text-white">
+								Backup loads panel + installation costs + backup limitations. No Backup Overload
+								Protection
+							</p>
+						</div>
+					</div>
+
+					<div class="p-6">
+						<p class="text-md font-semibold tracking-wider text-white">WHOLE-HOME BACKUP</p>
+						<Battery2 class="text-red-500" />
+						<p class="text-sm leading-snug text-white">
+							Partial-home backup with limited backup loads during an outage and no estimated time
+							remaining
+						</p>
+					</div>
+					<div class="p-6">
+						<p class="text-md font-semibold tracking-wider text-white">COST SAVING ENERGY INSIGHTS</p>
+						<img alt="head-red" src="/span/head-red.png" width="40" />
+						<p class="text-sm leading-snug text-white">No energy insights or estimated remaining backup</p>
+					</div>
+				</div>
+
+				<div class="pl-6 border-l-4 border-green-500">
+					<h4 class="text-xl font-bold mb-6 text-white">SPAN Panel<br />+ battery</h4>
+					<p class="text-md font-semibold tracking-wider text-white">BATTERY LIFE</p>
+					<div class="space-y-4">
+						<div class="flex flex-col items-start gap-3">
+							<Clock class="text-green-500" />
+							<p class="text-sm leading-snug text-white">
+								Extended backup duration-- SPAN unlocks 40% longer battery backup on average
+							</p>
+						</div>
+
+						<div class="mt-8">
+							<p class="text-md font-semibold tracking-wider text-white mb-4">BACKUP POWER MANAGEMENT</p>
+							<CoinOff class="text-green-500 mb-4" />
+							<p class="text-sm leading-snug text-white">
+								No backup loads panel needed and includes automatic Backup Overload Protection that
+								prevents brownouts and service calls for battery resets
+							</p>
+						</div>
+						<div>
+							<p class="text-md font-semibold tracking-wider text-white">WHOLE-HOME BACKUP</p>
+							<Battery4 class="text-green-500" />
+							<p class="text-sm leading-snug text-white">
+								Flexible, resilient backup with circuit-level prioritization and estimated time
+								remaining in the SPAN Home App
+							</p>
+						</div>
+						<div>
+							<p class="text-md font-semibold tracking-wider text-white">COST SAVING ENERGY INSIGHTS</p>
+							<img alt="head-green" src="/span/head-green.png" width="40" />
+							<p class="text-sm leading-snug text-white">
+								Centralized home energy dashboard helps you save and allows you to instantly check how
+								long your battery will last
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.img-bg {
+		background-image:
+			linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+			linear-gradient(to right, rgba(0, 0, 0, 0.4) 0%, transparent 30%),
+			linear-gradient(to top, rgba(0, 0, 0, 1) 0%, transparent 30%), url('/span/house.jpg');
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-position: center;
+	}
+</style>

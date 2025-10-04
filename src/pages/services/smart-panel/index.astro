@@ -1,5 +1,11 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
+import Hero from '../../../sections/smart-panel/Hero.astro';
+import ProductFeature from '../../../sections/smart-panel/ProductFeature.astro';
+import Comparison from '../../../sections/smart-panel/Comparison.astro';
+import ImageContent from '../../../sections/smart-panel/ImageContent.astro';
+import Testimonials from '../../../sections/smart-panel/Testimonials.astro';
+import Award from '../../../sections/smart-panel/Award.astro';
 
 const title = 'Smart Panel Services | Battle Electric';
 const description =
@@ -8,6 +14,10 @@ const canonical = 'https://battleelectricfl.com/services/smart-panel';
 ---
 
 <Layout title={title} description={description} canonical={canonical}>
-	<h1>Smart Panel Services</h1>
-	<p>Discover our smart panel solutions for modern homes.</p>
+	<Hero />
+	<ProductFeature />
+	<Comparison />
+	<ImageContent />
+	<Testimonials />
+	<Award />
 </Layout>
