@@ -5,11 +5,35 @@ import Bolt from '../../../assets/icons/bolt.svg';
 import Building from '../../../assets/icons/building.svg';
 import Anchor from '../../../components/Anchor.astro';
 import AnchorOutlined from '../../../components/AnchorOutlined.astro';
+import plug from '../../../assets/services/ev-charging/level-3.jpeg';
+import plug2 from '../../../assets/services/ev-charging/level-3-tesla.jpeg';
+import plug3 from '../../../assets/services/ev-charging/level-3-tesla-2.jpeg';
+import type { CarouselSlide } from '../../../components/Carousel.astro';
+import Carousel from '../../../components/Carousel.astro';
 
 const title = 'Level 3 DC Fast Charging Installation | Commercial EV Superchargers | Battle Electric';
 const description =
 	'Level 3 DC fast charging installation for commercial use. Charge EVs to 80% in under 30 minutes. Professional supercharger installation for businesses and fleet operations.';
 const canonical = 'https://battleelectricfl.com/services/ev-charging/level-3';
+
+
+const slides: CarouselSlide[] = [
+	{
+		id: 'slide-2',
+		src: plug.src,
+		alt: 'Level 3 Charging Setup',
+	},
+	{
+		id: 'slide-1',
+		src: plug2.src,
+		alt: 'Level 3 Charging Setup',
+	},
+	{
+		id: 'slide-3',
+		src: plug3.src,
+		alt: 'Level 3 Charging Setup',
+	},
+];
 ---
 
 <Layout title={title} description={description} canonical={canonical}>
@@ -82,27 +106,7 @@ const canonical = 'https://battleelectricfl.com/services/ev-charging/level-3';
 				</div>
 
 				<!-- Visual Placeholder -->
-				<div class="bg-white rounded-xl shadow-lg p-8">
-					<div
-						class="aspect-video bg-gradient-to-br from-purple-100 to-purple-200 rounded-lg flex items-center justify-center"
-					>
-						<div class="text-center">
-							<div
-								class="w-24 h-24 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-4"
-							>
-								<svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-									<path
-										stroke-linecap="round"
-										stroke-linejoin="round"
-										stroke-width="2"
-										d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-								</svg>
-							</div>
-							<p class="text-purple-700 font-medium">Level 3 DC Fast Charging</p>
-							<p class="text-purple-600 text-sm">Commercial Infrastructure</p>
-						</div>
-					</div>
-				</div>
+				<Carousel slides={slides} id='level-3-carousel'/>
 			</div>
 		</div>
 	</section>
