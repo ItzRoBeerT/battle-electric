@@ -2,9 +2,13 @@
 import Star from '../../assets/icons/star.svg';
 ---
 
-<section class="py-16 bg-gray-600">
-	<div class="container mx-auto px-4 max-w-5xl">
-		<h2 class="text-3xl/tight md:text-4xl/tight text-stroke mb-10 text-center">TYPES OF EV INSTALLATIONS</h2>
+<section class="py-16 bg-gray-600 relative">
+	<div class="img-background absolute inset-0"></div>
+	<div class="absolute inset-0 bg-black/30"></div>
+
+
+	<div class="container mx-auto px-4 max-w-5xl z-10 relative">
+		<h2 class="text-3xl/tight md:text-4xl/tight mb-10 text-center bg-gradient-to-r bg-clip-text text-transparent luminance-stroke stroke w-full">TYPES OF EV INSTALLATIONS</h2>
 
 		<div class="text-center mb-12">
 			<p class="text-xl/relaxed text-white max-w-3xl mx-auto text-pretty">
@@ -200,10 +204,40 @@ import Star from '../../assets/icons/star.svg';
 </section>
 
 <style>
-	.text-stroke {
-		font-family: 'Arial Black', 'Helvetica', sans-serif;
-		color: #fff;
-		-webkit-text-stroke: 1.8px black;
-		text-stroke: 1.8px black;
+	.luminance-stroke {
+		position: relative;
+		display: inline-block;
+		font-weight: 900;
+		color: #f5ee31;
+		line-height: 1;
+	}
+	.luminance-stroke::before {
+		content: attr(data-text);
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: -1;
+		color: black;
+		-webkit-text-stroke: 6px black;
+		text-stroke: 6px black;
+	}
+	.stroke {
+		-webkit-text-stroke: 3px black;
+		paint-order: stroke fill;
+	}
+
+	.img-background {
+		background-image: url('/background.jpg');
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+	}
+
+	.img-background::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(135deg, #1f2937 0%, #374151 50%, #1f2937 100%);
+		z-index: -1;
 	}
 </style>

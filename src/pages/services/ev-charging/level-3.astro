@@ -1,128 +1,116 @@
 ---
-// src/pages/services/ev-charging/level-3.astro
 import Layout from '../../../layouts/Layout.astro';
+import Chevron from '../../../assets/icons/chevron.svg';
+import Bolt from '../../../assets/icons/bolt.svg';
+import Building from '../../../assets/icons/building.svg';
+import Anchor from '../../../components/Anchor.astro';
+import AnchorOutlined from '../../../components/AnchorOutlined.astro';
+import plug from '../../../assets/services/ev-charging/level-3.jpeg';
+import plug2 from '../../../assets/services/ev-charging/level-3-tesla.jpeg';
+import plug3 from '../../../assets/services/ev-charging/level-3-tesla-2.jpeg';
+import type { CarouselSlide } from '../../../components/Carousel.astro';
+import Carousel from '../../../components/Carousel.astro';
 
 const title = 'Level 3 DC Fast Charging Installation | Commercial EV Superchargers | Battle Electric';
 const description =
 	'Level 3 DC fast charging installation for commercial use. Charge EVs to 80% in under 30 minutes. Professional supercharger installation for businesses and fleet operations.';
 const canonical = 'https://battleelectricfl.com/services/ev-charging/level-3';
+
+
+const slides: CarouselSlide[] = [
+	{
+		id: 'slide-2',
+		src: plug.src,
+		alt: 'Level 3 Charging Setup',
+	},
+	{
+		id: 'slide-1',
+		src: plug2.src,
+		alt: 'Level 3 Charging Setup',
+	},
+	{
+		id: 'slide-3',
+		src: plug3.src,
+		alt: 'Level 3 Charging Setup',
+	},
+];
 ---
 
 <Layout title={title} description={description} canonical={canonical}>
-	<!-- Hero Section -->
-	<section class="py-16 bg-gradient-to-br from-purple-50 to-indigo-50">
+	<section class="py-16 bg-gradient-to-br from-yellow-50 to-indigo-50">
 		<div class="container mx-auto px-4 max-w-6xl">
-			<!-- Back to Overview -->
 			<div class="mb-8">
 				<a
 					href="/services/ev-charging/"
-					class="inline-flex items-center text-purple-600 hover:text-purple-700 font-medium transition-colors"
+					class="inline-flex items-center text-gray-600 hover:text-gray-700 font-medium transition-colors"
 				>
-					<svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"
-						></path>
-					</svg>
+					<Chevron class="w-4 h-4 mr-2 rotate-180 text-gray-600" />
 					Back to EV Charging Overview
 				</a>
 			</div>
 
 			<div class="grid lg:grid-cols-2 gap-12 items-center">
 				<div>
-					<!-- Commercial Badge -->
-					<div
-						class="inline-flex items-center bg-purple-600 text-white px-4 py-2 rounded-full text-sm font-bold mb-6"
-					>
-						⚡ Commercial Grade
-					</div>
-
 					<div class="flex items-center mb-6">
-						<div class="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mr-6">
-							<span class="text-3xl font-bold text-purple-600">3</span>
+						<div class="w-20 h-20 bg-yellow-100 rounded-full flex items-center justify-center mr-6">
+							<span class="text-3xl font-bold text-gray-600">3</span>
 						</div>
 						<div>
 							<h1 class="text-4xl/tight md:text-5xl/tight font-bold text-gray-900 mb-2">
 								Level 3 Charging
 							</h1>
-							<p class="text-xl text-purple-600 font-semibold">DC Fast Charging / Supercharger</p>
+							<p class="text-xl text-gray-600 font-semibold">DC Fast Charging / Supercharger</p>
 						</div>
 					</div>
 
-					<div class="bg-purple-100 border-l-4 border-purple-600 p-6 rounded-r-lg mb-8">
-						<h2 class="text-2xl font-bold text-purple-800 mb-3">⚡ Fastest Charging Method</h2>
-						<p class="text-purple-700 text-lg leading-relaxed">
+					<div class="bg-yellow-100 border-l-4 border-gray-600 p-6 rounded-r-lg mb-8">
+						<h2 class="text-2xl font-bold text-yellow-800 mb-3 flex gap-2">
+							<Bolt /> Fastest Charging Method
+						</h2>
+						<p class="text-gray-700 text-lg leading-relaxed">
 							<strong>Charge any EV to 80% in under 30 minutes.</strong> Level 3 chargers are known as Direct
 							Current Fast Charging or Superchargers, perfect for road trips and commercial applications.
 						</p>
 					</div>
 
 					<p class="text-lg/relaxed text-gray-700 mb-8">
-						While Level 3 provides <strong class="text-purple-600">the fastest charging available</strong>,
+						While Level 3 provides <strong class="text-yellow-600">the fastest charging available</strong>,
 						it's <strong>very impractical for home use</strong> due to the extensive infrastructure requirements.
 						Great for long road trips, but daily dependence can degrade batteries due to high heat production.
 					</p>
 
 					<!-- Key Features -->
 					<div class="grid grid-cols-2 gap-4 mb-8">
-						<div class="bg-white rounded-lg p-4 shadow-sm border border-purple-100">
-							<div class="text-2xl font-bold text-purple-600 mb-1">80%</div>
+						<div class="bg-white rounded-lg p-4 shadow-sm border border-yellow-100">
+							<div class="text-2xl font-bold text-gray-600 mb-1">80%</div>
 							<div class="text-sm text-gray-600">Under 30 minutes</div>
 						</div>
-						<div class="bg-white rounded-lg p-4 shadow-sm border border-purple-100">
-							<div class="text-2xl font-bold text-purple-600 mb-1">DC</div>
+						<div class="bg-white rounded-lg p-4 shadow-sm border border-yellow-100">
+							<div class="text-2xl font-bold text-gray-600 mb-1">DC</div>
 							<div class="text-sm text-gray-600">Direct current</div>
 						</div>
-						<div class="bg-white rounded-lg p-4 shadow-sm border border-purple-100">
-							<div class="text-2xl font-bold text-purple-600 mb-1">1hr</div>
+						<div class="bg-white rounded-lg p-4 shadow-sm border border-yellow-100">
+							<div class="text-2xl font-bold text-gray-600 mb-1">1hr</div>
 							<div class="text-sm text-gray-600">Full charge</div>
 						</div>
-						<div class="bg-white rounded-lg p-4 shadow-sm border border-purple-100">
-							<div class="text-2xl font-bold text-purple-600 mb-1">🏢</div>
+						<div class="bg-white rounded-lg p-4 shadow-sm border border-yellow-100">
+							<div class="text-2xl font-bold text-gray-600 mb-1"><Building /></div>
 							<div class="text-sm text-gray-600">Commercial use</div>
 						</div>
 					</div>
-
-					<a
+					<Anchor
 						href="/contact-us"
-						class="inline-flex items-center px-8 py-4 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition-colors duration-200 shadow-lg hover:shadow-xl"
-					>
-						Get Commercial Installation Quote
-						<svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-							<path
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								stroke-width="2"
-								d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-						</svg>
-					</a>
+						text="Get Commercial Installation Quote"
+						ariaLabel="Get Commercial Installation Quote for Level 3 EV Charging"
+					/>
 				</div>
 
 				<!-- Visual Placeholder -->
-				<div class="bg-white rounded-xl shadow-lg p-8">
-					<div
-						class="aspect-video bg-gradient-to-br from-purple-100 to-purple-200 rounded-lg flex items-center justify-center"
-					>
-						<div class="text-center">
-							<div
-								class="w-24 h-24 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-4"
-							>
-								<svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-									<path
-										stroke-linecap="round"
-										stroke-linejoin="round"
-										stroke-width="2"
-										d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-								</svg>
-							</div>
-							<p class="text-purple-700 font-medium">Level 3 DC Fast Charging</p>
-							<p class="text-purple-600 text-sm">Commercial Infrastructure</p>
-						</div>
-					</div>
-				</div>
+				<Carousel slides={slides} id='level-3-carousel'/>
 			</div>
 		</div>
 	</section>
 
-	<!-- Ideal Applications -->
 	<section class="py-16 bg-white">
 		<div class="container mx-auto px-4 max-w-6xl">
 			<h2 class="text-3xl/tight md:text-4xl/tight font-bold text-gray-900 mb-12 text-center">
@@ -185,7 +173,6 @@ const canonical = 'https://battleelectricfl.com/services/ev-charging/level-3';
 				</div>
 			</div>
 
-			<!-- Technical Specs -->
 			<div class="grid lg:grid-cols-2 gap-12 items-center">
 				<div>
 					<h3 class="text-2xl font-bold text-gray-900 mb-6">Why Not for Home Use?</h3>
@@ -246,32 +233,28 @@ const canonical = 'https://battleelectricfl.com/services/ev-charging/level-3';
 					</div>
 				</div>
 
-				<div class="bg-purple-50 rounded-xl p-8">
-					<h3 class="text-xl font-bold text-purple-900 mb-6">Technical Specifications</h3>
+				<div class="bg-yellow-50 rounded-xl p-8">
+					<h3 class="text-xl font-bold text-yellow-900 mb-6">Technical Specifications</h3>
 					<div class="space-y-4">
-						<div class="flex justify-between items-center py-3 border-b border-purple-200">
-							<span class="text-purple-800 font-medium">Power Type:</span>
-							<span class="text-purple-900 font-semibold">DC (Direct Current)</span>
+						<div class="flex justify-between items-center py-3 border-b border-yellow-200">
+							<span class="text-yellow-800 font-medium">Power Type:</span>
+							<span class="text-gray-900 font-semibold">DC (Direct Current)</span>
 						</div>
-						<div class="flex justify-between items-center py-3 border-b border-purple-200">
-							<span class="text-purple-800 font-medium">Voltage:</span>
-							<span class="text-purple-900 font-semibold">400-1000V DC</span>
+						<div class="flex justify-between items-center py-3 border-b border-yellow-200">
+							<span class="text-yellow-800 font-medium">Voltage:</span>
+							<span class="text-gray-900 font-semibold">400-1000V DC</span>
 						</div>
-						<div class="flex justify-between items-center py-3 border-b border-purple-200">
-							<span class="text-purple-800 font-medium">Power Output:</span>
-							<span class="text-purple-900 font-semibold">50-350+ kW</span>
+						<div class="flex justify-between items-center py-3 border-b border-yellow-200">
+							<span class="text-yellow-800 font-medium">Power Output:</span>
+							<span class="text-gray-900 font-semibold">50-350+ kW</span>
 						</div>
-						<div class="flex justify-between items-center py-3 border-b border-purple-200">
-							<span class="text-purple-800 font-medium">Charging Speed:</span>
-							<span class="text-purple-900 font-semibold">80% in 30 minutes</span>
-						</div>
-						<div class="flex justify-between items-center py-3 border-b border-purple-200">
-							<span class="text-purple-800 font-medium">Full Charge:</span>
-							<span class="text-purple-900 font-semibold">1 hour typical</span>
+						<div class="flex justify-between items-center py-3 border-b border-yellow-200">
+							<span class="text-yellow-800 font-medium">Charging Speed:</span>
+							<span class="text-gray-900 font-semibold">80% in 30 minutes</span>
 						</div>
 						<div class="flex justify-between items-center py-3">
-							<span class="text-purple-800 font-medium">Connector Types:</span>
-							<span class="text-purple-900 font-semibold">CCS / CHAdeMO</span>
+							<span class="text-yellow-800 font-medium">Full Charge:</span>
+							<span class="text-gray-900 font-semibold">1 hour typical</span>
 						</div>
 					</div>
 				</div>
@@ -373,73 +356,61 @@ const canonical = 'https://battleelectricfl.com/services/ev-charging/level-3';
 							</div>
 						</div>
 					</div>
-
-					<div class="bg-green-50 rounded-xl p-8 border border-green-200">
-						<h3 class="text-xl font-bold text-green-800 mb-4">Business Benefits</h3>
-						<div class="space-y-3">
-							<div class="flex items-start">
-								<svg
-									class="w-5 h-5 text-green-600 mr-2 mt-0.5"
-									fill="none"
-									stroke="currentColor"
-									viewBox="0 0 24 24"
-								>
-									<path
-										stroke-linecap="round"
-										stroke-linejoin="round"
-										stroke-width="2"
-										d="M5 13l4 4L19 7"></path>
-								</svg>
-								<span class="text-green-700 text-sm">Attract environmentally conscious customers</span>
-							</div>
-							<div class="flex items-start">
-								<svg
-									class="w-5 h-5 text-green-600 mr-2 mt-0.5"
-									fill="none"
-									stroke="currentColor"
-									viewBox="0 0 24 24"
-								>
-									<path
-										stroke-linecap="round"
-										stroke-linejoin="round"
-										stroke-width="2"
-										d="M5 13l4 4L19 7"></path>
-								</svg>
-								<span class="text-green-700 text-sm">Generate additional revenue streams</span>
-							</div>
-							<div class="flex items-start">
-								<svg
-									class="w-5 h-5 text-green-600 mr-2 mt-0.5"
-									fill="none"
-									stroke="currentColor"
-									viewBox="0 0 24 24"
-								>
-									<path
-										stroke-linecap="round"
-										stroke-linejoin="round"
-										stroke-width="2"
-										d="M5 13l4 4L19 7"></path>
-								</svg>
-								<span class="text-green-700 text-sm">Extend customer visit duration</span>
-							</div>
-							<div class="flex items-start">
-								<svg
-									class="w-5 h-5 text-green-600 mr-2 mt-0.5"
-									fill="none"
-									stroke="currentColor"
-									viewBox="0 0 24 24"
-								>
-									<path
-										stroke-linecap="round"
-										stroke-linejoin="round"
-										stroke-width="2"
-										d="M5 13l4 4L19 7"></path>
-								</svg>
-								<span class="text-green-700 text-sm">Qualify for green building certifications</span>
-							</div>
+				</div>
+				<div class="bg-green-50 rounded-xl p-8 border border-green-200">
+					<h3 class="text-xl font-bold text-green-800 mb-4">Business Benefits</h3>
+					<div class="space-y-3">
+						<div class="flex items-start">
+							<svg
+								class="w-5 h-5 text-green-600 mr-2 mt-0.5"
+								fill="none"
+								stroke="currentColor"
+								viewBox="0 0 24 24"
+							>
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"
+								></path>
+							</svg>
+							<span class="text-green-700 text-sm">Attract environmentally conscious customers</span>
+						</div>
+						<div class="flex items-start">
+							<svg
+								class="w-5 h-5 text-green-600 mr-2 mt-0.5"
+								fill="none"
+								stroke="currentColor"
+								viewBox="0 0 24 24"
+							>
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"
+								></path>
+							</svg>
+							<span class="text-green-700 text-sm">Generate additional revenue streams</span>
+						</div>
+						<div class="flex items-start">
+							<svg
+								class="w-5 h-5 text-green-600 mr-2 mt-0.5"
+								fill="none"
+								stroke="currentColor"
+								viewBox="0 0 24 24"
+							>
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"
+								></path>
+							</svg>
+							<span class="text-green-700 text-sm">Extend customer visit duration</span>
+						</div>
+						<div class="flex items-start">
+							<svg
+								class="w-5 h-5 text-green-600 mr-2 mt-0.5"
+								fill="none"
+								stroke="currentColor"
+								viewBox="0 0 24 24"
+							>
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"
+								></path>
+							</svg>
+							<span class="text-green-700 text-sm">Qualify for green building certifications</span>
 						</div>
 					</div>
 				</div>
+				<div>aqui va otra imagen</div>
 			</div>
 		</div>
 	</section>
@@ -571,38 +542,27 @@ const canonical = 'https://battleelectricfl.com/services/ev-charging/level-3';
 	</section>
 
 	<!-- Call to Action -->
-	<section class="py-16 bg-gradient-to-r from-purple-600 to-indigo-600">
+	<section class="py-16 bg-gradient-to-r from-yellow-100 to-gray-100">
 		<div class="container mx-auto px-4 max-w-4xl text-center">
-			<h2 class="text-3xl/tight md:text-4xl/tight font-bold text-white mb-6">
+			<h2 class="text-3xl/tight md:text-4xl/tight font-bold mb-6 text-gray-900">
 				Ready to Explore Commercial EV Charging?
 			</h2>
-			<p class="text-xl text-purple-100 mb-8 max-w-2xl mx-auto">
+			<p class="text-xl mb-8 max-w-2xl mx-auto text-gray-800">
 				Level 3 charging can transform your business by attracting EV customers and supporting fleet operations.
 				Let our experts design the perfect commercial charging solution for your needs.
 			</p>
 			<div class="flex flex-col sm:flex-row gap-4 justify-center">
-				<a
+				<Anchor
+					text="Get commercial Installation Quote"
 					href="/contact-us"
-					class="inline-flex items-center px-8 py-4 bg-white text-purple-600 font-semibold rounded-lg hover:bg-gray-100 transition-colors duration-200 shadow-lg hover:shadow-xl"
-				>
-					Get Commercial Installation Quote
-					<svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-						<path
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							stroke-width="2"
-							d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-					</svg>
-				</a>
-				<a
+					ariaLabel="Get commercial Installation Quote"
+				/>
+
+				<AnchorOutlined
+					text="Compare Level 2 for Home Use"
 					href="/services/ev-charging/level-2/"
-					class="inline-flex items-center px-8 py-4 bg-transparent border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-purple-600 transition-colors duration-200"
-				>
-					Compare Level 2 for Home Use
-					<svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-					</svg>
-				</a>
+					ariaLabel="Compare Level 2 for Home Use"
+				/>
 			</div>
 		</div>
 	</section>

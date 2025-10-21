@@ -1,19 +1,31 @@
 ---
 export interface CarouselSlide {
 	id: string;
-	src: string;
+	src?: string;
+	content?: string;
 	alt: string;
 	title?: string;
 	description?: string;
+	contentType?: 'image' | 'html' | 'review' | 'text';
 }
 
 export interface Props {
 	slides: CarouselSlide[];
 	id: string;
+	showArrows?: boolean;
 	ariaLabel?: string;
+	autoPlay?: boolean;
+	autoPlayInterval?: number;
 }
 
-const { slides, id, ariaLabel = 'Image carousel' } = Astro.props;
+const {
+	slides,
+	id,
+	ariaLabel = 'Image carousel',
+	autoPlay = true,
+	autoPlayInterval = 5000,
+	showArrows = true,
+} = Astro.props;
 
 if (!slides || slides.length === 0) {
 	throw new Error('Carousel: slides are required');
@@ -24,65 +36,113 @@ if (!id) {
 }
 ---
 
-<section class="battle-carousel" aria-label={ariaLabel} role="region" data-carousel-id={id}>
+<section
+	class="battle-carousel"
+	aria-label={ariaLabel}
+	role="region"
+	data-carousel-id={id}
+	data-autoplay={autoPlay}
+	data-autoplay-interval={autoPlayInterval}
+>
 	<ul class="carousel-track" role="list" aria-live="polite">
 		{
-			slides.map((slide, index) => (
-				<li
-					class="carousel-slide"
-					role="listitem"
-					id={`${id}-slide-${index}`}
-					aria-label={`Slide ${index + 1} of ${slides.length}: ${slide.alt}`}
-				>
-					<img
-						src={slide.src}
-						alt={slide.alt}
-						width="800"
-						height="600"
-						class="object-cover"
-						loading={index === 0 ? 'eager' : 'lazy'}
-						decoding="async"
-					/>
+			slides.map((slide, index) => {
+				const slideType = slide.contentType || (slide.src ? 'image' : 'content');
 
-					{(slide.title || slide.description) && (
-						<div class="carousel-caption">
-							{slide.title && <h3>{slide.title}</h3>}
-							{slide.description && <p>{slide.description}</p>}
+				return slide.src ? (
+					<li
+						class={`carousel-slide carousel-slide--image carousel-slide--${slideType} bg-white`}
+						role="listitem"
+						id={`${id}-slide-${index}`}
+						aria-label={`Slide ${index + 1} of ${slides.length}: ${slide.alt}`}
+					>
+						<img
+							src={slide.src}
+							alt={slide.alt}
+							width="800"
+							height="600"
+							class="object-cover"
+							loading={index === 0 ? 'eager' : 'lazy'}
+							decoding="async"
+						/>
+
+						{(slide.title || slide.description) && (
+							<div class="carousel-caption">
+								{slide.title && <h3>{slide.title}</h3>}
+								{slide.description && <p>{slide.description}</p>}
+							</div>
+						)}
+					</li>
+				) : (
+					<li
+						class={`carousel-slide carousel-slide--content carousel-slide--${slideType}`}
+						role="listitem"
+						id={`${id}-slide-${index}`}
+						aria-label={`Slide ${index + 1} of ${slides.length}: ${slide.alt}`}
+					>
+						<div class="h-full">
+							{slide.content ? (
+								<div class="h-full" set:html={slide.content} />
+							) : (
+								<div class="carousel-content carousel-content--fallback">
+									<div class="fallback-content">
+										<div class="fallback-icon">📄</div>
+										<span>No content available</span>
+									</div>
+								</div>
+							)}
 						</div>
-					)}
-				</li>
-			))
+						{(slide.title || slide.description) && (
+							<div class="carousel-caption carousel-caption--content">
+								{slide.title && <h3>{slide.title}</h3>}
+								{slide.description && <p>{slide.description}</p>}
+							</div>
+						)}
+					</li>
+				);
+			})
 		}
 	</ul>
 
-	<div class="carousel-controls" role="group" aria-label="Carousel controls">
-		<button
-			class="carousel-btn carousel-btn-prev"
-			type="button"
-			aria-label="Go to previous slide"
-			data-carousel-prev
-		>
-			<svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-				<path
-					stroke="currentColor"
-					stroke-width="2"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					d="M15 19l-7-7 7-7"></path>
-			</svg>
-		</button>
+	{
+		showArrows && (
+			<div class="carousel-controls" role="group" aria-label="Carousel controls">
+				<button
+					class="carousel-btn carousel-btn-prev"
+					type="button"
+					aria-label="Go to previous slide"
+					data-carousel-prev
+				>
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+						<path
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							d="M15 19l-7-7 7-7"
+						/>
+					</svg>
+				</button>
 
-		<button class="carousel-btn carousel-btn-next" type="button" aria-label="Go to next slide" data-carousel-next>
-			<svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-				<path
-					stroke="currentColor"
-					stroke-width="2"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					d="M9 5l7 7-7 7"></path>
-			</svg>
-		</button>
-	</div>
+				<button
+					class="carousel-btn carousel-btn-next"
+					type="button"
+					aria-label="Go to next slide"
+					data-carousel-next
+				>
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+						<path
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							d="M9 5l7 7-7 7"
+						/>
+					</svg>
+				</button>
+			</div>
+		)
+	}
 
 	<div class="carousel-indicators" role="group" aria-label="Slide indicators">
 		{
@@ -108,10 +168,13 @@ if (!id) {
 		position: relative;
 		max-width: 100%;
 		margin: 0 auto;
-		background: white;
+
 		border-radius: 1rem;
 		overflow: hidden;
 		box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+		/* ✅ Asegurar que el carousel esté contenido */
+		contain: layout style paint;
+		isolation: isolate;
 	}
 
 	.carousel-track {
@@ -132,6 +195,11 @@ if (!id) {
 
 		scrollbar-width: none;
 		-ms-overflow-style: none;
+
+		/* ✅ Mejor contención del scroll */
+		overscroll-behavior: contain;
+		overscroll-behavior-x: contain;
+		overscroll-behavior-y: auto;
 	}
 
 	/* remove scrollbar in Chrome/Safari */
@@ -150,7 +218,6 @@ if (!id) {
 
 		position: relative;
 	}
-
 
 	.carousel-slide img {
 		width: 100%;
@@ -318,6 +385,12 @@ if (!id) {
 		private totalSlides: number;
 		private observer: IntersectionObserver | null = null;
 
+		private autoPlay: boolean;
+		private autoPlayInterval: number;
+		private autoPlayTimer: number | null = null;
+		private isUserInteracting: boolean = false;
+		private isPaused: boolean = false;
+
 		constructor(carouselElement: HTMLElement) {
 			this.carousel = carouselElement;
 			this.track = carouselElement.querySelector('.carousel-track');
@@ -328,6 +401,9 @@ if (!id) {
 			this.statusEl = carouselElement.querySelector('[data-carousel-status]');
 			this.currentIndex = 0;
 			this.totalSlides = this.slides.length;
+
+			this.autoPlay = carouselElement.dataset.autoplay === 'true';
+			this.autoPlayInterval = parseInt(carouselElement.dataset.autoplayInterval || '5000', 10);
 
 			if (!this.track || this.totalSlides === 0) {
 				console.warn('BattleCarousel: Invalid carousel structure');
@@ -340,17 +416,34 @@ if (!id) {
 			this.bindEvents();
 			this.setupIntersectionObserver();
 			this.updateUI();
+
+			if (this.autoPlay && this.totalSlides > 1) {
+				this.startAutoPlay();
+			}
 		}
 
 		private bindEvents(): void {
-			this.prevBtn?.addEventListener('click', () => this.goToPrevious());
-			this.nextBtn?.addEventListener('click', () => this.goToNext());
-
-			this.indicators.forEach((indicator, index) => {
-				indicator.addEventListener('click', () => this.goToSlide(index));
+			this.prevBtn?.addEventListener('click', () => {
+				this.handleUserInteraction();
+				this.goToPrevious();
 			});
 
-			this.carousel.addEventListener('keydown', (e: KeyboardEvent) => this.handleKeydown(e));
+			this.nextBtn?.addEventListener('click', () => {
+				this.handleUserInteraction();
+				this.goToNext();
+			});
+
+			this.indicators.forEach((indicator, index) => {
+				indicator.addEventListener('click', () => {
+					this.handleUserInteraction();
+					this.goToSlide(index);
+				});
+			});
+
+			this.carousel.addEventListener('keydown', (e: KeyboardEvent) => {
+				this.handleUserInteraction();
+				this.handleKeydown(e);
+			});
 
 			this.track?.addEventListener(
 				'scroll',
@@ -358,6 +451,18 @@ if (!id) {
 					this.updateCurrentIndex();
 				}, 150)
 			);
+
+			this.carousel.addEventListener('mouseenter', () => this.pauseAutoPlay());
+			this.carousel.addEventListener('mouseleave', () => this.resumeAutoPlay());
+			this.track?.addEventListener('touchstart', () => this.handleUserInteraction());
+
+			document.addEventListener('visibilitychange', () => {
+				if (document.hidden) {
+					this.pauseAutoPlay();
+				} else {
+					this.resumeAutoPlay();
+				}
+			});
 		}
 
 		private setupIntersectionObserver(): void {
@@ -394,31 +499,28 @@ if (!id) {
 				return;
 			}
 
-			const targetSlide = this.slides[index];
-			if (targetSlide) {
-				targetSlide.scrollIntoView({
-					behavior: 'smooth',
-					block: 'nearest',
-					inline: 'start',
-				});
+			if (!this.track) return;
 
-				this.currentIndex = index;
-				this.updateUI();
-			}
+			const slideWidth = this.slides[0].offsetWidth;
+			const targetScrollLeft = index * slideWidth;
+
+			this.track.scrollTo({
+				left: targetScrollLeft,
+				behavior: 'smooth',
+			});
+
+			this.currentIndex = index;
+			this.updateUI();
 		}
 
 		private goToNext(): void {
-			const nextIndex = this.currentIndex + 1;
-			if (nextIndex < this.totalSlides) {
-				this.goToSlide(nextIndex);
-			}
+			const nextIndex = (this.currentIndex + 1) % this.totalSlides;
+			this.goToSlide(nextIndex);
 		}
 
 		private goToPrevious(): void {
-			const prevIndex = this.currentIndex - 1;
-			if (prevIndex >= 0) {
-				this.goToSlide(prevIndex);
-			}
+			const prevIndex = (this.currentIndex - 1 + this.totalSlides) % this.totalSlides;
+			this.goToSlide(prevIndex);
 		}
 
 		private updateCurrentIndex(): void {
@@ -436,13 +538,13 @@ if (!id) {
 
 		private updateUI(): void {
 			if (this.prevBtn) {
-				this.prevBtn.disabled = this.currentIndex === 0;
-				this.prevBtn.setAttribute('aria-disabled', String(this.currentIndex === 0));
+				this.prevBtn.disabled = false;
+				this.prevBtn.setAttribute('aria-disabled', 'false');
 			}
 
 			if (this.nextBtn) {
-				this.nextBtn.disabled = this.currentIndex === this.totalSlides - 1;
-				this.nextBtn.setAttribute('aria-disabled', String(this.currentIndex === this.totalSlides - 1));
+				this.nextBtn.disabled = false;
+				this.nextBtn.setAttribute('aria-disabled', 'false');
 			}
 
 			this.indicators.forEach((indicator, index) => {
@@ -484,6 +586,53 @@ if (!id) {
 					break;
 			}
 		}
+
+		private handleUserInteraction(): void {
+			this.isUserInteracting = true;
+			this.pauseAutoPlay();
+
+			setTimeout(() => {
+				this.isUserInteracting = false;
+				if (this.autoPlay) {
+					this.resumeAutoPlay();
+				}
+			}, 8000);
+		}
+
+		private startAutoPlay(): void {
+			if (!this.autoPlay || this.totalSlides <= 1) return;
+
+			this.autoPlayTimer = window.setInterval(() => {
+				if (!this.isUserInteracting && !this.isPaused && !document.hidden) {
+					const originalScrollBehavior = document.documentElement.style.scrollBehavior;
+					document.documentElement.style.scrollBehavior = 'auto';
+
+					this.goToNext();
+
+					setTimeout(() => {
+						document.documentElement.style.scrollBehavior = originalScrollBehavior;
+					}, 100);
+				}
+			}, this.autoPlayInterval);
+		}
+
+		private pauseAutoPlay(): void {
+			this.isPaused = true;
+			if (this.autoPlayTimer) {
+				clearInterval(this.autoPlayTimer);
+				this.autoPlayTimer = null;
+			}
+		}
+
+		private resumeAutoPlay(): void {
+			if (!this.autoPlay || this.isUserInteracting) return;
+
+			this.isPaused = false;
+			if (!this.autoPlayTimer) {
+				this.startAutoPlay();
+			}
+		}
+
 		private debounce<T extends (...args: any[]) => void>(func: T, wait: number): (...args: Parameters<T>) => void {
 			let timeout: ReturnType<typeof setTimeout>;
 			return function executedFunction(...args: Parameters<T>) {
@@ -496,10 +645,9 @@ if (!id) {
 			};
 		}
 
-		// Cleanup method
 		public destroy(): void {
 			this.observer?.disconnect();
-			// Remove event listeners if necessary
+			this.pauseAutoPlay();
 		}
 	}
 

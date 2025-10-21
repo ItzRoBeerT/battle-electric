@@ -1,4 +1,3 @@
-// @ts-check
 import { defineConfig } from 'astro/config';
 
 import tailwindcss from '@tailwindcss/vite';
@@ -11,4 +10,9 @@ export default defineConfig({
     plugins: [tailwindcss()]
   },
   adapter: vercelAdapter(),
+  server: {
+    host: true,
+    port: 4321,
+    allowedHosts: ['9dfd4794cbd8.ngrok-free.app']
+  }
 });

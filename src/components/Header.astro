@@ -37,13 +37,10 @@ import Chevron from '../assets/icons/chevron-down.svg';
 		<div class="hidden md:flex gap-6 items-center">
 			<!-- Services Dropdown -->
 			<div class="relative group" id="services-dropdown">
-				<a
-					href="/services"
-					class="hover:text-gray-600 font-medium flex items-center gap-1 transition-colors duration-300"
-				>
+				<span class="hover:text-gray-600 font-medium flex items-center gap-1 transition-colors duration-300">
 					Services
 					<Chevron class="w-4 h-4 transition-transform duration-200 group-hover:rotate-180" />
-				</a>
+				</span>
 
 				<!-- Dropdown Menu -->
 				<div
@@ -61,7 +58,17 @@ import Chevron from '../assets/icons/chevron-down.svg';
 							</h3>
 							<p class="text-sm text-gray-600 mt-1">Electric vehicle charging solutions</p>
 						</a>
-
+						<a
+							href="/services/smart-panel"
+							class="block p-3 rounded-lg hover:bg-yellow-50 transition-colors duration-200 group/item"
+						>
+							<h3
+								class="font-medium text-gray-900 group-hover/item:text-gray-600 transition-colors duration-200"
+							>
+								Smart Panel
+							</h3>
+							<p class="text-sm text-gray-600 mt-1">Smart electrical panel solutions</p>
+						</a>
 						<a
 							href="/services/electrical-panel"
 							class="block p-3 rounded-lg hover:bg-yellow-50 transition-colors duration-200 group/item"
@@ -73,25 +80,9 @@ import Chevron from '../assets/icons/chevron-down.svg';
 							</h3>
 							<p class="text-sm text-gray-600 mt-1">Panel installation & upgrades</p>
 						</a>
-
-						<a
-							href="/services/undergrounding-utilities"
-							class="block p-3 rounded-lg hover:bg-yellow-50 transition-colors duration-200 group/item"
-						>
-							<h3
-								class="font-medium text-gray-900 group-hover/item:text-gray-600 transition-colors duration-200"
-							>
-								Undergrounding Utilities
-							</h3>
-							<p class="text-sm text-gray-600 mt-1">Underground electrical services</p>
-						</a>
 					</div>
 				</div>
 			</div>
-
-			<a href="/about-us" class="nav-link hover:text-gray-600 font-medium transition-colors duration-300">
-				About Us
-			</a>
 
 			<a href="/contact-us" class="nav-link hover:text-gray-600 font-medium transition-colors duration-300">
 				Contact Us
@@ -99,9 +90,9 @@ import Chevron from '../assets/icons/chevron-down.svg';
 		</div>
 
 		<!-- Desktop CTA -->
-		 <div class="hidden md:inline-block">
-			 <FreeQuoteButton />
-		 </div>
+		<div class="hidden md:inline-block">
+			<FreeQuoteButton />
+		</div>
 
 		<!-- Mobile Menu Button -->
 		<button
@@ -159,8 +150,6 @@ import Chevron from '../assets/icons/chevron-down.svg';
 					</a>
 				</div>
 			</div>
-
-			<a href="/about-us" class="block py-2 px-4 rounded-lg transition-colors font-medium"> About Us </a>
 
 			<a href="/contact-us" class="block py-2 px-4
 				 rounded-lg transition-colors font-medium"> Contact Us </a>

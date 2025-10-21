@@ -1,24 +1,331 @@
 ---
-import Layout from "../../layouts/Layout.astro";
+// FILE: src/pages/services/index.astro
+import Layout from '../../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import FreeQuoteButton from '../../components/FreeQuoteButton.astro';
 
-const title = "Services | Electrical Panel Installation | Battle Electric";
-const description = "Explore our comprehensive electrical services, including installations, repairs, and maintenance for residential and commercial properties. Trust Battle Electric for all your electrical needs.";
-const canonical = "https://battleelectricfl.com/services";
+// Import service images
+import evChargingImage from '../../assets/services/ev-charging/level-2-tesla.jpeg';
+import smartPanelImage from '../../../public/span/span-smart-panel.avif';
+import electricalPanelImage from '../../../public/span/span-smart-panel.avif'; // Add your image
+
+const title = 'Electrical Services | Battle Electric FL';
+const description =
+	'Comprehensive electrical services in Miami-Dade, Broward, and Monroe County. From panel installations to EV charging stations, trust our licensed electricians for all your needs.';
+const canonical = 'https://battleelectricfl.com/services';
+
+const services = [
+	{
+		title: 'Electrical Panel Installation',
+		description:
+			'Expert electrical panel installation and replacement services. Free safety inspections, insurance-required upgrades, and modern panel solutions.',
+		image: electricalPanelImage,
+		features: [
+			'Panel upgrades & replacements',
+			'Safety inspections',
+			'Insurance compliance',
+			'Commercial & residential',
+		],
+		url: '/services/electrical-panel',
+		icon: '⚡',
+	},
+	{
+		title: 'EV Charger Installation',
+		description:
+			'Professional electric vehicle charging station installation for homes and businesses. Level 2 charging solutions for all EV brands.',
+		image: evChargingImage,
+		features: [
+			'Level 2 charging stations',
+			'Tesla & universal chargers',
+			'Smart scheduling',
+			'Weather-resistant installation',
+		],
+		url: '/services/ev-charging',
+		icon: '🔌',
+	},
+	{
+		title: 'Smart Electrical Panels',
+		description:
+			'Advanced smart panel technology with remote monitoring, energy management, and smart home integration for modern living.',
+		image: smartPanelImage,
+		features: [
+			'Remote control & monitoring',
+			'Energy usage tracking',
+			'Smart home integration',
+			'Real-time notifications',
+		],
+		url: '/services/smart-panel',
+		icon: '📱',
+	},
+];
+
+const serviceAreas = ['Miami-Dade County', 'Broward County', 'Monroe County', 'Homestead', 'Miami', 'Fort Lauderdale'];
+
+const whyChooseUs = [
+	{
+		title: '35+ Years Experience',
+		description: 'Decades of expertise in residential and commercial electrical work',
+		icon: '🏆',
+	},
+	{
+		title: 'Licensed & Insured',
+		description: 'Fully licensed, bonded, and insured for your protection',
+		icon: '✓',
+	},
+	{
+		title: '24/7 Emergency Service',
+		description: 'Available around the clock for urgent electrical needs',
+		icon: '🚨',
+	},
+	{
+		title: 'Upfront Pricing',
+		description: 'Transparent quotes with no hidden fees or surprises',
+		icon: '💰',
+	},
+];
 ---
 
 <Layout title={title} description={description} canonical={canonical}>
-  <h1 class="font-bold text-4xl mb-4">Our Services</h1>
-  <p class="mb-6">At Battle Electric, we offer a wide range of electrical services to meet your needs:</p>
-  
-  <ul class="list-disc pl-5">
-    <li>Electrical Panel Installation</li>
-    <li>Wiring and Rewiring</li>
-    <li>Lighting Installation</li>
-    <li>Electrical Repairs</li>
-    <li>Generator Installation</li>
-    <li>Commercial Electrical Services</li>
-  </ul>
+	<!-- Hero Section -->
+	<section
+		class="hero-section min-h-[60vh] bg-gray-900 relative flex items-center justify-center"
+		role="banner"
+		aria-labelledby="services-hero-title"
+	>
+		<div class="hero-background absolute inset-0"></div>
+		<div class="absolute inset-0 bg-black/40"></div>
 
-  <p class="mt-6">Contact us today to learn more about how we can assist you with your electrical projects!</p>
-  
+		<div class="relative z-10 text-center px-4 max-w-5xl mx-auto py-20">
+			<h1 id="services-hero-title" class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+				Professional Electrical Services
+			</h1>
+			<p class="text-lg md:text-xl text-gray-200 mb-8 max-w-3xl mx-auto">
+				Trusted electrical solutions for homes and businesses across <strong
+					>Miami-Dade, Broward, and Monroe County, Florida</strong
+				>
+			</p>
+			<FreeQuoteButton />
+		</div>
+	</section>
+
+	<!-- Main Content -->
+	<div class="relative">
+		<div class="img-background absolute inset-0"></div>
+		<div class="absolute inset-0 bg-black/30"></div>
+
+		<div class="relative z-10">
+			<!-- Services Grid -->
+			<section class="py-16 md:py-20" aria-labelledby="services-title">
+				<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+					<div class="text-center mb-12">
+						<h2 id="services-title" class="text-3xl md:text-4xl font-bold text-white mb-4">Our Services</h2>
+						<p class="text-lg text-gray-300 max-w-2xl mx-auto">
+							Comprehensive electrical solutions tailored to your specific needs
+						</p>
+					</div>
+
+					<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+						{
+							services.map((service, index) => (
+								<article class="group bg-white/95 backdrop-blur-sm rounded-xl shadow-lg hover:shadow-2xl border border-white/50 overflow-hidden transition-all duration-300 hover:-translate-y-2">
+									<div class="relative h-48 overflow-hidden">
+										<Image
+											src={service.image}
+											alt={`${service.title} - Battle Electric professional service`}
+											width={400}
+											height={300}
+											loading={index === 0 ? 'eager' : 'lazy'}
+											class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+										/>
+										<div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+										<div class="absolute bottom-4 left-4 text-4xl" aria-hidden="true">
+											{service.icon}
+										</div>
+									</div>
+
+									<div class="p-6">
+										<h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-gray-700 transition-colors">
+											{service.title}
+										</h3>
+
+										<p class="text-gray-600 leading-relaxed mb-4 line-clamp-3">
+											{service.description}
+										</p>
+
+										<ul class="space-y-2 mb-6" role="list">
+											{service.features.map((feature) => (
+												<li class="flex items-start gap-2 text-sm text-gray-600">
+													<svg
+														class="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5"
+														fill="none"
+														stroke="currentColor"
+														viewBox="0 0 24 24"
+														aria-hidden="true"
+													>
+														<path
+															stroke-linecap="round"
+															stroke-linejoin="round"
+															stroke-width="2"
+															d="M5 13l4 4L19 7"
+														/>
+													</svg>
+													<span>{feature}</span>
+												</li>
+											))}
+										</ul>
+
+										<a
+											href={service.url}
+											class="block w-full text-center px-6 py-3 bg-battle-yellow hover:bg-battle-yellow-hover text-black font-semibold rounded-lg transition-all duration-300 hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-battle-yellow/50 focus:ring-offset-2"
+											aria-label={`Learn more about ${service.title}`}
+										>
+											Learn More
+										</a>
+									</div>
+								</article>
+							))
+						}
+					</div>
+				</div>
+			</section>
+
+			<!-- Why Choose Us -->
+			<section class="py-16 md:py-20 bg-white/5" aria-labelledby="why-choose-title">
+				<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+					<div class="text-center mb-12">
+						<h2 id="why-choose-title" class="text-3xl md:text-4xl font-bold text-white mb-4">
+							Why Choose Battle Electric?
+						</h2>
+						<p class="text-lg text-gray-300 max-w-2xl mx-auto">
+							Your trusted partner for all electrical needs in South Florida
+						</p>
+					</div>
+
+					<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+						{
+							whyChooseUs.map((item) => (
+								<div class="bg-white/90 backdrop-blur-sm rounded-xl p-6 text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+									<div class="text-4xl mb-4" aria-hidden="true">
+										{item.icon}
+									</div>
+									<h3 class="text-lg font-bold text-gray-900 mb-2">{item.title}</h3>
+									<p class="text-sm text-gray-600">{item.description}</p>
+								</div>
+							))
+						}
+					</div>
+				</div>
+			</section>
+
+			<!-- Service Areas -->
+			<section class="py-16 md:py-20" aria-labelledby="service-areas-title">
+				<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+					<div class="bg-white/95 backdrop-blur-sm rounded-2xl p-8 md:p-12 shadow-2xl border border-white/50">
+						<h2
+							id="service-areas-title"
+							class="text-2xl md:text-3xl font-bold text-gray-900 mb-6 text-center"
+						>
+							Service Areas
+						</h2>
+						<p class="text-gray-600 text-center mb-8">
+							Proudly serving residential and commercial clients throughout South Florida
+						</p>
+						<div class="flex flex-wrap justify-center gap-3">
+							{
+								serviceAreas.map((area) => (
+									<span class="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm font-medium">
+										{area}
+									</span>
+								))
+							}
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- CTA Section -->
+			<section class="py-16 md:py-20" aria-labelledby="cta-title">
+				<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+					<div
+						class="bg-gradient-to-br from-battle-yellow to-yellow-400 rounded-2xl p-8 md:p-12 shadow-2xl text-center"
+					>
+						<h2 id="cta-title" class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+							Ready to Get Started?
+						</h2>
+						<p class="text-lg text-gray-800 mb-8 max-w-2xl mx-auto">
+							Contact us today for a free consultation and quote. Our expert electricians are ready to
+							help with your project.
+						</p>
+						<div class="flex flex-col sm:flex-row gap-4 justify-center">
+							<a
+								href="/contact"
+								class="inline-block px-8 py-4 bg-gray-900 text-white font-bold rounded-lg hover:bg-gray-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+							>
+								Get Free Quote
+							</a>
+							<a
+								href="tel:+13059151179"
+								class="inline-block px-8 py-4 bg-white text-gray-900 font-bold rounded-lg hover:bg-gray-100 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+							>
+								Call (305) 915-1179
+							</a>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+	</div>
 </Layout>
+
+<style>
+	.hero-section {
+		position: relative;
+		overflow: hidden;
+	}
+
+	.hero-background {
+		background-image: url('/background.jpg');
+		background-size: cover;
+		background-position: center;
+		background-attachment: fixed;
+		background-repeat: no-repeat;
+	}
+
+	.img-background {
+		background-image: url('/background.jpg');
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+	}
+
+	.img-background::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(135deg, #1f2937 0%, #374151 50%, #1f2937 100%);
+		z-index: -1;
+	}
+
+	.line-clamp-3 {
+		display: -webkit-box;
+		-webkit-line-clamp: 3;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+	}
+
+	@media (max-width: 768px) {
+		.hero-background {
+			background-attachment: scroll;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		*,
+		*::before,
+		*::after {
+			animation-duration: 0.01ms !important;
+			animation-iteration-count: 1 !important;
+			transition-duration: 0.01ms !important;
+		}
+	}
+</style>

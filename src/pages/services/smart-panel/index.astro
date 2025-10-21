@@ -1,0 +1,23 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Hero from '../../../sections/smart-panel/Hero.astro';
+import ProductFeature from '../../../sections/smart-panel/ProductFeature.astro';
+import Comparison from '../../../sections/smart-panel/Comparison.astro';
+import ImageContent from '../../../sections/smart-panel/ImageContent.astro';
+import Testimonials from '../../../sections/smart-panel/Testimonials.astro';
+import Award from '../../../sections/smart-panel/Award.astro';
+
+const title = 'Smart Panel Services | Battle Electric';
+const description =
+	'Discover our smart panel solutions for modern homes. Expert installation and maintenance services to enhance your electrical system.';
+const canonical = 'https://battleelectricfl.com/services/smart-panel';
+---
+
+<Layout title={title} description={description} canonical={canonical}>
+	<Hero />
+	<ProductFeature />
+	<Comparison />
+	<ImageContent />
+	<Testimonials />
+	<Award />
+</Layout>
