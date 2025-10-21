@@ -1,0 +1,78 @@
+---
+// brands.astro
+const brands = [
+  { name: "Tesla", logo: "/src/assets/logos/tesla.png", alt: "Tesla logo" },
+  { name: "Cadillac", logo: "/src/assets/logos/cadillac.png", alt: "Cadillac logo" },
+  { name: "Chevy", logo: "/src/assets/logos/chevy.png", alt: "Chevrolet logo" },
+  { name: "Ford", logo: "/src/assets/logos/ford.png", alt: "Ford logo" },
+  { name: "Rivian", logo: "/src/assets/logos/rivian.svg", alt: "Rivian logo" },
+  { name: "Porsche", logo: "/src/assets/logos/porsche.png", alt: "Porsche logo" }
+];
+---
+
+<section class="py-16 px-4 bg-gradient-to-b from-white to-gray-50">
+  <div class="max-w-6xl mx-auto">
+    <!-- Header -->
+    <div class="text-center mb-12">
+      <h2 class="text-3xl/tight md:text-4xl/tight font-bold text-center mb-4 bg-gradient-to-r bg-clip-text text-transparent luminance-stroke stroke w-full">
+        OUR EV PARTNERS
+      </h2>
+      <p class="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+        We are proud to partner with the following leading brands in electric vehicle charging technology
+      </p>
+    </div>
+
+    <!-- Brands Grid -->
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 lg:gap-6">
+      {brands.map((brand) => (
+        <div class="group flex flex-col items-center justify-center p-6 bg-white rounded-xl shadow-sm border border-gray-100 hover:shadow-lg hover:border-gray-200 transition-all duration-300 hover:-translate-y-1">
+          <!-- Logo Container -->
+          <div class="flex items-center justify-center w-16 h-16 mb-3 p-2 bg-gray-50 rounded-lg group-hover:bg-gray-100 transition-colors duration-300">
+            <img 
+              src={brand.logo} 
+              alt={brand.alt}
+              class="max-w-full max-h-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300"
+              loading="lazy"
+            />
+          </div>
+          
+          <!-- Brand Name -->
+          <span class="text-sm font-medium text-gray-700 group-hover:text-gray-900 transition-colors duration-300 text-center">
+            {brand.name}
+          </span>
+        </div>
+      ))}
+    </div>
+
+    <!-- Optional: Stats or Additional Info -->
+    <div class="mt-12 text-center">
+      <p class="text-sm text-gray-500">
+        Supporting <span class="font-semibold text-gray-700">{brands.length}+</span> premium EV brands and counting
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+		.luminance-stroke {
+		position: relative;
+		display: inline-block;
+		font-weight: 900;
+		color: #f5ee31;
+		line-height: 1;
+	}
+	.luminance-stroke::before {
+		content: attr(data-text);
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: -1;
+		color: black;
+		-webkit-text-stroke: 6px black;
+		text-stroke: 6px black;
+	}
+	.stroke {
+		-webkit-text-stroke: 3px black;
+		paint-order: stroke fill;
+	}
+</style>

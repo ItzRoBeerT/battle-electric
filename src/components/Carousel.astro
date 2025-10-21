@@ -1,0 +1,671 @@
+---
+export interface CarouselSlide {
+	id: string;
+	src?: string;
+	content?: string;
+	alt: string;
+	title?: string;
+	description?: string;
+	contentType?: 'image' | 'html' | 'review' | 'text';
+}
+
+export interface Props {
+	slides: CarouselSlide[];
+	id: string;
+	showArrows?: boolean;
+	ariaLabel?: string;
+	autoPlay?: boolean;
+	autoPlayInterval?: number;
+}
+
+const {
+	slides,
+	id,
+	ariaLabel = 'Image carousel',
+	autoPlay = true,
+	autoPlayInterval = 5000,
+	showArrows = true,
+} = Astro.props;
+
+if (!slides || slides.length === 0) {
+	throw new Error('Carousel: slides are required');
+}
+
+if (!id) {
+	throw new Error('Carousel: id is required for accessibility');
+}
+---
+
+<section
+	class="battle-carousel"
+	aria-label={ariaLabel}
+	role="region"
+	data-carousel-id={id}
+	data-autoplay={autoPlay}
+	data-autoplay-interval={autoPlayInterval}
+>
+	<ul class="carousel-track" role="list" aria-live="polite">
+		{
+			slides.map((slide, index) => {
+				const slideType = slide.contentType || (slide.src ? 'image' : 'content');
+
+				return slide.src ? (
+					<li
+						class={`carousel-slide carousel-slide--image carousel-slide--${slideType} bg-white`}
+						role="listitem"
+						id={`${id}-slide-${index}`}
+						aria-label={`Slide ${index + 1} of ${slides.length}: ${slide.alt}`}
+					>
+						<img
+							src={slide.src}
+							alt={slide.alt}
+							width="800"
+							height="600"
+							class="object-cover"
+							loading={index === 0 ? 'eager' : 'lazy'}
+							decoding="async"
+						/>
+
+						{(slide.title || slide.description) && (
+							<div class="carousel-caption">
+								{slide.title && <h3>{slide.title}</h3>}
+								{slide.description && <p>{slide.description}</p>}
+							</div>
+						)}
+					</li>
+				) : (
+					<li
+						class={`carousel-slide carousel-slide--content carousel-slide--${slideType}`}
+						role="listitem"
+						id={`${id}-slide-${index}`}
+						aria-label={`Slide ${index + 1} of ${slides.length}: ${slide.alt}`}
+					>
+						<div class="h-full">
+							{slide.content ? (
+								<div class="h-full" set:html={slide.content} />
+							) : (
+								<div class="carousel-content carousel-content--fallback">
+									<div class="fallback-content">
+										<div class="fallback-icon">📄</div>
+										<span>No content available</span>
+									</div>
+								</div>
+							)}
+						</div>
+						{(slide.title || slide.description) && (
+							<div class="carousel-caption carousel-caption--content">
+								{slide.title && <h3>{slide.title}</h3>}
+								{slide.description && <p>{slide.description}</p>}
+							</div>
+						)}
+					</li>
+				);
+			})
+		}
+	</ul>
+
+	{
+		showArrows && (
+			<div class="carousel-controls" role="group" aria-label="Carousel controls">
+				<button
+					class="carousel-btn carousel-btn-prev"
+					type="button"
+					aria-label="Go to previous slide"
+					data-carousel-prev
+				>
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+						<path
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							d="M15 19l-7-7 7-7"
+						/>
+					</svg>
+				</button>
+
+				<button
+					class="carousel-btn carousel-btn-next"
+					type="button"
+					aria-label="Go to next slide"
+					data-carousel-next
+				>
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+						<path
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							d="M9 5l7 7-7 7"
+						/>
+					</svg>
+				</button>
+			</div>
+		)
+	}
+
+	<div class="carousel-indicators" role="group" aria-label="Slide indicators">
+		{
+			slides.map((_, index) => (
+				<button
+					class="carousel-indicator"
+					type="button"
+					aria-label={`Go to slide ${index + 1}`}
+					data-carousel-indicator={index}
+					aria-pressed={index === 0 ? 'true' : 'false'}
+				/>
+			))
+		}
+	</div>
+
+	<div class="sr-only" aria-live="polite" data-carousel-status>
+		Slide 1 of {slides.length}
+	</div>
+</section>
+
+<style>
+	.battle-carousel {
+		position: relative;
+		max-width: 100%;
+		margin: 0 auto;
+
+		border-radius: 1rem;
+		overflow: hidden;
+		box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+		/* ✅ Asegurar que el carousel esté contenido */
+		contain: layout style paint;
+		isolation: isolate;
+	}
+
+	.carousel-track {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+
+		display: flex;
+
+		overflow-x: auto;
+		overflow-y: hidden;
+
+		scroll-snap-type: x mandatory;
+
+		scroll-behavior: smooth;
+
+		-webkit-overflow-scrolling: touch;
+
+		scrollbar-width: none;
+		-ms-overflow-style: none;
+
+		/* ✅ Mejor contención del scroll */
+		overscroll-behavior: contain;
+		overscroll-behavior-x: contain;
+		overscroll-behavior-y: auto;
+	}
+
+	/* remove scrollbar in Chrome/Safari */
+	.carousel-track::-webkit-scrollbar {
+		display: none;
+	}
+
+	.carousel-slide {
+		flex-shrink: 0;
+
+		width: 100%;
+
+		scroll-snap-align: start;
+
+		scroll-snap-stop: always;
+
+		position: relative;
+	}
+
+	.carousel-slide img {
+		width: 100%;
+		height: 400px;
+		object-fit: contain;
+		display: block;
+		object-position: center;
+	}
+
+	.carousel-caption {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		padding: 1.5rem;
+		background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+		color: white;
+	}
+
+	.carousel-caption h3 {
+		margin: 0 0 0.5rem 0;
+		font-size: 1.25rem;
+		font-weight: 600;
+	}
+
+	.carousel-caption p {
+		margin: 0;
+		font-size: 0.875rem;
+		opacity: 0.9;
+	}
+
+	.carousel-controls {
+		display: block;
+	}
+
+	.carousel-btn {
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		z-index: 10;
+
+		width: 3rem;
+		height: 3rem;
+		border-radius: 50%;
+		border: none;
+
+		background: rgba(255, 255, 255, 0.9);
+		backdrop-filter: blur(8px);
+		box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+
+		color: #374151;
+
+		cursor: pointer;
+
+		transition: all 0.2s ease;
+
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.carousel-btn:hover {
+		background: rgba(255, 255, 255, 1);
+		transform: translateY(-50%) scale(1.1);
+		box-shadow: 0 8px 25px -5px rgba(0, 0, 0, 0.2);
+	}
+
+	.carousel-btn:focus {
+		outline: 2px solid #f5ee31;
+		outline-offset: 2px;
+	}
+
+	.carousel-btn-prev {
+		left: 1rem;
+	}
+
+	.carousel-btn-next {
+		right: 1rem;
+	}
+
+	@media (hover: none) and (pointer: coarse) {
+		.carousel-btn {
+			opacity: 0;
+			pointer-events: none;
+		}
+	}
+
+	.carousel-indicators {
+		display: flex;
+		justify-content: center;
+		gap: 0.5rem;
+		padding: 1rem;
+		background: white;
+	}
+
+	.carousel-indicator {
+		width: 0.75rem;
+		height: 0.75rem;
+		border-radius: 50%;
+		border: none;
+		background: #d1d5db;
+		cursor: pointer;
+		transition: all 0.3s ease;
+	}
+
+	.carousel-indicator:hover {
+		background: #9ca3af;
+		transform: scale(1.2);
+	}
+
+	.carousel-indicator[aria-pressed='true'] {
+		background: #f5ee31;
+		transform: scale(1.3);
+	}
+
+	.carousel-indicator:focus {
+		outline: 2px solid #f5ee31;
+		outline-offset: 2px;
+	}
+
+	.sr-only {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		white-space: nowrap;
+		border: 0;
+	}
+
+	.carousel-track {
+		transform: translateZ(0);
+		will-change: scroll-position;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.carousel-track {
+			scroll-behavior: auto;
+		}
+
+		.carousel-btn,
+		.carousel-indicator {
+			transition: none;
+		}
+	}
+</style>
+
+<script>
+	interface CarouselDetail {
+		currentIndex: number;
+		totalSlides: number;
+	}
+
+	class BattleCarousel {
+		private carousel: HTMLElement;
+		private track: HTMLElement | null;
+		private slides: NodeListOf<HTMLElement>;
+		private prevBtn: HTMLButtonElement | null;
+		private nextBtn: HTMLButtonElement | null;
+		private indicators: NodeListOf<HTMLButtonElement>;
+		private statusEl: HTMLElement | null;
+		private currentIndex: number;
+		private totalSlides: number;
+		private observer: IntersectionObserver | null = null;
+
+		private autoPlay: boolean;
+		private autoPlayInterval: number;
+		private autoPlayTimer: number | null = null;
+		private isUserInteracting: boolean = false;
+		private isPaused: boolean = false;
+
+		constructor(carouselElement: HTMLElement) {
+			this.carousel = carouselElement;
+			this.track = carouselElement.querySelector('.carousel-track');
+			this.slides = carouselElement.querySelectorAll('.carousel-slide');
+			this.prevBtn = carouselElement.querySelector('[data-carousel-prev]');
+			this.nextBtn = carouselElement.querySelector('[data-carousel-next]');
+			this.indicators = carouselElement.querySelectorAll('[data-carousel-indicator]');
+			this.statusEl = carouselElement.querySelector('[data-carousel-status]');
+			this.currentIndex = 0;
+			this.totalSlides = this.slides.length;
+
+			this.autoPlay = carouselElement.dataset.autoplay === 'true';
+			this.autoPlayInterval = parseInt(carouselElement.dataset.autoplayInterval || '5000', 10);
+
+			if (!this.track || this.totalSlides === 0) {
+				console.warn('BattleCarousel: Invalid carousel structure');
+				return;
+			}
+			this.init();
+		}
+
+		private init(): void {
+			this.bindEvents();
+			this.setupIntersectionObserver();
+			this.updateUI();
+
+			if (this.autoPlay && this.totalSlides > 1) {
+				this.startAutoPlay();
+			}
+		}
+
+		private bindEvents(): void {
+			this.prevBtn?.addEventListener('click', () => {
+				this.handleUserInteraction();
+				this.goToPrevious();
+			});
+
+			this.nextBtn?.addEventListener('click', () => {
+				this.handleUserInteraction();
+				this.goToNext();
+			});
+
+			this.indicators.forEach((indicator, index) => {
+				indicator.addEventListener('click', () => {
+					this.handleUserInteraction();
+					this.goToSlide(index);
+				});
+			});
+
+			this.carousel.addEventListener('keydown', (e: KeyboardEvent) => {
+				this.handleUserInteraction();
+				this.handleKeydown(e);
+			});
+
+			this.track?.addEventListener(
+				'scroll',
+				this.debounce(() => {
+					this.updateCurrentIndex();
+				}, 150)
+			);
+
+			this.carousel.addEventListener('mouseenter', () => this.pauseAutoPlay());
+			this.carousel.addEventListener('mouseleave', () => this.resumeAutoPlay());
+			this.track?.addEventListener('touchstart', () => this.handleUserInteraction());
+
+			document.addEventListener('visibilitychange', () => {
+				if (document.hidden) {
+					this.pauseAutoPlay();
+				} else {
+					this.resumeAutoPlay();
+				}
+			});
+		}
+
+		private setupIntersectionObserver(): void {
+			if (!('IntersectionObserver' in window) || !this.track) {
+				console.warn('IntersectionObserver not supported or track not found');
+				return;
+			}
+
+			const options: IntersectionObserverInit = {
+				root: this.track,
+				rootMargin: '0px',
+				threshold: 0.5, // 50% of the slide must be visible
+			};
+
+			this.observer = new IntersectionObserver((entries: IntersectionObserverEntry[]) => {
+				entries.forEach((entry) => {
+					if (entry.isIntersecting) {
+						const slideIndex = Array.from(this.slides).indexOf(entry.target as HTMLElement);
+						if (slideIndex !== -1 && slideIndex !== this.currentIndex) {
+							this.currentIndex = slideIndex;
+							this.updateUI();
+						}
+					}
+				});
+			}, options);
+
+			// Observe all slides
+			this.slides.forEach((slide) => this.observer?.observe(slide));
+		}
+
+		private goToSlide(index: number): void {
+			if (index < 0 || index >= this.totalSlides) {
+				console.warn(`Invalid slide index: ${index}`);
+				return;
+			}
+
+			if (!this.track) return;
+
+			const slideWidth = this.slides[0].offsetWidth;
+			const targetScrollLeft = index * slideWidth;
+
+			this.track.scrollTo({
+				left: targetScrollLeft,
+				behavior: 'smooth',
+			});
+
+			this.currentIndex = index;
+			this.updateUI();
+		}
+
+		private goToNext(): void {
+			const nextIndex = (this.currentIndex + 1) % this.totalSlides;
+			this.goToSlide(nextIndex);
+		}
+
+		private goToPrevious(): void {
+			const prevIndex = (this.currentIndex - 1 + this.totalSlides) % this.totalSlides;
+			this.goToSlide(prevIndex);
+		}
+
+		private updateCurrentIndex(): void {
+			if (!this.track || this.slides.length === 0) return;
+
+			const scrollLeft = this.track.scrollLeft;
+			const slideWidth = this.slides[0].offsetWidth;
+			const newIndex = Math.round(scrollLeft / slideWidth);
+
+			if (newIndex !== this.currentIndex && newIndex >= 0 && newIndex < this.totalSlides) {
+				this.currentIndex = newIndex;
+				this.updateUI();
+			}
+		}
+
+		private updateUI(): void {
+			if (this.prevBtn) {
+				this.prevBtn.disabled = false;
+				this.prevBtn.setAttribute('aria-disabled', 'false');
+			}
+
+			if (this.nextBtn) {
+				this.nextBtn.disabled = false;
+				this.nextBtn.setAttribute('aria-disabled', 'false');
+			}
+
+			this.indicators.forEach((indicator, index) => {
+				const isActive = index === this.currentIndex;
+				indicator.setAttribute('aria-pressed', String(isActive));
+			});
+
+			if (this.statusEl) {
+				this.statusEl.textContent = `Slide ${this.currentIndex + 1} of ${this.totalSlides}`;
+			}
+
+			const detail: CarouselDetail = {
+				currentIndex: this.currentIndex,
+				totalSlides: this.totalSlides,
+			};
+
+			this.carousel.dispatchEvent(new CustomEvent('carousel:change', { detail }));
+		}
+
+		private handleKeydown(event: KeyboardEvent): void {
+			if (!this.carousel.contains(document.activeElement)) return;
+
+			switch (event.key) {
+				case 'ArrowLeft':
+					event.preventDefault();
+					this.goToPrevious();
+					break;
+				case 'ArrowRight':
+					event.preventDefault();
+					this.goToNext();
+					break;
+				case 'Home':
+					event.preventDefault();
+					this.goToSlide(0);
+					break;
+				case 'End':
+					event.preventDefault();
+					this.goToSlide(this.totalSlides - 1);
+					break;
+			}
+		}
+
+		private handleUserInteraction(): void {
+			this.isUserInteracting = true;
+			this.pauseAutoPlay();
+
+			setTimeout(() => {
+				this.isUserInteracting = false;
+				if (this.autoPlay) {
+					this.resumeAutoPlay();
+				}
+			}, 8000);
+		}
+
+		private startAutoPlay(): void {
+			if (!this.autoPlay || this.totalSlides <= 1) return;
+
+			this.autoPlayTimer = window.setInterval(() => {
+				if (!this.isUserInteracting && !this.isPaused && !document.hidden) {
+					const originalScrollBehavior = document.documentElement.style.scrollBehavior;
+					document.documentElement.style.scrollBehavior = 'auto';
+
+					this.goToNext();
+
+					setTimeout(() => {
+						document.documentElement.style.scrollBehavior = originalScrollBehavior;
+					}, 100);
+				}
+			}, this.autoPlayInterval);
+		}
+
+		private pauseAutoPlay(): void {
+			this.isPaused = true;
+			if (this.autoPlayTimer) {
+				clearInterval(this.autoPlayTimer);
+				this.autoPlayTimer = null;
+			}
+		}
+
+		private resumeAutoPlay(): void {
+			if (!this.autoPlay || this.isUserInteracting) return;
+
+			this.isPaused = false;
+			if (!this.autoPlayTimer) {
+				this.startAutoPlay();
+			}
+		}
+
+		private debounce<T extends (...args: any[]) => void>(func: T, wait: number): (...args: Parameters<T>) => void {
+			let timeout: ReturnType<typeof setTimeout>;
+			return function executedFunction(...args: Parameters<T>) {
+				const later = () => {
+					clearTimeout(timeout);
+					func(...args);
+				};
+				clearTimeout(timeout);
+				timeout = setTimeout(later, wait);
+			};
+		}
+
+		public destroy(): void {
+			this.observer?.disconnect();
+			this.pauseAutoPlay();
+		}
+	}
+
+	function initCarousels(): void {
+		const carousels = document.querySelectorAll<HTMLElement>('.battle-carousel');
+		carousels.forEach((carousel) => {
+			if (!carousel.dataset.initialized) {
+				new BattleCarousel(carousel);
+				carousel.dataset.initialized = 'true';
+			}
+		});
+	}
+
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', initCarousels);
+	} else {
+		initCarousels();
+	}
+
+	document.addEventListener('astro:page-load', initCarousels);
+</script>

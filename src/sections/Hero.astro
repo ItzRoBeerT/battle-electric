@@ -1,0 +1,92 @@
+---
+import FreeQuoteButton from '../components/FreeQuoteButton.astro';
+
+export interface Props {
+	class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+---
+
+<section
+	class={`hero-section min-h-screen bg-gray-900 relative flex items-center justify-center ${className}`}
+	role="banner"
+	aria-labelledby="hero-title"
+>
+	<!-- Background -->
+	<div class="hero-background absolute inset-0"></div>
+
+	<!-- Overlay --> 
+	<div class="absolute inset-0 bg-black/30"></div>
+
+	<!-- Content -->
+	<div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
+		<h1 id="hero-title" class="hero-title text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
+			KEEP YOUR POWER RUNNING
+		</h1>
+
+		<p id="hero-subtitle" class="hero-subtitle text-xl md:text-2xl text-gray-200 mb-8 max-w-2xl mx-auto">
+			Top-Quality Services for All Your Electrical Needs
+		</p>
+		<FreeQuoteButton />
+	</div>
+</section>
+
+<!-- Scroll Indicator -->
+<div class="scroll-indicator absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+	<svg class="w-6 h-6 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+		<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+	</svg>
+</div>
+
+<style>
+	.hero-section {
+		position: relative;
+		overflow: hidden;
+	}
+
+	.hero-background {
+		background-image: url('/background.jpg');
+		background-size: cover;
+		background-position: center;
+		background-attachment: fixed;
+		background-repeat: no-repeat;
+	}
+
+	/* Content is now visible by default */
+	.hero-title,
+	.hero-subtitle {
+		opacity: 1;
+		transform: none;
+	}
+
+	/* Responsive */
+	@media (max-width: 768px) {
+		.hero-background {
+			background-attachment: scroll;
+		}
+
+		.scroll-indicator {
+			bottom: 1rem;
+		}
+
+		.hero-title {
+			font-size: 2.5rem;
+			line-height: 1.1;
+		}
+
+		.hero-subtitle {
+			font-size: 1.125rem;
+			margin-bottom: 2rem;
+		}
+	}
+
+	/* Loading fallback */
+	.hero-background::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(135deg, #1f2937 0%, #374151 50%, #1f2937 100%);
+		z-index: -1;
+	}
+</style>

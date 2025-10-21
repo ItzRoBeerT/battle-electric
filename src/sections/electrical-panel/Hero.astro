@@ -1,0 +1,56 @@
+<section class="bg-gradient-to-br from-gray-50 to-gray-100 py-16 px-4 sm:px-6 lg:px-8">
+	<div class="max-w-4xl mx-auto">
+		<div class="text-center mb-12">
+			<h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+				Electrical Panel
+				<span class="bg-gradient-to-r bg-clip-text text-transparent luminance-stroke stroke">Installation</span>
+				&
+				<span class="bg-gradient-to-r bg-clip-text text-transparent luminance-stroke stroke">Replacement</span>
+			</h1>
+			<p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+				Protect your home and family with professional electrical panel services. Expert installation, safety
+				inspections, and insurance-required upgrades throughout Florida.
+			</p>
+		</div>
+
+		<div class="flex justify-center mb-8">
+			<a
+				href="/contact-us"
+				class="inline-flex items-center gap-2 bg-battle-yellow text-gray-900 px-6 py-3 rounded-full font-semibold text-lg shadow-lg hover:bg-battle-yellow-hover transition-colors duration-200"
+			>
+				<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="2"
+						d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+				</svg>
+				FREE Safety Inspection
+			</a>
+		</div>
+	</div>
+</section>
+
+<style>
+	.luminance-stroke {
+		position: relative;
+		display: inline-block;
+		font-weight: 900;
+		color: #f5ee31;
+		line-height: 1;
+	}
+	.luminance-stroke::before {
+		content: attr(data-text);
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: -1;
+		color: black;
+		-webkit-text-stroke: 6px black;
+		text-stroke: 6px black;
+	}
+	.stroke {
+		-webkit-text-stroke: 3px black;
+		paint-order: stroke fill;
+	}
+</style>

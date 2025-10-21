@@ -1,0 +1,117 @@
+---
+import thumbstackLogo from '../assets/thumbtack.webp';
+import facebook from '../assets/facebook.png';
+import instagram from '../assets/instagram.png';
+import ArrowRight from '../assets/icons/arrow-right.svg';
+import MediaLink from '../components/MediaLink.astro';
+
+const contactLinks = [
+	{
+		imageSrc: instagram,
+		imageAlt: 'Battle Electric on Instagram - Follow us for updates and tips on electrical services',
+		hoverText: 'Follow Us on Instagram',
+		href: 'https://instagram.com/battleelectric',
+		title: 'Follow Battle Electric on Instagram for the latest updates and electrical tips',
+		ariaLabel: 'Visit our Instagram profile for updates and electrical tips',
+	},
+	{
+		imageSrc: facebook,
+		imageAlt: 'Battle Electric on Facebook - Like our page for updates and community engagement',
+		hoverText: 'Like Us on Facebook',
+		href: 'https://www.facebook.com/people/Battle-Electric-LLC/100076241703095/?_rdr',
+		title: 'Like Battle Electric on Facebook for updates and community engagement',
+		ariaLabel: 'Visit our Facebook page for updates and community engagement',
+	},
+	{
+		imageSrc: thumbstackLogo,
+		imageAlt:
+			'Battle Electric on Thumbtack - Professional electrical services in Miami-Dade, Broward, and Monroe County with verified customer reviews',
+		hoverText: 'View Our Reviews',
+		href: 'https://www.thumbtack.com/fl/homestead/electrical-repairs/battle-electric/service/446001654848380937',
+		title: 'View Battle Electric profile and reviews on Thumbtack - Miami-Dade electrical services',
+		ariaLabel: 'Visit our Thumbtack profile to see customer reviews and hire our electrical services',
+	},
+];
+---
+
+<section class="relative overflow-hidden py-20 bg-gradient-to-br from-gray-50 to-gray-100">
+	<div class="relative z-10 container mx-auto px-6 max-w-4xl">
+		<div class="bg-white/80 backdrop-blur-xl rounded-3xl p-8 md:p-12 shadow-2xl border border-white/50 text-center">
+			<h2 class="text-4xl md:text-5xl font-black text-gray-900 mb-6 leading-tight">
+				Connect With Us for
+				<span class="relative inline-block">
+					<span class="bg-gradient-to-r bg-clip-text text-transparent luminance-stroke stroke">
+						More Information
+					</span>
+				</span>
+			</h2>
+			<p class="text-lg md:text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto mb-8">
+				Let us know how we can help. If you have any questions or concerns about the residential and commercial
+				electrical services we offer in <strong class="text-gray-800 font-semibold"
+					>Miami-Dade, Broward, and Monroe County, Florida</strong
+				>, please do not hesitate to contact us. We will get back to you as soon as possible.
+			</p>
+			<div class="mb-12">
+				<a
+					href="/contact-us"
+					class="group relative inline-flex items-center gap-3 px-8 py-4 bg-battle-yellow hover:bg-battle-yellow-hover text-black font-bold text-lg rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-battle-yellow/50 focus:ring-offset-2"
+				>
+					<span class="relative z-10">Reach Out to Us</span>
+					<ArrowRight
+						class="relative z-10 w-5 h-5 transition-transform duration-300 group-hover:translate-x-1"
+					/>
+				</a>
+			</div>
+		</div>
+
+		<div class="mt-12 pt-8 border-t border-gray-200 text-center">
+			<p class="text-sm text-gray-500 mb-6 font-medium">Also find us on:</p>
+			<div class="flex flex-wrap justify-center gap-6">
+				{
+					contactLinks.map((link) => (
+						<MediaLink
+							imageSrc={link.imageSrc}
+							imageAlt={link.imageAlt}
+							hoverText={link.hoverText}
+							href={link.href}
+							title={link.title}
+							ariaLabel={link.ariaLabel}
+						/>
+					))
+				}
+			</div>
+		</div>
+	</div>
+
+	<style>
+		.luminance-stroke {
+			position: relative;
+			display: inline-block;
+			color: #f5ee31;
+			line-height: 1;
+		}
+
+		.luminance-stroke::before {
+			content: attr(data-text);
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: -1;
+			color: black;
+			-webkit-text-stroke: 6px black;
+			text-stroke: 6px black;
+		}
+		.stroke {
+			-webkit-text-stroke: 3px black;
+			paint-order: stroke fill;
+		}
+
+		@media (prefers-reduced-motion: reduce) {
+			* {
+				animation-duration: 0.01ms !important;
+				animation-iteration-count: 1 !important;
+				transition-duration: 0.01ms !important;
+			}
+		}
+	</style>
+</section>

@@ -6,4 +6,6 @@
 
 @theme {
   --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --color-battle-yellow: #f5ee31;
+  --color-battle-yellow-hover: #e6d428; 
 }

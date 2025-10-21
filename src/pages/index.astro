@@ -1,7 +1,24 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Hero from '../sections/Hero.astro';
+import Services from '../sections/Services.astro';
+import Tesla from '../sections/Tesla.astro';
+import ContactUs from '../sections/ContactUs.astro';
+import GoogleReviews from '../components/GoogleReviews.astro';
+
+const title = 'Electrical Service Experts | Battle Electric';
+const description =
+	'Your trusted partner for all electrical services, from installations to repairs. Serving residential and commercial clients with expertise and reliability.';
+const canonical = 'https://battleelectricfl.com/';
+
+const placeId = import.meta.env.GOOGLE_PLACE_ID || '';
+const apiKey = import.meta.env.GOOGLE_MAPS_API_KEY || '';
 ---
 
-<Layout>
-	<h1 class="font-bold text-4xl">Battle Electric</h1>
+<Layout title={title} description={description} canonical={canonical}>
+	<Hero />
+	<Services />
+	<Tesla />
+	<ContactUs />
+	<GoogleReviews placeId={placeId} apiKey={apiKey} />
 </Layout>

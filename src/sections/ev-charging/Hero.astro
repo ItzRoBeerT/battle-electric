@@ -1,0 +1,72 @@
+---
+import beachTeslaImg from '../../assets/services/ev-charging/tesla-beach.jpeg';
+---
+
+<section class="py-12 overflow-hidden">
+	<div class="container mx-auto px-4">
+		<div class="relative lg:min-h-[600px]">
+			<!-- Contenido a la izquierda -->
+			<div class="relative z-10 lg:w-1/2 flex flex-col justify-center py-8 lg:py-20">
+				<h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-center lg:text-left mb-8 lg:mb-10 bg-gradient-to-r bg-clip-text text-transparent luminance-stroke stroke">
+					OUR EV MISSION
+				</h1>
+				<div class="space-y-6 text-pretty max-w-xl mx-auto lg:mx-0">
+					<p class="text-base md:text-lg lg:text-xl leading-relaxed text-gray-700">
+						Battle Electric is your <strong>one-stop EV charging installer</strong>. We offer expert electrical
+						solutions for residential and commercial properties throughout Florida. We are committed to being part
+						of the <strong>EV Evolution</strong>, one customer at a time. We are charging forward, and together we
+						make sustainable transportation accessible, convenient, and ready for the future.
+					</p>
+				</div>
+			</div>
+
+			<!-- Imagen recortada diagonalmente a la derecha - Desktop/Tablet landscape -->
+			<div class="hidden lg:block absolute top-0 right-0 w-1/2 h-full diagonal-clip">
+				<img
+					src={beachTeslaImg.src}
+					alt="Tesla charging at the beach"
+					class="w-full h-full object-cover"
+					loading="lazy"
+				/>
+			</div>
+
+			<!-- Imagen completa en móvil y tablet -->
+			<div class="lg:hidden mt-8">
+				<img
+					src={beachTeslaImg.src}
+					alt="Tesla charging at the beach"
+					class="w-full h-64 md:h-80 object-cover rounded-lg shadow-lg"
+					loading="lazy"
+				/>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.diagonal-clip {
+		clip-path: polygon(10% 0%, 100% 0%, 100% 100%, 0% 100%);
+	}
+
+	.luminance-stroke {
+		position: relative;
+		display: inline-block;
+		font-weight: 900;
+		color: #f5ee31;
+		line-height: 1;
+	}
+	.luminance-stroke::before {
+		content: attr(data-text);
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: -1;
+		color: black;
+		-webkit-text-stroke: 6px black;
+		text-stroke: 6px black;
+	}
+	.stroke {
+		-webkit-text-stroke: 3px black;
+		paint-order: stroke fill;
+	}
+</style>

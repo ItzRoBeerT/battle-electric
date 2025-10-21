@@ -1,0 +1,176 @@
+---
+import type { CarouselSlide } from './Carousel.astro';
+import Carousel from './Carousel.astro';
+import './GoogleReviews.css';
+
+interface Review {
+	author_name: string;
+	author_url?: string;
+	profile_photo_url: string;
+	rating: number;
+	relative_time_description: string;
+	text: string;
+	time: number;
+}
+
+interface Props {
+	placeId: string;
+	apiKey: string;
+}
+
+const { placeId, apiKey } = Astro.props;
+
+async function fetchGoogleReviews(placeId: string, apiKey: string): Promise<Review[]> {
+	try {
+		const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=reviews&key=${apiKey}`;
+
+		const response = await fetch(url);
+		const data = await response.json();
+
+		if (data.status === 'OK' && data.result?.reviews) {
+			return data.result.reviews;
+		}
+
+		return [];
+	} catch (error) {
+		console.error('Error fetching Google reviews:', error);
+		return [];
+	}
+}
+
+const reviews = await fetchGoogleReviews(placeId, apiKey);
+
+function renderStars(rating: number): string {
+	const fullStars = Math.floor(rating);
+	const hasHalfStar = rating % 1 !== 0;
+	const emptyStars = 5 - Math.ceil(rating);
+
+	return '★'.repeat(fullStars) + (hasHalfStar ? '☆' : '') + '☆'.repeat(emptyStars);
+}
+
+const slides: CarouselSlide[] = reviews.map((review, index) => ({
+	id: `review-${index}`,
+	alt: `${review.author_name} profile`,
+	contentType: 'review',
+	content: `
+		<article class="review-card">
+			<header class="review-header">
+				<div class="avatar-container">
+					<img 
+						src="${review.profile_photo_url}" 
+						alt="${review.author_name.replace(/"/g, '&quot;')} profile" 
+						class="author-avatar"
+						onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+						loading="lazy"
+					/>
+					<div class="avatar-fallback" style="display: none;">
+						${review.author_name.charAt(0).toUpperCase()}
+					</div>
+				</div>
+				<div class="author-info">
+					<h3 class="author-name">${review.author_name.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</h3>
+					<div class="rating">
+						<span class="stars">${renderStars(review.rating)}</span>
+						<span class="rating-number">(${review.rating}/5)</span>
+					</div>
+					<time class="review-date">${review.relative_time_description}</time>
+				</div>
+			</header>
+
+			<div class="review-content">
+				<div class="review-text-wrapper">
+					<p class="review-text line-clamp-3 md:line-clamp-none">${review.text.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')}</p>
+					<button class="show-more-btn md:hidden mt-2 text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded px-1">
+						Show More
+					</button>
+				</div>
+			</div>
+		</article>
+	`,
+}));
+---
+
+<div class="max-w-4xl mx-auto p-4 md:p-8">
+	<h2 class="text-2xl md:text-3xl font-bold text-gray-700 text-center mb-6 md:mb-8">Customer Reviews</h2>
+
+	{
+		reviews.length > 0 ? (
+			<Carousel slides={slides} id="google-reviews" showArrows={false} />
+		) : (
+			<div class="text-center text-gray-500 italic p-6 md:p-8 bg-gray-50 rounded-xl border border-gray-200">
+				<div class="space-y-3">
+					<div class="text-4xl">📝</div>
+					<h3 class="text-lg font-semibold text-gray-600">No Reviews Yet</h3>
+					<p class="text-sm text-gray-500">Be the first to share your experience with us!</p>
+				</div>
+			</div>
+		)
+	}
+</div>
+
+<script>
+	function initShowMoreButtons() {
+		const buttons = document.querySelectorAll('.show-more-btn') as NodeListOf<HTMLButtonElement>;
+
+		buttons.forEach((button) => {
+			const reviewText = button.previousElementSibling as HTMLElement;
+
+			if (!reviewText) return;
+
+			// Solo mostrar el botón si el texto está realmente truncado
+			if (reviewText.scrollHeight > reviewText.clientHeight) {
+				button.style.display = 'inline-block';
+			} else {
+				button.style.display = 'none';
+			}
+
+			button.addEventListener('click', () => {
+				const isExpanded = reviewText.classList.contains('line-clamp-none');
+
+				if (isExpanded) {
+					reviewText.classList.remove('line-clamp-none');
+					reviewText.classList.add('line-clamp-3');
+					button.textContent = 'Show More';
+				} else {
+					reviewText.classList.remove('line-clamp-3');
+					reviewText.classList.add('line-clamp-none');
+					button.textContent = 'Show Less';
+				}
+			});
+		});
+	}
+
+	// Inicializar al cargar la página
+	initShowMoreButtons();
+
+	// Re-inicializar cuando cambian las slides del carousel
+	document.addEventListener('carousel-slide-changed', () => {
+		setTimeout(() => initShowMoreButtons(), 100);
+	});
+
+	// Re-inicializar en resize para verificar si el botón debe mostrarse
+	let resizeTimeout: number;
+	window.addEventListener('resize', () => {
+		clearTimeout(resizeTimeout);
+		resizeTimeout = window.setTimeout(() => {
+			initShowMoreButtons();
+		}, 250);
+	});
+</script>
+
+<style>
+	.review-text {
+		word-break: break-word;
+		overflow-wrap: break-word;
+	}
+
+	.show-more-btn {
+		display: none;
+	}
+
+	@media (max-width: 767px) {
+		.show-more-btn {
+			display: inline-block;
+		}
+	}
+</style>

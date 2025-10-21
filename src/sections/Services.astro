@@ -1,0 +1,346 @@
+---
+import { Image } from 'astro:assets';
+
+import galleryImage1 from '../../public/span/span-smart-panel.avif';
+import galleryImage2 from '../assets/services/ev-charging/tesla-simple.jpeg';
+import galleryImage3 from '../assets/services/electrical-panel.jpeg';
+
+import Anchor from '../components/Anchor.astro';
+
+const services = [
+	{
+		title: 'EV Charger Installation',
+		description: 'Professional electric vehicle charging stations for residential and commercial properties.',
+		image: galleryImage2,
+		features: ['Level 2 Charging', 'Smart Scheduling', 'Weather Resistant'],
+		url: '/services/ev-charging',
+	},
+	{
+		title: 'Smart Electrical Panels',
+		description:
+			'Advanced smart panel technology with remote monitoring, energy management, and smart home integration for modern living.',
+		image: galleryImage1,
+		features: [
+			'Remote control & monitoring',
+			'Energy usage tracking',
+			'Smart home integration',
+			'Real-time notifications',
+		],
+		url: '/services/smart-panel',
+	},
+	{
+		title: 'Electrical Panel Installation',
+		description:
+			'Expert electrical panel installation and replacement services. Free safety inspections, insurance-required upgrades, and modern panel solutions.',
+		image: galleryImage3,
+		features: [
+			'Panel upgrades & replacements',
+			'Safety inspections',
+			'Insurance compliance',
+			'Commercial & residential',
+		],
+		url: '/services/electrical-panel',
+	},
+];
+
+services.forEach((service, index) => {
+	if (!service.title || !service.description || !service.url) {
+		console.warn(`Service at index ${index} is missing required fields`);
+	}
+	if (!service.features || service.features.length === 0) {
+		console.warn(`Service "${service.title}" has no features`);
+	}
+});
+---
+
+<section class="relative py-12 sm:py-16 md:py-20 lg:py-24 bg-gradient-to-br from-gray-50 to-gray-100 overflow-hidden">
+	<div class="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+		<!-- Header -->
+		<div class="text-center mb-12 sm:mb-16 md:mb-20 max-w-4xl mx-auto">
+			<h2
+				class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 mb-4 sm:mb-6 leading-tight"
+			>
+				Your Reliable
+				<span class="bg-gradient-to-r bg-clip-text text-transparent luminance-stroke stroke"> Commercial </span>
+				and
+				<span class="relative inline-block">
+					<span class="bg-gradient-to-r bg-clip-text text-transparent luminance-stroke stroke">
+						Residential Electricians
+					</span>
+				</span>
+			</h2>
+			<p class="text-base sm:text-lg md:text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
+				Battle Electric is your one-stop electrical services company. We offer expert electrical solutions for
+				residential and commercial properties in <strong class="text-gray-800 font-semibold"
+					>Miami-Dade, Broward, and Monroe County, Florida</strong
+				>. From panel installations and repairs to safety inspections, you can rely on us for comprehensive
+				services that meet all your electrical needs.
+			</p>
+		</div>
+
+		<!-- Services Grid -->
+		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-12 sm:mb-16 md:mb-20">
+			{
+				services.map((service, index) => (
+					<article
+						class="service-card group relative bg-white rounded-2xl shadow-xl hover:shadow-2xl border border-gray-100 overflow-hidden transition-all duration-500 hover:-translate-y-3 flex flex-col h-full"
+						role="article"
+						aria-labelledby={`service-title-${index}`}
+					>
+						{/* Image */}
+						<div class="relative h-56 sm:h-64 overflow-hidden">
+							<Image
+								src={service.image}
+								width={600}
+								height={400}
+								alt={`${service.title} - Professional electrical installation by Battle Electric in Miami-Dade County`}
+								loading={index === 0 ? 'eager' : 'lazy'}
+								class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+							/>
+							<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500" />
+						</div>
+
+						{/* Content */}
+						<div class="flex flex-col flex-grow p-6 sm:p-7">
+							{/* Title */}
+							<h3
+								id={`service-title-${index}`}
+								class="text-xl sm:text-2xl font-bold text-gray-900 mb-3 group-hover:text-gray-700 transition-colors duration-300 leading-tight"
+							>
+								{service.title}
+							</h3>
+
+							{/* Description */}
+							<p class="text-sm sm:text-base text-gray-600 leading-relaxed mb-5 flex-grow">
+								{service.description}
+							</p>
+
+							{/* Features List */}
+							<ul class="space-y-2.5 mb-6" role="list">
+								{service.features.map((feature) => (
+									<li
+										class="flex items-start gap-3 text-sm sm:text-base text-gray-700"
+										role="listitem"
+									>
+										<svg
+											class="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5"
+											fill="none"
+											stroke="currentColor"
+											viewBox="0 0 24 24"
+											aria-hidden="true"
+										>
+											<path
+												stroke-linecap="round"
+												stroke-linejoin="round"
+												stroke-width="2.5"
+												d="M5 13l4 4L19 7"
+											/>
+										</svg>
+										<span class="flex-1">{feature}</span>
+									</li>
+								))}
+							</ul>
+
+							{/* CTA Button */}
+							<a
+								href={service.url}
+								class="group/button relative block w-full text-center px-6 py-3.5 bg-battle-yellow hover:bg-battle-yellow-hover text-gray-900 font-bold text-sm sm:text-base rounded-xl transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 focus:outline-none focus:ring-4 focus:ring-battle-yellow/50 focus:ring-offset-2 overflow-hidden"
+								aria-label={`Learn more about ${service.title} services`}
+							>
+								<span class="relative z-10 flex items-center justify-center gap-2">
+									Explore Service
+									<svg
+										class="w-4 h-4 transition-transform duration-300 group-hover/button:translate-x-1"
+										fill="none"
+										stroke="currentColor"
+										viewBox="0 0 24 24"
+										aria-hidden="true"
+									>
+										<path
+											stroke-linecap="round"
+											stroke-linejoin="round"
+											stroke-width="2"
+											d="M9 5l7 7-7 7"
+										/>
+									</svg>
+								</span>
+								<div class="absolute inset-0 bg-gradient-to-r from-yellow-400 to-yellow-500 opacity-0 group-hover/button:opacity-100 transition-opacity duration-300" />
+							</a>
+						</div>
+					</article>
+				))
+			}
+		</div>
+
+		<!-- Stats Section -->
+		<div class="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 mb-12 sm:mb-16">
+			<div
+				class="stat-card group text-center p-6 sm:p-8 bg-white/80 backdrop-blur-sm rounded-2xl border-2 border-gray-200 hover:border-battle-yellow hover:bg-white transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
+			>
+				<div
+					class="text-4xl sm:text-5xl md:text-6xl font-black text-battle-yellow mb-3 stroke group-hover:scale-110 transition-transform duration-300"
+				>
+					35+
+				</div>
+				<div class="text-sm sm:text-base font-semibold text-gray-700">Years Experience</div>
+				<div
+					class="w-12 h-1 bg-battle-yellow mx-auto mt-3 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"
+				>
+				</div>
+			</div>
+
+			<div
+				class="stat-card group text-center p-6 sm:p-8 bg-white/80 backdrop-blur-sm rounded-2xl border-2 border-gray-200 hover:border-battle-yellow hover:bg-white transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
+			>
+				<div
+					class="text-4xl sm:text-5xl md:text-6xl font-black text-battle-yellow mb-3 stroke group-hover:scale-110 transition-transform duration-300"
+				>
+					100%
+				</div>
+				<div class="text-sm sm:text-base font-semibold text-gray-700">Licensed & Insured</div>
+				<div
+					class="w-12 h-1 bg-battle-yellow mx-auto mt-3 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"
+				>
+				</div>
+			</div>
+
+			<div
+				class="stat-card group text-center p-6 sm:p-8 bg-white/80 backdrop-blur-sm rounded-2xl border-2 border-gray-200 hover:border-battle-yellow hover:bg-white transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
+			>
+				<div
+					class="text-4xl sm:text-5xl md:text-6xl font-black text-battle-yellow mb-3 stroke group-hover:scale-110 transition-transform duration-300"
+				>
+					24/7
+				</div>
+				<div class="text-sm sm:text-base font-semibold text-gray-700">Emergency Service</div>
+				<div
+					class="w-12 h-1 bg-battle-yellow mx-auto mt-3 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"
+				>
+				</div>
+			</div>
+		</div>
+
+		<!-- CTA -->
+		<div class="text-center pt-8 sm:pt-12 border-t-2 border-gray-200">
+			<Anchor />
+		</div>
+	</div>
+</section>
+
+<style>
+	/* Text Effects */
+	.luminance-stroke {
+		position: relative;
+		display: inline-block;
+		font-weight: 900;
+		color: #f5ee31;
+		line-height: 1.2;
+	}
+
+	.luminance-stroke::before {
+		content: attr(data-text);
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: -1;
+		color: black;
+		-webkit-text-stroke: 6px black;
+		text-stroke: 6px black;
+	}
+
+	.stroke {
+		-webkit-text-stroke: 3px black;
+		paint-order: stroke fill;
+	}
+
+	/* Card Enhancements */
+	.service-card {
+		will-change: transform;
+		transform: translateZ(0);
+		backface-visibility: hidden;
+	}
+
+	.service-card::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		height: 4px;
+		background: linear-gradient(90deg, #f5ee31 0%, #fbbf24 100%);
+		opacity: 0;
+		transition: opacity 0.3s ease;
+	}
+
+	.service-card:hover::before {
+		opacity: 1;
+	}
+
+	.stat-card {
+		will-change: transform;
+	}
+
+	/* Focus States */
+	a:focus-visible {
+		outline: 3px solid #f5ee31;
+		outline-offset: 3px;
+		border-radius: 0.75rem;
+	}
+
+	/* Responsive Adjustments */
+	@media (max-width: 640px) {
+		.service-card {
+			max-width: 100%;
+		}
+	}
+
+	@media (max-width: 768px) {
+		.luminance-stroke::before {
+			-webkit-text-stroke: 4px black;
+			text-stroke: 4px black;
+		}
+
+		.stroke {
+			-webkit-text-stroke: 2px black;
+		}
+	}
+
+	/* Reduced Motion */
+	@media (prefers-reduced-motion: reduce) {
+		*,
+		*::before,
+		*::after {
+			animation-duration: 0.01ms !important;
+			animation-iteration-count: 1 !important;
+			transition-duration: 0.01ms !important;
+			scroll-behavior: auto !important;
+		}
+
+		.service-card:hover,
+		.stat-card:hover {
+			transform: none;
+		}
+	}
+
+	/* High Contrast Mode */
+	@media (prefers-contrast: high) {
+		.bg-battle-yellow {
+			background-color: #000;
+			color: #fff;
+		}
+
+		.text-battle-yellow {
+			color: #000;
+		}
+
+		.service-card {
+			border-width: 2px;
+		}
+	}
+
+	/* Performance Optimizations */
+	.service-card,
+	.stat-card {
+		contain: layout style paint;
+	}
+</style>

@@ -1,0 +1,19 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Brands from '../../../sections/ev-charging/Brands.astro';
+import Hero from '../../../sections/ev-charging/Hero.astro';
+import Installations from '../../../sections/ev-charging/Installations.astro';
+import Services from '../../../sections/ev-charging/Services.astro';
+
+const title = 'EV Charging Services | Battle Electric';
+const description =
+	'Explore our EV charging solutions, including Tesla and other brands. Reliable installations and maintenance for your electric vehicle charging needs.';
+const canonical = 'https://battleelectricfl.com/services/ev-charging';
+---
+
+<Layout title={title} description={description} canonical={canonical}>
+	<Hero />
+	<Services />
+	<Installations />
+	<Brands />
+</Layout>
