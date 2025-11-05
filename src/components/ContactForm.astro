@@ -53,7 +53,6 @@ const errors = result?.error && isInputError(result.error) ? result.error.fields
 	}
 
 	<form method="POST" action={actions.contact} class="form space-y-6">
-		<!-- Name Row - Two fields side by side -->
 		<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 			<div class="form-group">
 				<label for="firstname" class="sr-only">First Name</label>
@@ -91,7 +90,6 @@ const errors = result?.error && isInputError(result.error) ? result.error.fields
 		</div>
 
 		<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-			<!-- Email with Icon -->
 			<div class="form-group relative">
 				<label for="email" class="sr-only">Email Address</label>
 				<div class="relative">
@@ -121,7 +119,6 @@ const errors = result?.error && isInputError(result.error) ? result.error.fields
 				{errors.email && <span class="field-error block mt-2 text-red-600 text-sm">{errors.email}</span>}
 			</div>
 
-			<!-- Phone with Icon -->
 			<div class="form-group relative">
 				<label for="phone" class="sr-only">Phone Number</label>
 				<div class="relative">
@@ -152,7 +149,6 @@ const errors = result?.error && isInputError(result.error) ? result.error.fields
 			</div>
 		</div>
 
-		<!-- Message -->
 		<div class="form-group">
 			<label for="message" class="sr-only">Message</label>
 			<textarea
@@ -171,7 +167,12 @@ const errors = result?.error && isInputError(result.error) ? result.error.fields
 			</div>
 		</div>
 
-		<!-- Submit Button -->
+		{/* Honeypot field for spam prevention */}
+		<div class="phone-verify" aria-hidden="true">
+			<label for="phone_verify">Phone Verification (leave blank)</label>
+			<input type="text" id="phone_verify" name="phone_verify" tabindex="-1" autocomplete="off" value="" />
+		</div>
+
 		<div class="form-actions text-right">
 			<button
 				type="submit"
@@ -260,3 +261,14 @@ const errors = result?.error && isInputError(result.error) ? result.error.fields
 		});
 	}
 </script>
+
+<style>
+	.phone-verify {
+		position: absolute;
+		left: -9999px;
+		width: 1px;
+		height: 1px;
+		opacity: 0;
+		pointer-events: none;
+	}
+</style>
