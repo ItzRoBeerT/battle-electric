@@ -1,5 +1,3 @@
-// 📁 src/actions/index.ts - IMPLEMENTACIÓN CORRECTA
-
 import { defineAction } from 'astro:actions';
 import { z } from 'astro:schema';
 import { Resend } from 'resend';
@@ -53,9 +51,21 @@ export const server = {
 				.min(10, 'Message must be at least 10 characters')
 				.max(1000, 'Message must be less than 1000 characters')
 				.transform((msg) => msg.trim()),
+			phone_verify: z.string().optional(),
 		}),
-		handler: async ({ email, name, surname, phone, message }) => {
+		handler: async ({ email, name, surname, phone, message, phone_verify }) => {
 			try {
+				// 🛡️ PROTECCIÓN ANTI-BOT
+				if (phone_verify && phone_verify.trim() !== '') {
+					console.log('🤖 Bot detected - honeypot');
+
+					return {
+						success: true,
+						message: 'Thank you! Your message has been sent.',
+						contactId: `bot_${Date.now()}`,
+						timestamp: new Date().toISOString(),
+					};
+				}
 				const normalizedPhone = normalizePhoneNumber(phone);
 				const fullName = `${name} ${surname}`.trim();
 
@@ -70,14 +80,12 @@ export const server = {
 
 				console.log('📧 Processing contact form:', contactData);
 
-				// Enviar email al admin/empresa
 				const adminEmail = await resend.emails.send({
-					// O si tienes dominio verificado: from: 'Battle Electric <contact@tudominio.com>',
-					from: 'Battle Electric <onboarding@resend.dev>', 
+					from: 'Battle Electric <onboarding@resend.dev>',
 					to: ['battleelectric050@gmail.com'],
 					subject: `🔔 New Contact: ${fullName} - ${new Date().toLocaleDateString()}`,
 					html: generateAdminEmailTemplate(contactData),
-					replyTo: email, 
+					replyTo: email,
 				});
 
 				if (adminEmail.error) {
@@ -87,9 +95,8 @@ export const server = {
 
 				console.log('✅ Admin email sent:', adminEmail.data?.id);
 
-				// Enviar confirmación al usuario
 				const userEmail = await resend.emails.send({
-					from: 'Battle Electric <onboarding@resend.dev>', 
+					from: 'Battle Electric <onboarding@resend.dev>',
 					to: [email],
 					subject: 'Thank you for contacting Battle Electric!',
 					html: generateUserConfirmationTemplate(contactData),
@@ -122,7 +129,6 @@ export const server = {
 	}),
 };
 
-// 📧 TEMPLATE PROFESIONAL PARA ADMIN
 function generateAdminEmailTemplate(data: any): string {
 	return `
 		<!DOCTYPE html>
@@ -241,7 +247,6 @@ function generateAdminEmailTemplate(data: any): string {
 	`;
 }
 
-// 📧 TEMPLATE DE CONFIRMACIÓN PARA USUARIO
 function generateUserConfirmationTemplate(data: any): string {
 	return `
 		<!DOCTYPE html>
