@@ -3,6 +3,7 @@ import { z } from 'astro:schema';
 import { Resend } from 'resend';
 
 const resend = new Resend(import.meta.env.RESEND_API_KEY);
+const ZAPIER_WEBHOOK_URL = import.meta.env.ZAPIER_WEBHOOK_URL || '';
 
 const US_PHONE_REGEX = /^(\+1[-.\s]?)?\(?([0-9]{3})\)?[-.\s]?([0-9]{3})[-.\s]?([0-9]{4})$/;
 
@@ -54,6 +55,8 @@ export const server = {
 			phone_verify: z.string().optional(),
 		}),
 		handler: async ({ email, name, surname, phone, message, phone_verify }) => {
+			let contactId = `contact_${Date.now()}`;
+
 			try {
 				// 🛡️ PROTECCIÓN ANTI-BOT
 				if (phone_verify && phone_verify.trim() !== '') {
@@ -62,7 +65,7 @@ export const server = {
 					return {
 						success: true,
 						message: 'Thank you! Your message has been sent.',
-						contactId: `bot_${Date.now()}`,
+						contactId: contactId,
 						timestamp: new Date().toISOString(),
 					};
 				}
@@ -71,14 +74,41 @@ export const server = {
 
 				const contactData = {
 					fullName,
+					firstName: name,
+					lastName: surname,
 					email: email.toLowerCase(),
 					phone: normalizedPhone,
 					message: message.trim(),
+					submittedDate: new Date().toLocaleDateString('en-US'),
+					submittedTime: new Date().toLocaleTimeString('en-US'),
 					submittedAt: new Date().toISOString(),
 					source: 'website-contact-form',
+					contactId: contactId,
 				};
 
 				console.log('📧 Processing contact form:', contactData);
+
+				if (ZAPIER_WEBHOOK_URL) {
+					try {
+						const zapierResponse = await fetch(ZAPIER_WEBHOOK_URL, {
+							method: 'POST',
+							headers: {
+								'Content-Type': 'application/json',
+							},
+							body: JSON.stringify(contactData),
+						});
+
+						if (zapierResponse.ok) {
+							console.log('✅ Data sent to Zapier successfully');
+						} else {
+							console.error('⚠️ Zapier responded with error:', zapierResponse.status);
+						}
+					} catch (zapierError) {
+						console.error('❌ Error sending to Zapier:', zapierError);
+					}
+				} else {
+					console.warn('⚠️ ZAPIER_WEBHOOK_URL not configured');
+				}
 
 				const adminEmail = await resend.emails.send({
 					from: 'Battle Electric <onboarding@resend.dev>',
@@ -111,7 +141,7 @@ export const server = {
 				return {
 					success: true,
 					message: `Thank you ${name}! Your message has been sent successfully. We'll get back to you within 24 hours.`,
-					contactId: `contact_${Date.now()}`,
+					contactId: contactId,
 					timestamp: new Date().toISOString(),
 				};
 			} catch (error) {
@@ -238,7 +268,7 @@ function generateAdminEmailTemplate(data: any): string {
 				
 				<div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; color: #6b7280; font-size: 14px;">
 					<strong>Lead Source:</strong> ${data.source}<br>
-					<strong>Reference ID:</strong> contact_${Date.now()}<br>
+					<strong>Reference ID:</strong> ${data.contactId}<br>
 					<strong>⚡ Priority:</strong> Respond within 4 hours for best conversion
 				</div>
 			</div>
@@ -350,7 +380,7 @@ function generateUserConfirmationTemplate(data: any): string {
 				🌐 <a href="https://battleelectric.com">battleelectric.com</a>
 				
 				<div style="margin-top: 20px; font-size: 12px; color: #9ca3af;">
-					Reference ID: contact_${Date.now()}
+					Reference ID: ${data.contactId}
 				</div>
 			</div>
 		</body>
