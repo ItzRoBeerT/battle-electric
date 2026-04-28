@@ -33,6 +33,12 @@ const {
 		{canonical && <link rel="canonical" href={canonical} />}
 		{robots && <meta name="robots" content={robots} />}
 		<ClientRouter />
+		<!-- Start Ad360 Event Pixel Snippet -->
+		<script is:inline>
+			!function(e,t,n,i,p,s,a,c,o){e[p]||((a=e[p]=function(){a.process?a.process.apply(a,arguments):a.queue.push(arguments)}).queue=[],a.t=1*new Date,(c=t.createElement(n)).async=1,c.src="//cdn.ad360.media/js/ad360pixelevent.min.js?t="+864e5*Math.ceil(new Date/864e5),(o=t.getElementsByTagName(n)[0]).parentNode.insertBefore(c,o))}(window,document,"script",0,"ad360"),
+			ad360("init","396120d6-cc31-48e9-875f-a4d3296ecbc2"),ad360("event","af3ed189-6d20-4eaf-93bb-c54218d0fc4e", {someData: 1, otherData: 'cool'});
+		</script>
+		<!-- End Ad360 Event Pixel Snippet -->
 	</head>
 	<body>
 		<Analytics />
