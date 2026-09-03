@@ -1,0 +1,108 @@
+---
+import Layout from "../../layouts/Layout.astro"
+const title = "About Us | Battle Electric"
+const description =
+	"Battle Electric is a licensed and insured electrical contractor serving Miami-Dade, Broward, and Monroe County. EV charging, electrical panels, smart panels, and more."
+const canonical = "https://www.battleelectricfl.com/about-us"
+---
+
+<Layout title={title} description={description} canonical={canonical}>
+	<!-- Header band -->
+	<section class="bg-gray-900 text-white py-20 px-4">
+		<div class="max-w-4xl mx-auto text-center">
+			<h1 class="text-4xl md:text-5xl font-bold uppercase tracking-tight mb-4">About Battle Electric</h1>
+			<p class="text-xl text-gray-300 max-w-2xl mx-auto">
+				Your trusted partner for all electrical services in South Florida
+			</p>
+		</div>
+	</section>
+
+	<!-- Who we are -->
+	<section class="py-16 px-4">
+		<div class="max-w-4xl mx-auto">
+			<div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 md:p-12 mb-12">
+				<h2 class="text-2xl md:text-3xl font-bold uppercase mb-6">Who we are</h2>
+				<p class="text-gray-600 text-lg mb-4">
+					Battle Electric, LLC is a licensed and insured electrical contractor
+					based in Homestead, Florida, serving residential and commercial
+					clients across Miami-Dade, Broward, and Monroe County.
+				</p>
+				<p class="text-gray-600 text-lg mb-4">
+					From electrical panel installations and upgrades to EV charging
+					stations and smart home energy solutions, our team delivers safe,
+					code-compliant work with the reliability your home or business
+					depends on.
+				</p>
+				<div class="flex flex-wrap items-center gap-4 mt-8">
+					<span class="inline-flex items-center gap-2 bg-battle-yellow border border-black rounded-lg px-4 py-2 font-semibold text-sm">
+						<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+						</svg>
+						Licensed &amp; Insured
+					</span>
+					<a href="/license" class="text-gray-600 underline hover:text-black font-medium text-sm">
+						License NO. EC13010206
+					</a>
+				</div>
+			</div>
+
+			<!-- What we do -->
+			<h2 class="text-2xl md:text-3xl font-bold uppercase mb-8 text-center">What we do</h2>
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+				<a href="/services/ev-charging" class="service-card bg-white rounded-xl shadow-md border border-gray-100 p-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+					<h3 class="font-bold text-lg mb-2">EV Charging</h3>
+					<p class="text-gray-600 text-sm">
+						Level 1, 2 &amp; 3 charging stations and Tesla Wall Connector
+						installation for homes and businesses.
+					</p>
+				</a>
+				<a href="/services/electrical-panel" class="service-card bg-white rounded-xl shadow-md border border-gray-100 p-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+					<h3 class="font-bold text-lg mb-2">Electrical Panels</h3>
+					<p class="text-gray-600 text-sm">
+						Panel installations, upgrades, and service increases done safely
+						and up to code.
+					</p>
+				</a>
+				<a href="/services/smart-panel" class="service-card bg-white rounded-xl shadow-md border border-gray-100 p-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+					<h3 class="font-bold text-lg mb-2">Smart Panels</h3>
+					<p class="text-gray-600 text-sm">
+						SPAN smart panel installations for real-time energy monitoring and
+						control.
+					</p>
+				</a>
+			</div>
+
+			<!-- Service area / hours -->
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+				<div class="bg-white rounded-xl shadow-md border border-gray-100 p-6">
+					<h3 class="font-bold text-lg mb-3">Service area</h3>
+					<p class="text-gray-600 text-sm mb-2">Miami-Dade · Broward · Monroe County</p>
+					<p class="text-gray-600 text-sm">13254 SW 263rd St, Homestead, FL 33032</p>
+				</div>
+				<div class="bg-white rounded-xl shadow-md border border-gray-100 p-6">
+					<h3 class="font-bold text-lg mb-3">Business hours</h3>
+					<p class="text-gray-600 text-sm mb-2">Monday to Saturday: 7:00 AM – 7:00 PM</p>
+					<p class="text-gray-600 text-sm">Sunday: Closed</p>
+				</div>
+			</div>
+
+			<!-- CTA -->
+			<div class="text-center">
+				<div class="flex flex-col sm:flex-row gap-4 justify-center">
+					<a
+						href="/contact-us"
+						class="inline-block bg-battle-yellow border border-black hover:bg-battle-yellow-hover px-8 py-4 rounded-lg font-semibold transition-all duration-300 shadow-lg"
+					>
+						Get a Free Quote
+					</a>
+					<a
+						href="tel:+17864043885"
+						class="inline-flex items-center justify-center gap-2 border border-gray-300 hover:border-black hover:bg-gray-50 px-8 py-4 rounded-lg font-semibold transition-all duration-300"
+					>
+						(786) 404-3885
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+</Layout>
