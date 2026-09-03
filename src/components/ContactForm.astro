@@ -16,4 +16,25 @@
 		src="https://book.housecallpro.com/lead-form/BATTLE-Electric-LLC/0a0ee6deb6654e768f92791029509929"
 	></iframe>
 	<!--End of Housecallpro Lead Capture code-->
+
+	<!-- HCP's embed protocol (read from their script.js): the iframe posts
+	     {type:'hcp:lead-capture-size'} for resizing and {type:'hcp:redirect', url}
+	     after submission when a redirect URL is configured in the HCP dashboard.
+	     Their script.js already navigates on hcp:redirect; we mirror it as a
+	     safety net (same-URL navigation is idempotent) and log the rest so the
+	     protocol can be inspected during testing. -->
+	<script is:inline>
+		(function () {
+			var HCP_ORIGINS = ['https://book.housecallpro.com', 'https://online-booking.housecallpro.com'];
+			window.addEventListener('message', function (event) {
+				if (HCP_ORIGINS.indexOf(event.origin) === -1) return;
+				var d = event.data || {};
+				if (d.type === 'hcp:redirect' && typeof d.url === 'string') {
+					window.location.href = d.url;
+				} else if (d.type !== 'hcp:lead-capture-size') {
+					console.log('[hcp message]', event.origin, d);
+				}
+			});
+		})();
+	</script>
 </div>

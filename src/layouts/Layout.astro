@@ -71,6 +71,18 @@ const {
 					});
 					window.fbq && window.fbq('track', 'PageView');
 				});
+				// Conversion micro-events: delegated so it covers every current and
+				// future tel:/mailto: link and survives ClientRouter navigations.
+				document.addEventListener('click', function (e) {
+					var a = e.target.closest && e.target.closest('a[href^="tel:"], a[href^="mailto:"]');
+					if (!a) return;
+					var href = a.getAttribute('href');
+					window.dataLayer && window.dataLayer.push({
+						event: href.indexOf('tel:') === 0 ? 'phone_click' : 'email_click',
+						link_url: href,
+						page_location: location.href,
+					});
+				});
 			})();
 		</script>
 		<!-- Start Ad360 Event Pixel Snippet -->
