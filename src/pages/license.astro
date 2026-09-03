@@ -1,0 +1,71 @@
+---
+import Layout from "../layouts/Layout.astro"
+const title = "License & Insurance | Battle Electric"
+const description =
+	"Battle Electric is a Florida licensed and insured electrical contractor. License NO. EC13010206."
+const canonical = "https://www.battleelectricfl.com/license"
+---
+
+<Layout title={title} description={description} canonical={canonical}>
+	<section class="bg-gray-900 text-white py-16 px-4">
+		<div class="max-w-3xl mx-auto text-center">
+			<h1 class="text-4xl font-bold uppercase tracking-tight mb-3">License &amp; Insurance</h1>
+			<p class="text-gray-300">Fully licensed and insured for your protection</p>
+		</div>
+	</section>
+
+	<section class="py-16 px-4">
+		<div class="max-w-3xl mx-auto">
+			<!-- License card -->
+			<div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 md:p-12 text-center mb-8">
+				<div class="w-16 h-16 mx-auto mb-6 rounded-full bg-battle-yellow border border-black flex items-center justify-center">
+					<svg class="w-8 h-8 text-black" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+						<path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+					</svg>
+				</div>
+				<h2 class="text-xl font-bold uppercase mb-2">Florida Certified Electrical Contractor</h2>
+				<p class="text-3xl font-bold tracking-wide mb-6">EC13010206</p>
+				<p class="text-gray-600 max-w-xl mx-auto mb-6">
+					Battle Electric, LLC holds an active Florida electrical contractor
+					license and carries insurance coverage, so every job is performed
+					safely, legally, and up to code.
+				</p>
+				<a
+					href="https://www.myfloridalicense.com/wl11.asp"
+					target="_blank"
+					rel="noopener noreferrer"
+					class="inline-block border border-gray-300 hover:border-black hover:bg-gray-50 px-6 py-3 rounded-lg font-semibold text-sm transition-all duration-300"
+				>
+					Verify our license at MyFloridaLicense.com ↗
+				</a>
+			</div>
+
+			<!-- Details -->
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+				<div class="bg-white rounded-xl shadow-md border border-gray-100 p-6">
+					<h3 class="font-bold text-lg mb-3">Why it matters</h3>
+					<ul class="text-gray-600 text-sm space-y-2 list-disc pl-4">
+						<li>Work performed to the National Electrical Code</li>
+						<li>Permits and inspections handled properly</li>
+						<li>Insurance protection for your property</li>
+					</ul>
+				</div>
+				<div class="bg-white rounded-xl shadow-md border border-gray-100 p-6">
+					<h3 class="font-bold text-lg mb-3">Contractor details</h3>
+					<p class="text-gray-600 text-sm mb-2">Battle Electric, LLC</p>
+					<p class="text-gray-600 text-sm mb-2">13254 SW 263rd St, Homestead, FL 33032</p>
+					<p class="text-gray-600 text-sm">Serving Miami-Dade, Broward &amp; Monroe County</p>
+				</div>
+			</div>
+
+			<div class="text-center">
+				<a
+					href="/contact-us"
+					class="inline-block bg-battle-yellow border border-black hover:bg-battle-yellow-hover px-8 py-4 rounded-lg font-semibold transition-all duration-300 shadow-lg"
+				>
+					Get a Free Quote
+				</a>
+			</div>
+		</div>
+	</section>
+</Layout>

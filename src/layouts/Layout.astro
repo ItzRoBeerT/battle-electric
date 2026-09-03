@@ -33,6 +33,58 @@ const {
 		{canonical && <link rel="canonical" href={canonical} />}
 		{robots && <meta name="robots" content={robots} />}
 		<ClientRouter />
+		<!-- Google Tag Manager -->
+		<script is:inline>
+			(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+			new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+			})(window,document,'script','dataLayer','GTM-MZ84NWK4');
+		</script>
+		<!-- End Google Tag Manager -->
+		<!-- Meta Pixel Code -->
+		<script is:inline>
+			!function(f,b,e,v,n,t,s)
+			{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+			n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+			if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+			n.queue=[];t=b.createElement(e);t.async=!0;
+			t.src=v;s=b.getElementsByTagName(e)[0];
+			s.parentNode.insertBefore(t,s)}(window, document,'script',
+			'https://connect.facebook.net/en_US/fbevents.js');
+			fbq('init', '1533980148158925');
+			fbq('track', 'PageView');
+		</script>
+		<!-- End Meta Pixel Code -->
+		<!-- SPA pageview bridge: ClientRouter navigations are client-side, so GTM and
+		     the Meta Pixel only see the initial load. Push a virtual page_view per
+		     navigation; skip the first astro:page-load (already counted above). -->
+		<script is:inline>
+			(function () {
+				var first = true;
+				document.addEventListener('astro:page-load', function () {
+					if (first) { first = false; return; }
+					window.dataLayer && window.dataLayer.push({
+						event: 'page_view',
+						page_location: location.href,
+						page_title: document.title,
+					});
+					window.fbq && window.fbq('track', 'PageView');
+				});
+				// Conversion micro-events: delegated so it covers every current and
+				// future tel:/mailto: link and survives ClientRouter navigations.
+				document.addEventListener('click', function (e) {
+					var a = e.target.closest && e.target.closest('a[href^="tel:"], a[href^="mailto:"]');
+					if (!a) return;
+					var href = a.getAttribute('href');
+					window.dataLayer && window.dataLayer.push({
+						event: href.indexOf('tel:') === 0 ? 'phone_click' : 'email_click',
+						link_url: href,
+						page_location: location.href,
+					});
+				});
+			})();
+		</script>
 		<!-- Start Ad360 Event Pixel Snippet -->
 		<script is:inline>
 			!function(e,t,n,i,p,s,a,c,o){e[p]||((a=e[p]=function(){a.process?a.process.apply(a,arguments):a.queue.push(arguments)}).queue=[],a.t=1*new Date,(c=t.createElement(n)).async=1,c.src="//cdn.ad360.media/js/ad360pixelevent.min.js?t="+864e5*Math.ceil(new Date/864e5),(o=t.getElementsByTagName(n)[0]).parentNode.insertBefore(c,o))}(window,document,"script",0,"ad360"),
@@ -41,6 +93,15 @@ const {
 		<!-- End Ad360 Event Pixel Snippet -->
 	</head>
 	<body>
+		<!-- Google Tag Manager (noscript) -->
+		<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MZ84NWK4"
+		height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+		<!-- End Google Tag Manager (noscript) -->
+		<!-- Meta Pixel (noscript) -->
+		<noscript><img height="1" width="1" style="display:none"
+		src="https://www.facebook.com/tr?id=1533980148158925&ev=PageView&noscript=1"
+		/></noscript>
+		<!-- End Meta Pixel (noscript) -->
 		<Analytics />
 		<Header />
 		<slot />
