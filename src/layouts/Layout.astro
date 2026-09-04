@@ -19,6 +19,46 @@ const {
 	canonical,
 	robots,
 } = Astro.props;
+
+// Canonical: normalized pathname on the canonical host (www), overridable per page.
+const pathname = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const canonicalURL = canonical ?? new URL(pathname, Astro.site).href;
+const ogImage = new URL('/og-image.png', Astro.site).href;
+
+const businessSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'Electrician',
+	name: 'Battle Electric',
+	legalName: 'Battle Electric, LLC',
+	url: Astro.site?.href,
+	telephone: '+17864043885',
+	email: 'battleelectric050@gmail.com',
+	image: ogImage,
+	logo: new URL('/logo_final.png', Astro.site).href,
+	address: {
+		'@type': 'PostalAddress',
+		streetAddress: '13254 SW 263rd St',
+		addressLocality: 'Homestead',
+		addressRegion: 'FL',
+		postalCode: '33032',
+		addressCountry: 'US',
+	},
+	areaServed: [
+		{ '@type': 'AdministrativeArea', name: 'Miami-Dade County' },
+		{ '@type': 'AdministrativeArea', name: 'Broward County' },
+		{ '@type': 'AdministrativeArea', name: 'Monroe County' },
+	],
+	openingHoursSpecification: {
+		'@type': 'OpeningHoursSpecification',
+		dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+		opens: '07:00',
+		closes: '19:00',
+	},
+	sameAs: [
+		'https://www.facebook.com/people/Battle-Electric-LLC/100076241703095/',
+		'https://instagram.com/battleelectric',
+	],
+};
 ---
 
 <!doctype html>
@@ -30,8 +70,23 @@ const {
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 		<meta name="description" content={description} />
-		{canonical && <link rel="canonical" href={canonical} />}
+		<link rel="canonical" href={canonicalURL} />
 		{robots && <meta name="robots" content={robots} />}
+		<!-- Social sharing -->
+		<meta property="og:site_name" content="Battle Electric" />
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={canonicalURL} />
+		<meta property="og:image" content={ogImage} />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={ogImage} />
+		<script type="application/ld+json" set:html={JSON.stringify(businessSchema)} />
+
 		<ClientRouter />
 		<!-- Google Tag Manager -->
 		<script is:inline>

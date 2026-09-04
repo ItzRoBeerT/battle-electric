@@ -13,7 +13,6 @@ import Tesla from '../../../assets/services/ev-charging/tesla.jpeg';
 const title = 'Level 2 EV Charging Installation | 240V Professional Setup | Battle Electric';
 const description =
 	'Level 2 EV charging installation by licensed electricians. 240V charging delivers 20-40 miles per hour with no wait time. Smart scheduling and cost savings vs public charging.';
-const canonical = 'https://battleelectricfl.com/services/ev-charging/level-2';
 
 async function getLevel2Images() {
 	const images = import.meta.glob<{ default: ImageMetadata }>(
@@ -53,7 +52,7 @@ slides.unshift({
 });
 ---
 
-<Layout title={title} description={description} canonical={canonical}>
+<Layout title={title} description={description}>
 	<section class="py-16 bg-gradient-to-br from-yellow-50 to-orange-50">
 		<div class="container mx-auto px-4 max-w-6xl">
 			<div class="mb-8">
