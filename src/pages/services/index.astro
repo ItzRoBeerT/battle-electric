@@ -62,7 +62,16 @@ const generalServices = [
 	'Temporary power for construction',
 ];
 
-const serviceAreas = ['Miami-Dade County', 'Broward County', 'Monroe County', 'Homestead', 'Miami', 'Fort Lauderdale'];
+const serviceAreas = [
+	{ name: 'Miami-Dade County' },
+	{ name: 'Broward County' },
+	{ name: 'Monroe County' },
+	{ name: 'Homestead', href: '/service-areas/homestead' },
+	{ name: 'Miami', href: '/service-areas/miami' },
+	{ name: 'Coral Gables', href: '/service-areas/coral-gables' },
+	{ name: 'Miramar', href: '/service-areas/miramar' },
+	{ name: 'Fort Lauderdale' },
+];
 ---
 
 <Layout title={title} description={description}>
@@ -278,9 +287,18 @@ const serviceAreas = ['Miami-Dade County', 'Broward County', 'Monroe County', 'H
 				</p>
 				<div class="flex flex-wrap justify-center gap-3">
 					{
-						serviceAreas.map((area) => (
-							<span class="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm font-medium">{area}</span>
-						))
+						serviceAreas.map((area) =>
+							area.href ? (
+								<a
+									href={area.href}
+									class="px-4 py-2 bg-battle-yellow/20 hover:bg-battle-yellow text-gray-800 rounded-full text-sm font-medium underline-offset-2 transition-colors duration-200"
+								>
+									{area.name}
+								</a>
+							) : (
+								<span class="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm font-medium">{area.name}</span>
+							)
+						)
 					}
 				</div>
 			</div>
