@@ -5,6 +5,7 @@ import vercelAdapter from '@astrojs/vercel';
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://www.battleelectricfl.com',
   output: 'server',
   vite: {
     plugins: [tailwindcss()]
