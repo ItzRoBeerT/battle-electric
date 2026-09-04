@@ -1,6 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro"
 import ContactForm from "../../components/ContactForm.astro"
+import Faq from "../../components/Faq.astro"
 const title = "Contact Us"
 const description = "Get in touch with us for any inquiries or support."
 
@@ -8,6 +9,30 @@ const description = "Get in touch with us for any inquiries or support."
 
 <Layout title={title} description={description}>
   <ContactForm />
+  <Faq
+    items={[
+      {
+        question: 'What areas does Battle Electric serve?',
+        answer:
+          'We serve residential and commercial clients across Miami-Dade, Broward, and Monroe County, from our base in Homestead, Florida.',
+      },
+      {
+        question: 'Is Battle Electric licensed and insured?',
+        answer:
+          'Yes. Battle Electric, LLC is a Florida certified electrical contractor, License NO. EC13010206, and fully insured. You can verify our license at MyFloridaLicense.com.',
+      },
+      {
+        question: 'Do you offer free estimates?',
+        answer:
+          'Yes, estimates are free. Submit the form on this page or call (786) 404-3885 and we will get back to you with a quote for your project.',
+      },
+      {
+        question: 'Do you handle emergencies?',
+        answer:
+          'Yes. Our regular hours are Monday to Saturday, 7:00 AM to 7:00 PM, and we offer 24/7 emergency service for urgent electrical issues.',
+      },
+    ]}
+  />
 </Layout>
 
 

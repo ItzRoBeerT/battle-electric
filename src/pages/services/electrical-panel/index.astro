@@ -1,5 +1,6 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
+import Faq from '../../../components/Faq.astro';
 import Hero from '../../../sections/electrical-panel/Hero.astro';
 import WhyReplace from '../../../sections/electrical-panel/WhyReplace.astro';
 import Services from '../../../sections/electrical-panel/Services.astro';
@@ -38,6 +39,30 @@ const structuredData = {
 			<CTA />
 		</div>
 	</div>
+	<Faq
+		items={[
+			{
+				question: 'How do I know if my electrical panel needs an upgrade?',
+				answer:
+					'Common signs include breakers that trip frequently, flickering or dimming lights, a panel that still uses fuses, a 100-amp service struggling with modern appliances, or plans to add high-demand loads like an EV charger, AC unit, or pool equipment. We can evaluate your panel and give you a free estimate.',
+			},
+			{
+				question: 'How much does a 200-amp panel upgrade cost in South Florida?',
+				answer:
+					'A typical 200-amp service upgrade in the Miami area ranges from about $2,500 to $6,000, depending on the existing service, meter and grounding work, and whether FPL coordination is needed. Every job gets a free written estimate before work begins.',
+			},
+			{
+				question: 'Do panel upgrades require a permit and inspection?',
+				answer:
+					'Yes. Panel replacements and service upgrades require an electrical permit, inspection, and often coordination with FPL. Battle Electric is a licensed Florida electrical contractor (License NO. EC13010206) and manages the full process.',
+			},
+			{
+				question: 'How long does a panel replacement take?',
+				answer:
+					'The electrical work is usually completed in one day. Permit approval and utility coordination can add time depending on your municipality, and we schedule everything to minimize the hours without power.',
+			},
+		]}
+	/>
 </Layout>
 
 <style>
