@@ -46,11 +46,19 @@ const { class: className = '' } = Astro.props;
 	}
 
 	.hero-background {
-		background-image: url('/background.jpg');
+		background-image: url('/background-1920.webp');
 		background-size: cover;
 		background-position: center;
 		background-attachment: fixed;
 		background-repeat: no-repeat;
+	}
+
+	/* Smaller asset + no fixed attachment on mobile (iOS ignores it and it forces repaints) */
+	@media (max-width: 768px) {
+		.hero-background {
+			background-image: url('/background-960.webp');
+			background-attachment: scroll;
+		}
 	}
 
 	/* Content is now visible by default */

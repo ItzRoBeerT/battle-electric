@@ -1,6 +1,5 @@
 ---
 import FreeQuoteButton from './FreeQuoteButton.astro';
-import Chevron from '../assets/icons/chevron-down.svg';
 ---
 
 <!-- Top Bar -->
@@ -30,59 +29,22 @@ import Chevron from '../assets/icons/chevron-down.svg';
 	<nav class="flex items-center justify-between max-w-7xl mx-auto">
 		<!-- Logo -->
 		<a href="/" class="flex-shrink-0">
-			<img src="/logo_final.png" alt="Battle Electric Logo" class="h-20 md:h-28" />
+			<img src="/logo-header.webp" alt="Battle Electric Logo" width="304" height="224" class="h-20 md:h-28 w-auto" />
 		</a>
 
-		<!-- Desktop Navigation -->
-		<div class="hidden md:flex gap-6 items-center">
-			<!-- Services Dropdown -->
-			<div class="relative group" id="services-dropdown">
-				<span class="hover:text-gray-600 font-medium flex items-center gap-1 transition-colors duration-300">
-					Services
-					<Chevron class="w-4 h-4 transition-transform duration-200 group-hover:rotate-180" />
-				</span>
+		<!-- Desktop Navigation: services shown directly, no dropdown (BAT-14) -->
+		<div class="hidden lg:flex gap-6 items-center">
+			<a href="/services/ev-charging" class="nav-link hover:text-gray-600 font-medium transition-colors duration-300">
+				EV Charging
+			</a>
 
-				<!-- Dropdown Menu -->
-				<div
-					class="dropdown-menu absolute left-0 top-full w-64 bg-white rounded-lg shadow-xl border border-gray-200 opacity-0 invisible scale-95 origin-top-left transition-all duration-200 ease-out group-hover:opacity-100 group-hover:visible group-hover:scale-100"
-				>
-					<div class="p-3">
-						<a
-							href="/services/ev-charging"
-							class="block p-3 rounded-lg hover:bg-yellow-50 transition-colors duration-200 group/item"
-						>
-							<h3
-								class="font-medium text-gray-900 group-hover/item:text-gray-600 transition-colors duration-200"
-							>
-								EV Charging
-							</h3>
-							<p class="text-sm text-gray-600 mt-1">Electric vehicle charging solutions</p>
-						</a>
-						<a
-							href="/services/smart-panel"
-							class="block p-3 rounded-lg hover:bg-yellow-50 transition-colors duration-200 group/item"
-						>
-							<h3
-								class="font-medium text-gray-900 group-hover/item:text-gray-600 transition-colors duration-200"
-							>
-								Smart Panel
-							</h3>
-							<p class="text-sm text-gray-600 mt-1">Smart electrical panel solutions</p>
-						</a>
-						<a
-							href="/services/electrical-panel"
-							class="block p-3 rounded-lg hover:bg-yellow-50 transition-colors duration-200 group/item"
-						>
-							<h3
-								class="font-medium text-gray-900 group-hover/item:text-gray-600 transition-colors duration-200"
-							>
-								Electrical Panel
-							</h3>
-							<p class="text-sm text-gray-600 mt-1">Panel installation & upgrades</p>
-						</a>
-					</div>
-				</div>
-			</div>
+			<a href="/services/smart-panel" class="nav-link hover:text-gray-600 font-medium transition-colors duration-300">
+				Smart Panels
+			</a>
+
+			<a href="/services/electrical-panel" class="nav-link hover:text-gray-600 font-medium transition-colors duration-300">
+				Electrical Panels
+			</a>
 
 			<a href="/about-us" class="nav-link hover:text-gray-600 font-medium transition-colors duration-300">
 				About Us
@@ -94,14 +56,14 @@ import Chevron from '../assets/icons/chevron-down.svg';
 		</div>
 
 		<!-- Desktop CTA -->
-		<div class="hidden md:inline-block">
+		<div class="hidden lg:inline-block">
 			<FreeQuoteButton />
 		</div>
 
 		<!-- Mobile Menu Button -->
 		<button
 			id="mobile-menu-button"
-			class="md:hidden flex items-center justify-center w-10 h-10 rounded-lg transition-colors duration-200"
+			class="lg:hidden flex items-center justify-center w-10 h-10 rounded-lg transition-colors duration-200"
 			aria-label="Toggle mobile menu"
 			aria-expanded="false"
 		>
@@ -128,32 +90,17 @@ import Chevron from '../assets/icons/chevron-down.svg';
 	</nav>
 
 	<!-- Mobile Menu -->
-	<div id="mobile-menu" class="md:hidden opacity-0 mt-4 pb-4 overflow-hidden max-h-0">
+	<div id="mobile-menu" class="lg:hidden opacity-0 mt-4 pb-4 overflow-hidden max-h-0">
 		<div class="flex flex-col space-y-4">
-			<!-- Mobile Services -->
-			<div>
-				<a href="/services" class="block py-2 px-4 rounded-lg transition-colors font-medium"> Services </a>
-				<div class="ml-4 mt-2 space-y-2">
-					<a
-						href="/services/ev-charging"
-						class="block py-2 px-4 text-sm text-gray-700 rounded-lg transition-colors"
-					>
-						EV Charging
-					</a>
-					<a
-						href="/services/smart-panel"
-						class="block py-2 px-4 text-sm text-gray-700 rounded-lg transition-colors"
-					>
-						Smart Panel
-					</a>
-					<a
-						href="/services/electrical-panel"
-						class="block py-2 px-4 text-sm text-gray-700 rounded-lg transition-colors"
-					>
-						Electrical Panel
-					</a>
-				</div>
-			</div>
+			<a href="/services/ev-charging" class="block py-2 px-4 rounded-lg transition-colors font-medium">
+				EV Charging
+			</a>
+			<a href="/services/smart-panel" class="block py-2 px-4 rounded-lg transition-colors font-medium">
+				Smart Panels
+			</a>
+			<a href="/services/electrical-panel" class="block py-2 px-4 rounded-lg transition-colors font-medium">
+				Electrical Panels
+			</a>
 
 			<a href="/about-us" class="block py-2 px-4
 				 rounded-lg transition-colors font-medium"> About Us </a>
@@ -193,13 +140,6 @@ import Chevron from '../assets/icons/chevron-down.svg';
 		width: 80%;
 	}
 
-	/* Keep dropdown visible when hovering over the menu itself */
-	.dropdown-menu:hover {
-		opacity: 1;
-		visibility: visible;
-		transform: scale(1);
-	}
-
 	/* Mobile menu animations */
 	#mobile-menu {
 		max-height: 0;
@@ -220,17 +160,6 @@ import Chevron from '../assets/icons/chevron-down.svg';
 
 <script>
 	function initializeHeader() {
-		// Desktop dropdown escape functionality
-		const dropdown = document.getElementById('services-dropdown');
-		if (dropdown) {
-			document.addEventListener('keydown', (e) => {
-				if (e.key === 'Escape') {
-					const activeElement = document.activeElement as HTMLElement;
-					activeElement?.blur();
-				}
-			});
-		}
-
 		// Mobile menu functionality
 		const mobileMenuButton = document.getElementById('mobile-menu-button');
 		const mobileMenu = document.getElementById('mobile-menu');
@@ -276,9 +205,9 @@ import Chevron from '../assets/icons/chevron-down.svg';
 			});
 		});
 
-		// Close mobile menu on window resize to desktop
+		// Close mobile menu on window resize to desktop (lg breakpoint)
 		window.addEventListener('resize', () => {
-			if (window.innerWidth >= 768 && isOpen) {
+			if (window.innerWidth >= 1024 && isOpen) {
 				toggleMobileMenu();
 			}
 		});
