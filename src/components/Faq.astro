@@ -1,0 +1,64 @@
+---
+// FAQ section with FAQPage JSON-LD. Answers must stay plain text so the
+// visible content and the structured data are always identical (Google
+// requires the marked-up questions to be visible on the page).
+export interface FaqItem {
+	question: string;
+	answer: string;
+}
+
+interface Props {
+	items: FaqItem[];
+	heading?: string;
+}
+
+const { items, heading = 'Frequently Asked Questions' } = Astro.props;
+
+const faqSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'FAQPage',
+	mainEntity: items.map((item) => ({
+		'@type': 'Question',
+		name: item.question,
+		acceptedAnswer: { '@type': 'Answer', text: item.answer },
+	})),
+};
+---
+
+<section class="faq-section py-16 px-4" aria-labelledby="faq-heading">
+	<div class="max-w-3xl mx-auto">
+		<h2 id="faq-heading" class="text-2xl md:text-3xl font-bold uppercase tracking-tight text-center mb-10">
+			{heading}
+		</h2>
+		<div class="space-y-4">
+			{
+				items.map((item) => (
+					<details class="faq-item group bg-white rounded-xl shadow-md border border-gray-100">
+						<summary class="flex items-center justify-between gap-4 cursor-pointer list-none p-5 font-semibold">
+							{item.question}
+							<svg
+								class="w-5 h-5 flex-shrink-0 transition-transform duration-200 group-open:rotate-180"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								viewBox="0 0 24 24"
+								aria-hidden="true"
+							>
+								<path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+							</svg>
+						</summary>
+						<p class="px-5 pb-5 text-gray-600 leading-relaxed">{item.answer}</p>
+					</details>
+				))
+			}
+		</div>
+	</div>
+</section>
+
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+<style>
+	.faq-item summary::-webkit-details-marker {
+		display: none;
+	}
+</style>

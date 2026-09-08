@@ -1,5 +1,6 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
+import Faq from '../../../components/Faq.astro';
 import Hero from '../../../sections/smart-panel/Hero.astro';
 import ProductFeature from '../../../sections/smart-panel/ProductFeature.astro';
 import Comparison from '../../../sections/smart-panel/Comparison.astro';
@@ -19,4 +20,28 @@ const description =
 	<ImageContent />
 	<Testimonials />
 	<Award />
+	<Faq
+		items={[
+			{
+				question: 'What does a SPAN smart panel do?',
+				answer:
+					'A SPAN smart panel replaces your traditional electrical panel and gives you circuit-level monitoring and control from an app: see exactly what each circuit consumes in real time, turn circuits on or off remotely, and prioritize what stays powered during an outage.',
+			},
+			{
+				question: 'Does SPAN work with solar panels and batteries?',
+				answer:
+					'Yes. SPAN integrates with solar systems and home batteries, letting you manage which circuits your battery backs up and get the most out of your solar production.',
+			},
+			{
+				question: 'Can a smart panel help me add an EV charger without a service upgrade?',
+				answer:
+					'Often, yes. SPAN’s load management can dynamically balance your home’s consumption, which in many cases allows adding a Level 2 EV charger without upgrading your utility service. We evaluate your specific load profile first.',
+			},
+			{
+				question: 'How long does a SPAN smart panel installation take?',
+				answer:
+					'A typical installation is completed in about one day by our licensed electricians (Florida License NO. EC13010206), including the permit and inspection process that panel work requires.',
+			},
+		]}
+	/>
 </Layout>
