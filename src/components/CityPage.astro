@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Faq from './Faq.astro';
 import type { ServiceArea } from '../data/service-areas';
 
 interface Props {
@@ -28,7 +29,8 @@ const description = `Licensed and insured electrician serving ${area.name}, ${ar
 		<div class="max-w-4xl mx-auto">
 			<!-- Intro -->
 			<div class="bg-white rounded-2xl shadow-md border border-gray-100 p-8 md:p-12 mb-10">
-				<p class="text-gray-600 text-lg mb-8">{area.intro}</p>
+				<p class="text-gray-600 text-lg mb-4">{area.intro}</p>
+				<p class="text-gray-600 text-lg mb-8">{area.intro2}</p>
 				<ul class="space-y-4" role="list">
 					{
 						area.localNotes.map((note) => (
@@ -92,4 +94,6 @@ const description = `Licensed and insured electrician serving ${area.name}, ${ar
 			</div>
 		</div>
 	</section>
+
+	<Faq items={area.faqs} heading={`${area.name} FAQs`} />
 </Layout>
