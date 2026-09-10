@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import { Image } from 'astro:assets';
 import FreeQuoteButton from '../../components/FreeQuoteButton.astro';
+import { areasWeServe } from '../../data/service-areas';
 import { reviewStats } from '../../data/reviews';
 
 import evChargingImage from '../../assets/services/ev-charging/level-2-tesla.jpeg';
@@ -10,7 +11,7 @@ import electricalPanelImage from '../../assets/services/electrical-panel.jpeg';
 
 const title = 'Electrical Services | Battle Electric FL';
 const description =
-	'Comprehensive electrical services in Miami-Dade, Broward, and Monroe County. From panel installations to EV charging stations, trust our licensed electricians for all your needs.';
+	'Comprehensive electrical services in Miami-Dade, Broward, Monroe, Southwest Florida, and Greater Orlando. From panel installations to EV charging stations, trust our licensed electricians for all your needs.';
 
 const services = [
 	{
@@ -63,7 +64,6 @@ const generalServices = [
 	'Temporary power for construction',
 ];
 
-const serviceAreas = ['Miami-Dade County', 'Broward County', 'Monroe County', 'Homestead', 'Miami', 'Fort Lauderdale'];
 ---
 
 <Layout title={title} description={description}>
@@ -82,7 +82,7 @@ const serviceAreas = ['Miami-Dade County', 'Broward County', 'Monroe County', 'H
 			</h1>
 			<p class="text-lg md:text-xl text-gray-200 mb-8 max-w-3xl mx-auto">
 				Trusted electrical solutions for homes and businesses across
-				<strong>Miami-Dade, Broward, and Monroe County, Florida</strong>
+				<strong>Miami-Dade, Broward, Monroe, Southwest Florida & Greater Orlando</strong>
 			</p>
 			<FreeQuoteButton />
 		</div>
@@ -277,15 +277,32 @@ const serviceAreas = ['Miami-Dade County', 'Broward County', 'Monroe County', 'H
 		<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
 			<div class="bg-white rounded-2xl p-8 md:p-12 shadow-md border border-gray-100">
 				<h2 id="service-areas-title" class="text-2xl md:text-3xl font-bold uppercase tracking-tight mb-6 text-center">
-					Service Areas
+					Areas We Serve
 				</h2>
-				<p class="text-gray-600 text-center mb-8">
-					Proudly serving residential and commercial clients throughout South Florida
+				<p class="text-gray-600 text-center mb-10">
+					Proudly serving residential and commercial clients across South Florida
+					— from the Upper Keys to Fort Myers
 				</p>
-				<div class="flex flex-wrap justify-center gap-3">
+				<div class="space-y-8">
 					{
-						serviceAreas.map((area) => (
-							<span class="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm font-medium">{area}</span>
+						areasWeServe.map((group) => (
+							<div>
+								<h3 class="font-bold text-gray-900 mb-3">{group.group}</h3>
+								<div class="flex flex-wrap gap-2">
+									{group.places.map((place) =>
+										place.href ? (
+											<a
+												href={place.href}
+												class="px-3 py-1.5 bg-battle-yellow/20 hover:bg-battle-yellow text-gray-800 rounded-full text-sm font-medium transition-colors duration-200"
+											>
+												{place.name}
+											</a>
+										) : (
+											<span class="px-3 py-1.5 bg-gray-100 text-gray-700 rounded-full text-sm">{place.name}</span>
+										)
+									)}
+								</div>
+							</div>
 						))
 					}
 				</div>

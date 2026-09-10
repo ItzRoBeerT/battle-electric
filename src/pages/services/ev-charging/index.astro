@@ -1,5 +1,6 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
+import Faq from '../../../components/Faq.astro';
 import Brands from '../../../sections/ev-charging/Brands.astro';
 import Hero from '../../../sections/ev-charging/Hero.astro';
 import Installations from '../../../sections/ev-charging/Installations.astro';
@@ -15,4 +16,33 @@ const description =
 	<Services />
 	<Installations />
 	<Brands />
+	<Faq
+		items={[
+			{
+				question: 'How much does EV charger installation cost?',
+				answer:
+					'The cost of an EV charger installation varies depending on the specific property and electrical requirements. Every installation is different, so we provide a customized quote based on the job.\n\nFactors that can affect the price include:\n• The type and power rating of the EV charger\n• Available capacity in your electrical panel\n• Distance from the electrical panel to the charger\n• Whether wiring is installed inside, outside, in conduit, or through walls/attics\n• The need for a new circuit, breaker, or electrical panel upgrade\n• Permitting and inspection requirements\n• The location and accessibility of the installation\n\nOur goal is to provide you with a safe, code-compliant installation at a fair and transparent price, without adding unnecessary work or equipment. Contact us for a free estimate — we can evaluate your electrical system and provide a customized price based on your specific installation.',
+			},
+			{
+				question: 'Do I need a permit to install an EV charger in Florida?',
+				answer:
+					'Yes. EV charger installations require an electrical permit and inspection. As a licensed Florida electrical contractor (License NO. EC13010206), Battle Electric handles the permit process and inspection for you.',
+			},
+			{
+				question: 'Can you install a Tesla Wall Connector?',
+				answer:
+					'Yes. We install Tesla Wall Connectors as well as universal Level 2 chargers compatible with any EV brand, for both homes and businesses.',
+			},
+			{
+				question: 'How long does an EV charger installation take?',
+				answer:
+					'Most residential installations are completed in a single day. Permit approval times vary by municipality in Miami-Dade, Broward, and Monroe County, and we manage that process for you.',
+			},
+			{
+				question: 'Will my electrical panel support a Level 2 charger?',
+				answer:
+					'It depends on your panel capacity and existing loads. We perform a load calculation before installing. If your panel is at capacity, options include a panel upgrade or a smart panel with load management, both of which we install.',
+			},
+		]}
+	/>
 </Layout>

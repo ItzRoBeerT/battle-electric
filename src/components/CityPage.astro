@@ -1,0 +1,99 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Faq from './Faq.astro';
+import type { ServiceArea } from '../data/service-areas';
+
+interface Props {
+	area: ServiceArea;
+}
+
+const { area } = Astro.props;
+const title = `Electrician in ${area.name}, FL | Battle Electric`;
+const description = `Licensed and insured electrician serving ${area.name}, ${area.county}. Panel upgrades, EV chargers, smart panels, and general electrical work. Free estimates — (786) 404-3885.`;
+---
+
+<Layout title={title} description={description}>
+	<!-- Header band -->
+	<section class="bg-gray-900 text-white py-20 px-4">
+		<div class="max-w-4xl mx-auto text-center">
+			<h1 class="text-4xl md:text-5xl font-bold uppercase tracking-tight mb-4">
+				Electrician in {area.name}, FL
+			</h1>
+			<p class="text-xl text-gray-300 max-w-2xl mx-auto">
+				Licensed &amp; insured electrical contractor serving {area.name} and all of {area.county}
+			</p>
+		</div>
+	</section>
+
+	<section class="py-16 px-4">
+		<div class="max-w-4xl mx-auto">
+			<!-- Intro -->
+			<div class="bg-white rounded-2xl shadow-md border border-gray-100 p-8 md:p-12 mb-10">
+				<p class="text-gray-600 text-lg mb-4">{area.intro}</p>
+				<p class="text-gray-600 text-lg mb-8">{area.intro2}</p>
+				<ul class="space-y-4" role="list">
+					{
+						area.localNotes.map((note) => (
+							<li class="flex items-start gap-3 text-gray-600">
+								<svg
+									class="w-5 h-5 text-green-600 flex-shrink-0 mt-1"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									viewBox="0 0 24 24"
+									aria-hidden="true"
+								>
+									<path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+								</svg>
+								<span>{note}</span>
+							</li>
+						))
+					}
+				</ul>
+			</div>
+
+			<!-- Services in this city -->
+			<h2 class="text-2xl md:text-3xl font-bold uppercase tracking-tight mb-8 text-center">
+				Our services in {area.name}
+			</h2>
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+				<a href="/services/ev-charging" class="bg-white rounded-xl shadow-md border border-gray-100 p-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+					<h3 class="font-bold text-lg mb-2">EV Charging</h3>
+					<p class="text-gray-600 text-sm">Level 2 chargers, Tesla Wall Connectors, and commercial charging stations.</p>
+				</a>
+				<a href="/services/electrical-panel" class="bg-white rounded-xl shadow-md border border-gray-100 p-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+					<h3 class="font-bold text-lg mb-2">Electrical Panels</h3>
+					<p class="text-gray-600 text-sm">Panel upgrades, replacements, and service increases up to code.</p>
+				</a>
+				<a href="/services/smart-panel" class="bg-white rounded-xl shadow-md border border-gray-100 p-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+					<h3 class="font-bold text-lg mb-2">Smart Panels</h3>
+					<p class="text-gray-600 text-sm">SPAN smart panels with energy monitoring and load management.</p>
+				</a>
+			</div>
+
+			<!-- Trust + CTA -->
+			<div class="text-center">
+				<p class="text-gray-600 mb-6">
+					Florida License NO. <a href="/license" class="underline font-semibold hover:text-black">EC13010206</a>
+					· Free estimates · Mon–Sat 7AM–7PM · 24/7 emergency service
+				</p>
+				<div class="flex flex-col sm:flex-row gap-4 justify-center">
+					<a
+						href="/contact-us"
+						class="inline-block bg-battle-yellow border border-black hover:bg-battle-yellow-hover px-8 py-4 rounded-lg font-semibold transition-all duration-300 shadow-lg"
+					>
+						Get a Free Quote
+					</a>
+					<a
+						href="tel:+17864043885"
+						class="inline-flex items-center justify-center gap-2 border border-gray-300 hover:border-black hover:bg-gray-50 px-8 py-4 rounded-lg font-semibold transition-all duration-300"
+					>
+						(786) 404-3885
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<Faq items={area.faqs} heading={`${area.name} FAQs`} />
+</Layout>
