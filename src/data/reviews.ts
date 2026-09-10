@@ -4,9 +4,9 @@
 // recent favorites, paste them here with a `date` label like 'March 2026'.
 export const reviewStats = {
 	rating: '5.0',
-	countLabel: '138',
-	// Machine-readable reviewCount for AggregateRating JSON-LD. Keep in sync
-	// with countLabel when refreshing from GBP.
+	countLabel: '100+',
+	// Machine-readable reviewCount for AggregateRating JSON-LD (exact GBP
+	// count; the visible label stays a rounded "100+"). Refresh from GBP.
 	count: 138,
 	// TODO(owner): replace with the exact Google Maps listing URL from GBP.
 	listingUrl:
