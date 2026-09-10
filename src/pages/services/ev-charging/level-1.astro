@@ -2,6 +2,8 @@
 import Carousel from '../../../components/Carousel.astro';
 import Layout from '../../../layouts/Layout.astro';
 import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+import Faq from '../../../components/Faq.astro';
+import { BUSINESS_ID } from '../../../data/business';
 import charger from '../../../assets/services/ev-charging/level1-charger.webp';
 import plug from '../../../assets/services/ev-charging/level1-plug.webp';
 import type { CarouselSlide } from '../../../components/Carousel.astro';
@@ -25,9 +27,20 @@ const slides: CarouselSlide[] = [
 		alt: 'Level 1 Charging Setup',
 	},
 ];
+
+const structuredData = {
+	'@context': 'https://schema.org',
+	'@type': 'Service',
+	name: 'Level 1 EV Charger Consultation',
+	serviceType: 'Level 1 electric vehicle charging assessment',
+	provider: { '@id': BUSINESS_ID },
+	description: description,
+	areaServed: { '@type': 'State', name: 'Florida' },
+};
 ---
 
 <Layout title={title} description={description}>
+	<script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
 	<Breadcrumbs crumbs={[{ name: 'Services', href: '/services' }, { name: 'EV Charging', href: '/services/ev-charging' }, { name: 'Level 1 Charging' }]} />
 	<section class="py-16 bg-gradient-to-br from-yellow-50 to-gray-50">
 		<div class="container mx-auto px-4 max-w-6xl">
@@ -273,4 +286,23 @@ const slides: CarouselSlide[] = [
 			</div>
 		</div>
 	</section>
+	<Faq
+		items={[
+			{
+				question: 'What is Level 1 EV charging?',
+				answer:
+					'Level 1 charging uses a standard 120V household outlet and typically adds about 3-5 miles of range per hour. It is the slowest but most cost-effective way to charge an EV, with little or no equipment to install.',
+			},
+			{
+				question: 'Is Level 1 charging enough for daily driving?',
+				answer:
+					'It depends on how much you drive. For short daily commutes, charging overnight on a 120V outlet can be enough. If you drive more, a Level 2 charger adds roughly 20-40 miles of range per hour and is the most popular home upgrade.',
+			},
+			{
+				question: 'Do I need an electrician for Level 1 charging?',
+				answer:
+					'Often no new equipment is required, but the outlet and circuit you plug into must be in good condition and should not be shared with other heavy loads. Battle Electric can inspect your outlet and circuit, and recommend a dedicated circuit or a Level 2 upgrade if your setup needs it.',
+			},
+		]}
+	/>
 </Layout>

@@ -73,6 +73,7 @@ const businessSchema = {
 		'https://www.buildzoom.com/contractor/battle-electric-llc',
 		'https://www.angi.com/companylist/us/fl/homestead/battle-electric-reviews-1.htm',
 		'https://www.homeadvisor.com/rated.Battle.126412546.html',
+		'https://www.thumbtack.com/fl/homestead/electrical-repairs/battle-electric/service/446001654848380937',
 	],
 	hasCredential: {
 		'@type': 'EducationalOccupationalCredential',
@@ -98,7 +99,10 @@ const businessSchema = {
 		<title>{title}</title>
 		<meta name="description" content={description} />
 		<link rel="canonical" href={canonicalURL} />
-		{robots && <meta name="robots" content={robots} />}
+		<meta
+			name="robots"
+			content={robots ?? 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1'}
+		/>
 		<!-- Social sharing -->
 		<meta property="og:site_name" content="Battle Electric" />
 		<meta property="og:type" content="website" />

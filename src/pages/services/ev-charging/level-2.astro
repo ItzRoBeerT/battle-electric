@@ -1,6 +1,8 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+import Faq from '../../../components/Faq.astro';
+import { BUSINESS_ID } from '../../../data/business';
 import Chevron from '../../../assets/icons/chevron.svg';
 import Star from '../../../assets/icons/star.svg';
 import MobilePhone from '../../../assets/icons/mobile-phone.svg';
@@ -51,9 +53,20 @@ slides.unshift({
 	src: Tesla.src,
 	alt: 'Tesla EV Charging',
 });
+
+const structuredData = {
+	'@context': 'https://schema.org',
+	'@type': 'Service',
+	name: 'Level 2 EV Charger Installation',
+	serviceType: 'Level 2 (240V) electric vehicle charger installation',
+	provider: { '@id': BUSINESS_ID },
+	description: description,
+	areaServed: { '@type': 'State', name: 'Florida' },
+};
 ---
 
 <Layout title={title} description={description}>
+	<script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
 	<Breadcrumbs crumbs={[{ name: 'Services', href: '/services' }, { name: 'EV Charging', href: '/services/ev-charging' }, { name: 'Level 2 Charging' }]} />
 	<section class="py-16 bg-gradient-to-br from-yellow-50 to-orange-50">
 		<div class="container mx-auto px-4 max-w-6xl">
@@ -441,4 +454,23 @@ slides.unshift({
 			</div>
 		</div>
 	</section>
+	<Faq
+		items={[
+			{
+				question: 'What is Level 2 EV charging?',
+				answer:
+					'Level 2 charging runs on a 240V circuit and typically adds 20-40 miles of range per hour, so most drivers wake up to a full charge. It is the most popular option for homes and businesses.',
+			},
+			{
+				question: 'Do I need a permit to install a Level 2 charger in Florida?',
+				answer:
+					'Yes. EV charger installations require an electrical permit and inspection. As a licensed Florida electrical contractor (License NO. EC13010206), Battle Electric handles the permit process and inspection for you.',
+			},
+			{
+				question: 'Can you install Tesla Wall Connectors?',
+				answer:
+					'Yes. We install Tesla Wall Connectors as well as universal Level 2 chargers compatible with all EV brands, for both homes and businesses.',
+			},
+		]}
+	/>
 </Layout>

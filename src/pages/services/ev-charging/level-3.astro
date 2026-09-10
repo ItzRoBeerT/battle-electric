@@ -1,6 +1,8 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+import Faq from '../../../components/Faq.astro';
+import { BUSINESS_ID } from '../../../data/business';
 import Chevron from '../../../assets/icons/chevron.svg';
 import Bolt from '../../../assets/icons/bolt.svg';
 import Building from '../../../assets/icons/building.svg';
@@ -34,9 +36,20 @@ const slides: CarouselSlide[] = [
 		alt: 'Level 3 Charging Setup',
 	},
 ];
+
+const structuredData = {
+	'@context': 'https://schema.org',
+	'@type': 'Service',
+	name: 'Level 3 DC Fast Charger Installation',
+	serviceType: 'Commercial DC fast charging station installation',
+	provider: { '@id': BUSINESS_ID },
+	description: description,
+	areaServed: { '@type': 'State', name: 'Florida' },
+};
 ---
 
 <Layout title={title} description={description}>
+	<script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
 	<Breadcrumbs crumbs={[{ name: 'Services', href: '/services' }, { name: 'EV Charging', href: '/services/ev-charging' }, { name: 'Level 3 Charging' }]} />
 	<section class="py-16 bg-gradient-to-br from-yellow-50 to-indigo-50">
 		<div class="container mx-auto px-4 max-w-6xl">
@@ -567,4 +580,23 @@ const slides: CarouselSlide[] = [
 			</div>
 		</div>
 	</section>
+	<Faq
+		items={[
+			{
+				question: 'What is Level 3 (DC fast) charging?',
+				answer:
+					'Level 3 charging uses direct current to charge an EV to about 80% in under 30 minutes. It is designed for commercial sites, fleets, and high-traffic locations.',
+			},
+			{
+				question: 'Can a Level 3 charger be installed at home?',
+				answer:
+					'Generally no. DC fast charging requires electrical capacity far beyond a typical residential service. For homes we recommend a Level 2 charger, which adds 20-40 miles of range per hour.',
+			},
+			{
+				question: 'Who is Level 3 charging for?',
+				answer:
+					'Businesses, fleet operators, and commercial properties that need fast turnaround: gas stations, retail, offices, and hospitality. Battle Electric evaluates your site\'s electrical capacity and handles the full installation, permitting included.',
+			},
+		]}
+	/>
 </Layout>
