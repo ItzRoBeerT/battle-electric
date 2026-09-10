@@ -1,6 +1,8 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 import Faq from '../../../components/Faq.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+import { BUSINESS_ID } from '../../../data/business';
 import Hero from '../../../sections/smart-panel/Hero.astro';
 import ProductFeature from '../../../sections/smart-panel/ProductFeature.astro';
 import Comparison from '../../../sections/smart-panel/Comparison.astro';
@@ -11,9 +13,21 @@ import Award from '../../../sections/smart-panel/Award.astro';
 const title = 'Smart Panel Services | Battle Electric';
 const description =
 	'Discover our smart panel solutions for modern homes. Expert installation and maintenance services to enhance your electrical system.';
+
+const structuredData = {
+	'@context': 'https://schema.org',
+	'@type': 'Service',
+	name: 'SPAN Smart Panel Installation',
+	serviceType: 'Smart electrical panel installation',
+	provider: { '@id': BUSINESS_ID },
+	description: description,
+	areaServed: { '@type': 'State', name: 'Florida' },
+};
 ---
 
 <Layout title={title} description={description}>
+	<script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+	<Breadcrumbs crumbs={[{ name: 'Services', href: '/services' }, { name: 'Smart Panels' }]} />
 	<Hero />
 	<ProductFeature />
 	<Comparison />

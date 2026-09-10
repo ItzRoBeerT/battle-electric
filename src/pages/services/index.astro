@@ -2,8 +2,11 @@
 import Layout from '../../layouts/Layout.astro';
 import { Image } from 'astro:assets';
 import FreeQuoteButton from '../../components/FreeQuoteButton.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import Faq from '../../components/Faq.astro';
 import { areasWeServe } from '../../data/service-areas';
 import { reviewStats } from '../../data/reviews';
+import { BUSINESS_ID } from '../../data/business';
 
 import evChargingImage from '../../assets/services/ev-charging/level-2-tesla.jpeg';
 import smartPanelImage from '../../../public/span/span-smart-panel.avif';
@@ -64,9 +67,28 @@ const generalServices = [
 	'Temporary power for construction',
 ];
 
+// The three featured services as a machine-readable catalog.
+const servicesSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'ItemList',
+	name: 'Electrical services by Battle Electric',
+	itemListElement: services.map((service, index) => ({
+		'@type': 'ListItem',
+		position: index + 1,
+		item: {
+			'@type': 'Service',
+			name: service.title,
+			description: service.description,
+			url: new URL(service.url, Astro.site).href,
+			provider: { '@id': BUSINESS_ID },
+		},
+	})),
+};
 ---
 
 <Layout title={title} description={description}>
+	<script type="application/ld+json" set:html={JSON.stringify(servicesSchema)} />
+	<Breadcrumbs crumbs={[{ name: 'Services' }]} />
 	<!-- Hero -->
 	<section
 		class="hero-section min-h-[55vh] bg-gray-900 relative flex items-center justify-center"
@@ -110,7 +132,7 @@ const generalServices = [
 				<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
 					<path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
 				</svg>
-				35+ Years Experience
+				35+ Years Combined Experience
 			</span>
 		</div>
 	</section>
@@ -238,7 +260,7 @@ const generalServices = [
 							<path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
 						</svg>
 					</div>
-					<h3 class="text-lg font-bold text-gray-900 mb-2">35+ Years Experience</h3>
+					<h3 class="text-lg font-bold text-gray-900 mb-2">35+ Years Combined Experience</h3>
 					<p class="text-sm text-gray-600">Decades of expertise in residential and commercial electrical work</p>
 				</div>
 				<div class="bg-white rounded-xl p-6 text-center shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
@@ -338,6 +360,31 @@ const generalServices = [
 			</div>
 		</div>
 	</section>
+
+	<Faq
+		items={[
+			{
+				question: 'What electrical services does Battle Electric offer?',
+				answer:
+					'We install and replace electrical panels, install EV chargers (Level 1, 2, and 3, including Tesla Wall Connectors), and install SPAN smart panels. We also handle general electrical work: complete home rewiring, troubleshooting and repairs, lighting installation, smoke detectors, outlets and switches, and temporary power for construction.',
+			},
+			{
+				question: 'Do you work with both residential and commercial clients?',
+				answer:
+					'Yes. We serve residential and commercial clients across Miami-Dade, Broward, and Monroe County (Upper Keys), plus Southwest Florida and Greater Orlando.',
+			},
+			{
+				question: 'Are your electricians licensed and insured?',
+				answer:
+					'Yes. Battle Electric, LLC is a Florida certified electrical contractor, License NO. EC13010206, and fully insured. You can verify our license at MyFloridaLicense.com.',
+			},
+			{
+				question: 'How do I get a quote?',
+				answer:
+					'Estimates are free. Call (786) 404-3885 or request a quote through our contact page and we will get back to you with a customized estimate for your project.',
+			},
+		]}
+	/>
 </Layout>
 
 <style>

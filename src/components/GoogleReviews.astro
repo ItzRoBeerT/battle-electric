@@ -1,5 +1,6 @@
 ---
 import { reviews, reviewStats } from '../data/reviews';
+import { BUSINESS_ID } from '../data/business';
 
 function initial(name: string): string {
 	return name.trim().charAt(0).toUpperCase();
@@ -7,7 +8,31 @@ function initial(name: string): string {
 
 // Deterministic accent per reviewer so avatars vary without randomness.
 const avatarColors = ['bg-battle-yellow text-black', 'bg-gray-900 text-white', 'bg-yellow-500 text-black'];
+
+// AggregateRating + Review live here (not in Layout) so the markup is only
+// emitted on pages where the reviews are actually visible, as Google requires.
+// The @id ties this node to the global Electrician node in Layout.astro.
+const reviewsSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'Electrician',
+	'@id': BUSINESS_ID,
+	name: 'Battle Electric',
+	aggregateRating: {
+		'@type': 'AggregateRating',
+		ratingValue: Number(reviewStats.rating),
+		reviewCount: reviewStats.count,
+		bestRating: 5,
+	},
+	review: reviews.map((review) => ({
+		'@type': 'Review',
+		author: { '@type': 'Person', name: review.author_name },
+		reviewRating: { '@type': 'Rating', ratingValue: review.rating, bestRating: 5 },
+		reviewBody: review.text,
+	})),
+};
 ---
+
+<script type="application/ld+json" set:html={JSON.stringify(reviewsSchema)} />
 
 <section class="max-w-6xl mx-auto p-4 md:p-8" aria-labelledby="reviews-title">
 	<h2 id="reviews-title" class="text-2xl md:text-3xl font-bold uppercase tracking-tight text-gray-800 text-center mb-4">

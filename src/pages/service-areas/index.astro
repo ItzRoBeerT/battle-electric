@@ -1,0 +1,125 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { serviceAreas, areasWeServe } from '../../data/service-areas';
+import { BUSINESS_ID } from '../../data/business';
+
+const title = 'Service Areas | Battle Electric';
+const description =
+	'Battle Electric serves Miami-Dade, Broward, and Monroe County (Upper Keys), plus Southwest Florida and Greater Orlando. Licensed electricians based in Homestead, FL — (786) 404-3885.';
+
+// The 4 deep city pages as a machine-readable list tied to the business entity.
+const areasSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'ItemList',
+	name: 'Battle Electric service areas',
+	itemListElement: serviceAreas.map((area, index) => ({
+		'@type': 'ListItem',
+		position: index + 1,
+		item: {
+			'@type': 'Service',
+			serviceType: 'Electrician',
+			name: `Electrical services in ${area.name}, FL`,
+			url: new URL(`/service-areas/${area.slug}`, Astro.site).href,
+			provider: { '@id': BUSINESS_ID },
+			areaServed: { '@type': 'City', name: area.name },
+		},
+	})),
+};
+---
+
+<Layout title={title} description={description}>
+	<script type="application/ld+json" set:html={JSON.stringify(areasSchema)} />
+	<Breadcrumbs crumbs={[{ name: 'Service Areas' }]} />
+
+	<!-- Header band -->
+	<section class="bg-gray-900 text-white py-20 px-4">
+		<div class="max-w-4xl mx-auto text-center">
+			<h1 class="text-4xl md:text-5xl font-bold uppercase tracking-tight mb-4">Areas We Serve</h1>
+			<p class="text-xl text-gray-300 max-w-2xl mx-auto">
+				Licensed &amp; insured electricians based in Homestead, serving South Florida and beyond
+			</p>
+		</div>
+	</section>
+
+	<section class="py-16 px-4">
+		<div class="max-w-4xl mx-auto">
+			<!-- Deep city pages -->
+			<h2 class="text-2xl md:text-3xl font-bold uppercase tracking-tight mb-8 text-center">
+				Local service pages
+			</h2>
+			<div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-14">
+				{
+					serviceAreas.map((area) => (
+						<a
+							href={`/service-areas/${area.slug}`}
+							class="bg-white rounded-xl shadow-md border border-gray-100 p-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+						>
+							<h3 class="font-bold text-lg mb-1">Electrician in {area.name}, FL</h3>
+							<p class="text-gray-500 text-sm mb-3">{area.county}</p>
+							<span class="text-sm font-semibold underline underline-offset-4">
+								Services, permits &amp; local FAQs →
+							</span>
+						</a>
+					))
+				}
+			</div>
+
+			<!-- Full coverage list -->
+			<div class="bg-white rounded-2xl p-8 md:p-12 shadow-md border border-gray-100 mb-12">
+				<h2 class="text-2xl md:text-3xl font-bold uppercase tracking-tight mb-6 text-center">
+					Full coverage list
+				</h2>
+				<p class="text-gray-600 text-center mb-10">
+					Proudly serving residential and commercial clients across South Florida — from the Upper Keys to Fort
+					Myers — plus Greater Orlando
+				</p>
+				<div class="space-y-8">
+					{
+						areasWeServe.map((group) => (
+							<div>
+								<h3 class="font-bold text-gray-900 mb-3">{group.group}</h3>
+								<div class="flex flex-wrap gap-2">
+									{group.places.map((place) =>
+										place.href ? (
+											<a
+												href={place.href}
+												class="px-3 py-1.5 bg-battle-yellow/20 hover:bg-battle-yellow text-gray-800 rounded-full text-sm font-medium transition-colors duration-200"
+											>
+												{place.name}
+											</a>
+										) : (
+											<span class="px-3 py-1.5 bg-gray-100 text-gray-700 rounded-full text-sm">{place.name}</span>
+										)
+									)}
+								</div>
+							</div>
+						))
+					}
+				</div>
+			</div>
+
+			<!-- CTA -->
+			<div class="text-center">
+				<p class="text-gray-600 mb-6">
+					Florida License NO. <a href="/license" class="underline font-semibold hover:text-black">EC13010206</a>
+					· Free estimates · Mon–Sat 7AM–7PM · 24/7 emergency service
+				</p>
+				<div class="flex flex-col sm:flex-row gap-4 justify-center">
+					<a
+						href="/contact-us"
+						class="inline-block bg-battle-yellow border border-black hover:bg-battle-yellow-hover px-8 py-4 rounded-lg font-semibold transition-all duration-300 shadow-lg"
+					>
+						Get a Free Quote
+					</a>
+					<a
+						href="tel:+17864043885"
+						class="inline-flex items-center justify-center gap-2 border border-gray-300 hover:border-black hover:bg-gray-50 px-8 py-4 rounded-lg font-semibold transition-all duration-300"
+					>
+						(786) 404-3885
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+</Layout>

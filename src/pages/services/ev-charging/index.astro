@@ -1,6 +1,8 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 import Faq from '../../../components/Faq.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+import { BUSINESS_ID } from '../../../data/business';
 import Brands from '../../../sections/ev-charging/Brands.astro';
 import Hero from '../../../sections/ev-charging/Hero.astro';
 import Installations from '../../../sections/ev-charging/Installations.astro';
@@ -9,9 +11,21 @@ import Services from '../../../sections/ev-charging/Services.astro';
 const title = 'EV Charging Services | Battle Electric';
 const description =
 	'Explore our EV charging solutions, including Tesla and other brands. Reliable installations and maintenance for your electric vehicle charging needs.';
+
+const structuredData = {
+	'@context': 'https://schema.org',
+	'@type': 'Service',
+	name: 'EV Charger Installation',
+	serviceType: 'Electric vehicle charging station installation',
+	provider: { '@id': BUSINESS_ID },
+	description: description,
+	areaServed: { '@type': 'State', name: 'Florida' },
+};
 ---
 
 <Layout title={title} description={description}>
+	<script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+	<Breadcrumbs crumbs={[{ name: 'Services', href: '/services' }, { name: 'EV Charging' }]} />
 	<Hero />
 	<Services />
 	<Installations />

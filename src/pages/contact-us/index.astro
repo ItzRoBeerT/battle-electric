@@ -2,13 +2,34 @@
 import Layout from "../../layouts/Layout.astro"
 import ContactForm from "../../components/ContactForm.astro"
 import Faq from "../../components/Faq.astro"
-const title = "Contact Us"
-const description = "Get in touch with us for any inquiries or support."
+const title = "Contact Us | Battle Electric"
+const description = "Contact Battle Electric in Homestead, FL. Call (786) 404-3885 or request a free quote online. Licensed electricians serving Miami-Dade, Broward, and South Florida."
 
 ---
 
 <Layout title={title} description={description}>
   <ContactForm />
+
+  <!-- NAP in real HTML: the lead form above is a third-party iframe, invisible
+       to crawlers, so the contact details must also live in the page itself. -->
+  <section class="max-w-2xl mx-auto px-8 pb-12" aria-label="Contact information">
+    <div class="bg-white rounded-xl shadow-md border border-gray-100 p-6 grid sm:grid-cols-2 gap-6 text-sm text-gray-700">
+      <div>
+        <h2 class="font-semibold text-gray-900 mb-2">Battle Electric, LLC</h2>
+        <p>13254 SW 263rd St<br />Homestead, FL 33032</p>
+        <p class="mt-2 text-gray-500">License NO. EC13010206</p>
+      </div>
+      <div class="space-y-2">
+        <p>
+          <a href="tel:+17864043885" class="font-semibold text-gray-900 hover:underline underline-offset-4">(786) 404-3885</a>
+        </p>
+        <p>
+          <a href="mailto:battleelectric050@gmail.com" class="hover:underline underline-offset-4">battleelectric050@gmail.com</a>
+        </p>
+        <p>Mon–Sat 7:00 AM–7:00 PM<br />24/7 emergency service</p>
+      </div>
+    </div>
+  </section>
   <Faq
     items={[
       {
