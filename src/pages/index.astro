@@ -5,6 +5,7 @@ import Services from '../sections/Services.astro';
 import Tesla from '../sections/Tesla.astro';
 import ContactUs from '../sections/ContactUs.astro';
 import GoogleReviews from '../components/GoogleReviews.astro';
+import Faq from '../components/Faq.astro';
 
 const title = 'Electrical Service Experts | Battle Electric';
 const description =
@@ -18,4 +19,33 @@ const description =
 	<Tesla />
 	<ContactUs />
 	<GoogleReviews />
+	<Faq
+		items={[
+			{
+				question: 'What areas does Battle Electric serve?',
+				answer:
+					'We serve residential and commercial clients across Miami-Dade, Broward, and Monroe County (Upper Keys), plus Southwest Florida and Greater Orlando, from our base in Homestead, Florida.',
+			},
+			{
+				question: 'What electrical services do you offer?',
+				answer:
+					'We install and replace electrical panels, install EV chargers (Level 1, 2, and 3, including Tesla Wall Connectors), and install SPAN smart panels. We also handle general electrical work: rewiring, troubleshooting and repairs, lighting, smoke detectors, outlets and switches, and temporary power for construction.',
+			},
+			{
+				question: 'Is Battle Electric licensed and insured?',
+				answer:
+					'Yes. Battle Electric, LLC is a Florida certified electrical contractor, License NO. EC13010206, and fully insured. You can verify our license at MyFloridaLicense.com.',
+			},
+			{
+				question: 'Do you offer free estimates?',
+				answer:
+					'Yes, estimates are free. Call (786) 404-3885 or request a quote through our contact page and we will get back to you with a quote for your project.',
+			},
+			{
+				question: 'Do you handle emergencies?',
+				answer:
+					'Yes. Our regular hours are Monday to Saturday, 7:00 AM to 7:00 PM, and we offer 24/7 emergency service for urgent electrical issues.',
+			},
+		]}
+	/>
 </Layout>
