@@ -1,0 +1,54 @@
+---
+// Visible breadcrumb trail + BreadcrumbList JSON-LD (BAT-23). "Home" is
+// prepended automatically; pass the remaining trail in order. Intermediate
+// crumbs must have an href — only the last (current page) goes without one.
+export interface Crumb {
+	name: string;
+	href?: string;
+}
+
+interface Props {
+	crumbs: Crumb[];
+}
+
+const { crumbs } = Astro.props;
+const items: Crumb[] = [{ name: 'Home', href: '/' }, ...crumbs];
+
+const breadcrumbSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'BreadcrumbList',
+	itemListElement: items.map((crumb, index) => ({
+		'@type': 'ListItem',
+		position: index + 1,
+		name: crumb.name,
+		...(crumb.href ? { item: new URL(crumb.href, Astro.site).href } : {}),
+	})),
+};
+---
+
+<nav aria-label="Breadcrumb" class="bg-white border-b border-gray-100 px-4 py-2.5">
+	<ol class="flex flex-wrap items-center gap-1.5 max-w-7xl mx-auto text-sm text-gray-500">
+		{
+			items.map((crumb, index) => (
+				<li class="flex items-center gap-1.5">
+					{index > 0 && (
+						<span aria-hidden="true" class="text-gray-300">
+							/
+						</span>
+					)}
+					{crumb.href && index < items.length - 1 ? (
+						<a href={crumb.href} class="hover:text-black hover:underline underline-offset-4 transition-colors">
+							{crumb.name}
+						</a>
+					) : (
+						<span aria-current="page" class="text-gray-800 font-medium">
+							{crumb.name}
+						</span>
+					)}
+				</li>
+			))
+		}
+	</ol>
+</nav>
+
+<script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />

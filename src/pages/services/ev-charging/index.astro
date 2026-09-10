@@ -1,6 +1,7 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 import Faq from '../../../components/Faq.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
 import Brands from '../../../sections/ev-charging/Brands.astro';
 import Hero from '../../../sections/ev-charging/Hero.astro';
 import Installations from '../../../sections/ev-charging/Installations.astro';
@@ -12,6 +13,7 @@ const description =
 ---
 
 <Layout title={title} description={description}>
+	<Breadcrumbs crumbs={[{ name: 'Services', href: '/services' }, { name: 'EV Charging' }]} />
 	<Hero />
 	<Services />
 	<Installations />

@@ -1,6 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Faq from './Faq.astro';
+import Breadcrumbs from './Breadcrumbs.astro';
+import GoogleReviews from './GoogleReviews.astro';
+import { BUSINESS_ID } from '../data/business';
 import type { ServiceArea } from '../data/service-areas';
 
 interface Props {
@@ -10,9 +13,28 @@ interface Props {
 const { area } = Astro.props;
 const title = `Electrician in ${area.name}, FL | Battle Electric`;
 const description = `Licensed and insured electrician serving ${area.name}, ${area.county}. Panel upgrades, EV chargers, smart panels, and general electrical work. Free estimates — (786) 404-3885.`;
+
+// City-scoped Service node so each service-area page declares its own
+// coverage instead of repeating the identical site-wide Electrician node.
+const cityServiceSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'Service',
+	serviceType: 'Electrician',
+	name: `Electrical services in ${area.name}, FL`,
+	description,
+	url: new URL(`/service-areas/${area.slug}`, Astro.site).href,
+	provider: { '@id': BUSINESS_ID },
+	areaServed: {
+		'@type': 'City',
+		name: area.name,
+		containedInPlace: { '@type': 'AdministrativeArea', name: area.county },
+	},
+};
 ---
 
 <Layout title={title} description={description}>
+	<script type="application/ld+json" set:html={JSON.stringify(cityServiceSchema)} />
+	<Breadcrumbs crumbs={[{ name: `Electrician in ${area.name}, FL` }]} />
 	<!-- Header band -->
 	<section class="bg-gray-900 text-white py-20 px-4">
 		<div class="max-w-4xl mx-auto text-center">
@@ -94,6 +116,8 @@ const description = `Licensed and insured electrician serving ${area.name}, ${ar
 			</div>
 		</div>
 	</section>
+
+	<GoogleReviews />
 
 	<Faq items={area.faqs} heading={`${area.name} FAQs`} />
 </Layout>

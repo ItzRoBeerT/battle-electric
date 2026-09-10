@@ -1,5 +1,6 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
 import Chevron from '../../../assets/icons/chevron.svg';
 import Star from '../../../assets/icons/star.svg';
 import MobilePhone from '../../../assets/icons/mobile-phone.svg';
@@ -53,6 +54,7 @@ slides.unshift({
 ---
 
 <Layout title={title} description={description}>
+	<Breadcrumbs crumbs={[{ name: 'Services', href: '/services' }, { name: 'EV Charging', href: '/services/ev-charging' }, { name: 'Level 2 Charging' }]} />
 	<section class="py-16 bg-gradient-to-br from-yellow-50 to-orange-50">
 		<div class="container mx-auto px-4 max-w-6xl">
 			<div class="mb-8">

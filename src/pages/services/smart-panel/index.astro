@@ -1,6 +1,7 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 import Faq from '../../../components/Faq.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
 import Hero from '../../../sections/smart-panel/Hero.astro';
 import ProductFeature from '../../../sections/smart-panel/ProductFeature.astro';
 import Comparison from '../../../sections/smart-panel/Comparison.astro';
@@ -14,6 +15,7 @@ const description =
 ---
 
 <Layout title={title} description={description}>
+	<Breadcrumbs crumbs={[{ name: 'Services', href: '/services' }, { name: 'Smart Panels' }]} />
 	<Hero />
 	<ProductFeature />
 	<Comparison />

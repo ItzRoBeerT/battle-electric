@@ -1,6 +1,7 @@
 ---
 import Carousel from '../../../components/Carousel.astro';
 import Layout from '../../../layouts/Layout.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
 import charger from '../../../assets/services/ev-charging/level1-charger.webp';
 import plug from '../../../assets/services/ev-charging/level1-plug.webp';
 import type { CarouselSlide } from '../../../components/Carousel.astro';
@@ -27,6 +28,7 @@ const slides: CarouselSlide[] = [
 ---
 
 <Layout title={title} description={description}>
+	<Breadcrumbs crumbs={[{ name: 'Services', href: '/services' }, { name: 'EV Charging', href: '/services/ev-charging' }, { name: 'Level 1 Charging' }]} />
 	<section class="py-16 bg-gradient-to-br from-yellow-50 to-gray-50">
 		<div class="container mx-auto px-4 max-w-6xl">
 			<div class="mb-8">
