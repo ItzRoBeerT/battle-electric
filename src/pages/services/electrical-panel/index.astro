@@ -1,6 +1,7 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 import Faq from '../../../components/Faq.astro';
+import { BUSINESS_ID } from '../../../data/business';
 import Hero from '../../../sections/electrical-panel/Hero.astro';
 import WhyReplace from '../../../sections/electrical-panel/WhyReplace.astro';
 import Services from '../../../sections/electrical-panel/Services.astro';
@@ -15,13 +16,11 @@ const structuredData = {
 	'@context': 'https://schema.org',
 	'@type': 'Service',
 	name: 'Electrical Panel Installation',
-	provider: {
-		'@type': 'LocalBusiness',
-		name: 'Battle Electric',
-		url: 'https://battleelectricfl.com',
-	},
+	serviceType: 'Electrical panel installation and replacement',
+	// Reference (not duplicate) the business entity defined in Layout.astro.
+	provider: { '@id': BUSINESS_ID },
 	description: description,
-	areaServed: 'Florida',
+	areaServed: { '@type': 'State', name: 'Florida' },
 };
 ---
 

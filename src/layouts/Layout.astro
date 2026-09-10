@@ -5,6 +5,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Analytics from '@vercel/analytics/astro'
 import  SpeedInsights  from "@vercel/speed-insights/astro"
+import { BUSINESS_ID } from '../data/business';
 
 interface Props {
 	title: string;
@@ -28,6 +29,7 @@ const ogImage = new URL('/og-image.png', Astro.site).href;
 const businessSchema = {
 	'@context': 'https://schema.org',
 	'@type': 'Electrician',
+	'@id': BUSINESS_ID,
 	name: 'Battle Electric',
 	legalName: 'Battle Electric, LLC',
 	url: Astro.site?.href,
