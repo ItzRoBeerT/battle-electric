@@ -4,10 +4,10 @@
 // recent favorites, paste them here with a `date` label like 'March 2026'.
 export const reviewStats = {
 	rating: '5.0',
-	countLabel: '100+',
-	// Machine-readable reviewCount for AggregateRating JSON-LD. Conservative
-	// floor of the public "100+" claim. TODO(owner): exact count from GBP.
-	count: 100,
+	countLabel: '138',
+	// Machine-readable reviewCount for AggregateRating JSON-LD. Keep in sync
+	// with countLabel when refreshing from GBP.
+	count: 138,
 	// TODO(owner): replace with the exact Google Maps listing URL from GBP.
 	listingUrl:
 		'https://www.google.com/maps/search/?api=1&query=Battle+Electric+13254+SW+263rd+St+Homestead+FL',
