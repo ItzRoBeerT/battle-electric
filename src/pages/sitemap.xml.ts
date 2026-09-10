@@ -1,5 +1,8 @@
 import type { APIRoute } from 'astro';
 
+// Injected by the `define` block in astro.config.mjs at build time.
+declare const __BUILD_DATE__: string;
+
 // Routes are derived from the page files so new pages join the sitemap
 // automatically. Keep this list for pages that must stay out (noindex).
 const EXCLUDED = ['/contact-us/thank-you'];
@@ -23,7 +26,7 @@ export const GET: APIRoute = ({ site }) => {
 		.sort();
 
 	const urls = routes
-		.map((route) => `  <url><loc>${new URL(route, site).href}</loc></url>`)
+		.map((route) => `  <url><loc>${new URL(route, site).href}</loc><lastmod>${__BUILD_DATE__}</lastmod></url>`)
 		.join('\n');
 
 	const xml = `<?xml version="1.0" encoding="UTF-8"?>

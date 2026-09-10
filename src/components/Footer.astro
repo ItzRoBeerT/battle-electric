@@ -11,6 +11,7 @@ const { class: className = '' } = Astro.props;
 const contactInfo = {
 	phone: '(786) 404-3885',
 	email: 'battleelectric050@gmail.com',
+	address: '13254 SW 263rd St, Homestead, FL 33032',
 	hours: {
 		weekdays: 'Monday to Saturday 7:00 AM - 7:00 PM',
 		weekend: 'Sunday - Closed',
@@ -125,6 +126,21 @@ const currentYear = new Date().getFullYear();
 							>
 								{contactInfo.email}
 							</a>
+						</div>
+
+						<div class="flex items-start gap-3 text-sm">
+							<svg
+								class="w-4 h-4 text-blue-400 flex-shrink-0 mt-0.5"
+								fill="currentColor"
+								viewBox="0 0 20 20"
+								aria-hidden="true"
+							>
+								<path
+									fill-rule="evenodd"
+									d="M9.69 18.933l.003.001a.752.752 0 00.614 0l.003-.001.008-.003.028-.013a11.66 11.66 0 00.44-.222 15.61 15.61 0 002.455-1.666C14.943 15.577 17 12.845 17 9.5a7 7 0 10-14 0c0 3.345 2.057 6.077 3.749 7.529a15.61 15.61 0 002.455 1.666 11.66 11.66 0 00.44.222l.028.013.008.003zM10 11.25a1.75 1.75 0 100-3.5 1.75 1.75 0 000 3.5z"
+									clip-rule="evenodd"></path>
+							</svg>
+							<span class="text-gray-300">{contactInfo.address}</span>
 						</div>
 					</div>
 				</div>

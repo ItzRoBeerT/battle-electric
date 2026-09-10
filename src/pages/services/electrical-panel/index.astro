@@ -1,6 +1,7 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 import Faq from '../../../components/Faq.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
 import { BUSINESS_ID } from '../../../data/business';
 import Hero from '../../../sections/electrical-panel/Hero.astro';
 import WhyReplace from '../../../sections/electrical-panel/WhyReplace.astro';
@@ -26,6 +27,7 @@ const structuredData = {
 
 <Layout title={title} description={description}>
 	<script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+	<Breadcrumbs crumbs={[{ name: 'Services', href: '/services' }, { name: 'Electrical Panels' }]} />
 	<Hero />
 	<div class="relative">
 		<div class="img-background absolute inset-0"></div>

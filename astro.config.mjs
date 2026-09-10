@@ -8,7 +8,12 @@ export default defineConfig({
   site: 'https://www.battleelectricfl.com',
   output: 'server',
   vite: {
-    plugins: [tailwindcss()]
+    plugins: [tailwindcss()],
+    define: {
+      // Deploy date, stamped at build time. Used as <lastmod> in the sitemap:
+      // honest freshness signal that updates on every deploy.
+      __BUILD_DATE__: JSON.stringify(new Date().toISOString().slice(0, 10))
+    }
   },
   adapter: vercelAdapter(),
   server: {
