@@ -1,0 +1,8 @@
+---
+import CityPage from '../../components/CityPage.astro';
+import { serviceAreas } from '../../data/service-areas';
+
+const area = serviceAreas.find((a) => a.slug === 'miami')!;
+---
+
+<CityPage area={area} />

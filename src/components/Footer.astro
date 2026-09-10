@@ -34,6 +34,12 @@ const navigation = {
 		{ name: 'Terms of Service', href: '/terms' },
 		{ name: 'License Info', href: '/license' },
 	],
+	areas: [
+		{ name: 'Homestead', href: '/service-areas/homestead' },
+		{ name: 'Miami', href: '/service-areas/miami' },
+		{ name: 'Coral Gables', href: '/service-areas/coral-gables' },
+		{ name: 'Miramar', href: '/service-areas/miramar' },
+	],
 };
 
 const socialMedia = [
@@ -161,6 +167,23 @@ const currentYear = new Date().getFullYear();
 							}
 						</ul>
 					</nav>
+				<h3 class="text-lg font-semibold mt-8 mb-6 text-white">Service Areas</h3>
+				<nav aria-label="Service areas navigation">
+					<ul class="space-y-3">
+						{
+							navigation.areas.map((area) => (
+								<li>
+									<a
+										href={area.href}
+										class="w-fit text-gray-300 hover:text-white hover:translate-x-1 transition-all duration-200 text-sm block"
+									>
+										{area.name}
+									</a>
+								</li>
+							))
+						}
+					</ul>
+				</nav>
 				</div>
 
 				<div class="contact-section">
