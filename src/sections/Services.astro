@@ -229,29 +229,10 @@ services.forEach((service, index) => {
 </section>
 
 <style>
-	/* Text Effects */
+	/* Local overrides of the global .luminance-stroke/.stroke (see global.css):
+	   this section always used a taller line-box and a thinner mobile stroke. */
 	.luminance-stroke {
-		position: relative;
-		display: inline-block;
-		font-weight: 900;
-		color: #f5ee31;
 		line-height: 1.2;
-	}
-
-	.luminance-stroke::before {
-		content: attr(data-text);
-		position: absolute;
-		top: 0;
-		left: 0;
-		z-index: -1;
-		color: black;
-		-webkit-text-stroke: 6px black;
-		text-stroke: 6px black;
-	}
-
-	.stroke {
-		-webkit-text-stroke: 3px black;
-		paint-order: stroke fill;
 	}
 
 	/* Card Enhancements */
@@ -296,11 +277,6 @@ services.forEach((service, index) => {
 	}
 
 	@media (max-width: 768px) {
-		.luminance-stroke::before {
-			-webkit-text-stroke: 4px black;
-			text-stroke: 4px black;
-		}
-
 		.stroke {
 			-webkit-text-stroke: 2px black;
 		}

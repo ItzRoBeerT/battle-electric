@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Uses **pnpm** (pnpm-lock.yaml present).
 
-- `pnpm dev` — dev server at http://localhost:4321 (host exposed; allowedHosts includes an ngrok tunnel in astro.config.mjs)
+- `pnpm dev` — dev server at http://localhost:4321 (host exposed; to test through an ngrok tunnel, add its hostname to `server.allowedHosts` in astro.config.mjs locally — don't commit it)
 - `pnpm build` — production build to `./dist/`
 - `pnpm preview` — preview production build
 

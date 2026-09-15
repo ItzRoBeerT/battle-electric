@@ -25,9 +25,14 @@ export default defineConfig({
     }
   },
   adapter: vercelAdapter({ imageService: true }),
+  // Visible links are prefetched when they enter the viewport, so MPA
+  // navigations feel instant (BAT-36).
+  prefetch: {
+    defaultStrategy: 'viewport',
+    prefetchAll: true
+  },
   server: {
     host: true,
-    port: 4321,
-    allowedHosts: ['9dfd4794cbd8.ngrok-free.app']
+    port: 4321
   }
 });
