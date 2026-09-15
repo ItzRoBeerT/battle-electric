@@ -198,7 +198,7 @@ This project is proprietary and confidential. All rights reserved by Battle Elec
 
 For technical issues or questions about the website:
 - Contact: Battle Electric Development Team
-- Phone: (305) 915-1179
+- Phone: (786) 404-3885
 - Website: [battleelectricfl.com](https://battleelectricfl.com)
 
 ## 🔧 Development Notes
