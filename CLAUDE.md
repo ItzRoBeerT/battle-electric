@@ -28,6 +28,8 @@ There is no backend form logic: the contact form is an embedded Housecall Pro wi
 
 `public/llms.txt` is a static file and repeats the license number literally — if the license ever changes, update it by hand along with `src/data/business.ts`.
 
+A Content-Security-Policy runs in Report-Only mode (BAT-40): the policy lives in `vercel.json`; the generator config is the commented `security.csp` block in `astro.config.mjs`. When adding a new third-party script, add its origin to both; when editing any `is:inline` script, regenerate its sha256 hash from the built HTML (instructions in the config comment).
+
 ## Environment variables
 
 None required.
