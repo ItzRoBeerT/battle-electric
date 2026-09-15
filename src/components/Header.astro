@@ -67,6 +67,7 @@ import { LICENSE_LABEL } from '../data/business';
 			class="lg:hidden flex items-center justify-center w-10 h-10 rounded-lg transition-colors duration-200"
 			aria-label="Toggle mobile menu"
 			aria-expanded="false"
+			aria-controls="mobile-menu"
 		>
 			<svg
 				id="menu-icon"
@@ -141,20 +142,29 @@ import { LICENSE_LABEL } from '../data/business';
 		width: 80%;
 	}
 
-	/* Mobile menu animations */
+	/* Mobile menu animations. `visibility` keeps the closed menu out of the
+	   tab order (max-height/opacity alone leave links keyboard-focusable);
+	   its delayed transition lets the close animation finish first. */
 	#mobile-menu {
 		max-height: 0;
 		opacity: 0;
 		overflow: hidden;
+		visibility: hidden;
 		transition:
 			max-height 0.4s ease-out,
-			opacity 0.3s ease-out;
+			opacity 0.3s ease-out,
+			visibility 0s linear 0.4s;
 		pointer-events: none;
 	}
 
 	#mobile-menu.show {
 		max-height: 500px;
 		opacity: 1;
+		visibility: visible;
+		transition:
+			max-height 0.4s ease-out,
+			opacity 0.3s ease-out,
+			visibility 0s;
 		pointer-events: auto;
 	}
 </style>
@@ -172,46 +182,73 @@ import { LICENSE_LABEL } from '../data/business';
 			return;
 		}
 
+		// DOMContentLoaded and astro:page-load both fire on the initial load;
+		// the marker keeps the fresh header element from being bound twice.
+		if (mobileMenuButton.dataset.bound === 'true') return;
+		mobileMenuButton.dataset.bound = 'true';
+
 		let isOpen = false;
 
 		function toggleMobileMenu() {
-			// Additional null checks for TypeScript
 			if (!mobileMenu || !menuIcon || !closeIcon || !mobileMenuButton) return;
 
 			isOpen = !isOpen;
-
-			if (isOpen) {
-				// ABRIR: Inmediatamente añadir clase show para activar animación
-				mobileMenu.classList.add('show');
-				menuIcon.classList.add('hidden');
-				closeIcon.classList.remove('hidden');
-				mobileMenuButton.setAttribute('aria-expanded', 'true');
-			} else {
-				// CERRAR: Remover clase show para activar animación de cierre
-				mobileMenu.classList.remove('show');
-				menuIcon.classList.remove('hidden');
-				closeIcon.classList.add('hidden');
-				mobileMenuButton.setAttribute('aria-expanded', 'false');
-			}
+			mobileMenu.classList.toggle('show', isOpen);
+			menuIcon.classList.toggle('hidden', isOpen);
+			closeIcon.classList.toggle('hidden', !isOpen);
+			mobileMenuButton.setAttribute('aria-expanded', String(isOpen));
 		}
 
-		// Mobile menu button click
 		mobileMenuButton.addEventListener('click', toggleMobileMenu);
 
 		// Close mobile menu when clicking on links
-		const mobileLinks = mobileMenu.querySelectorAll('a');
-		mobileLinks.forEach((link) => {
+		mobileMenu.querySelectorAll('a').forEach((link) => {
 			link.addEventListener('click', () => {
 				if (isOpen) toggleMobileMenu();
 			});
 		});
 
+		// document/window listeners outlive the header element under the
+		// ClientRouter, so they are aborted before each page swap.
+		const controller = new AbortController();
+		const { signal } = controller;
+
+		// Escape closes and returns focus to the toggle
+		document.addEventListener(
+			'keydown',
+			(event) => {
+				if (event.key === 'Escape' && isOpen) {
+					toggleMobileMenu();
+					mobileMenuButton.focus();
+				}
+			},
+			{ signal }
+		);
+
+		// Click outside the menu closes it
+		document.addEventListener(
+			'click',
+			(event) => {
+				const target = event.target as Node;
+				if (isOpen && !mobileMenu.contains(target) && !mobileMenuButton.contains(target)) {
+					toggleMobileMenu();
+				}
+			},
+			{ signal }
+		);
+
 		// Close mobile menu on window resize to desktop (lg breakpoint)
-		window.addEventListener('resize', () => {
-			if (window.innerWidth >= 1024 && isOpen) {
-				toggleMobileMenu();
-			}
-		});
+		window.addEventListener(
+			'resize',
+			() => {
+				if (window.innerWidth >= 1024 && isOpen) {
+					toggleMobileMenu();
+				}
+			},
+			{ signal }
+		);
+
+		document.addEventListener('astro:before-swap', () => controller.abort(), { once: true });
 	}
 
 	// Initialize
