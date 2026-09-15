@@ -1,4 +1,4 @@
-import { defineConfig } from 'astro/config';
+import { defineConfig, fontProviders } from 'astro/config';
 
 import tailwindcss from '@tailwindcss/vite';
 import vercelAdapter from '@astrojs/vercel';
@@ -25,6 +25,20 @@ export default defineConfig({
     }
   },
   adapter: vercelAdapter({ imageService: true }),
+  // Inter is self-hosted via the Fonts API (BAT-37): downloaded at build,
+  // served from our own domain with automatic preload + metric fallbacks.
+  // Weights audited from actual usage; italics dropped (single decorative
+  // use, browser synthesis covers it).
+  fonts: [
+    {
+      provider: fontProviders.google(),
+      name: 'Inter',
+      cssVariable: '--font-inter',
+      weights: [400, 500, 600, 700, 900],
+      styles: ['normal'],
+      fallbacks: ['ui-sans-serif', 'system-ui', 'sans-serif']
+    }
+  ],
   // Visible links are prefetched when they enter the viewport, so MPA
   // navigations feel instant (BAT-36).
   prefetch: {
