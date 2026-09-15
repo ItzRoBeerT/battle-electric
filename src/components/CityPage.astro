@@ -3,7 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Faq from './Faq.astro';
 import Breadcrumbs from './Breadcrumbs.astro';
 import GoogleReviews from './GoogleReviews.astro';
-import { BUSINESS_ID } from '../data/business';
+import { BUSINESS_ID, LICENSE_NUMBER } from '../data/business';
 import type { ServiceArea } from '../data/service-areas';
 
 interface Props {
@@ -98,7 +98,7 @@ const cityServiceSchema = {
 			<!-- Trust + CTA -->
 			<div class="text-center">
 				<p class="text-gray-600 mb-6">
-					Florida License NO. <a href="/license" class="underline font-semibold hover:text-black">EC13010206</a>
+					Florida License NO. <a href="/license" class="underline font-semibold hover:text-black">{LICENSE_NUMBER}</a>
 					· Free estimates · Mon–Sat 7AM–7PM · 24/7 emergency service
 				</p>
 				<div class="flex flex-col sm:flex-row gap-4 justify-center">

@@ -1,5 +1,6 @@
 // City data for /service-areas/* pages. Every claim here must be true and
 // specific — these pages must never become thin doorway pages (BAT-16).
+import { LICENSE_LABEL } from './business';
 export interface CityFaq {
 	question: string;
 	answer: string;
@@ -140,7 +141,7 @@ export const serviceAreas: ServiceArea[] = [
 			{
 				question: 'Do you handle City of Homestead electrical permits?',
 				answer:
-					'Yes. We pull permits with the City of Homestead Development Services regularly and manage the inspection process for you, as a licensed Florida electrical contractor (License NO. EC13010206).',
+					`Yes. We pull permits with the City of Homestead Development Services regularly and manage the inspection process for you, as a licensed Florida electrical contractor (${LICENSE_LABEL}).`,
 			},
 			{
 				question: 'Do you also serve Florida City and the surrounding area?',
@@ -172,7 +173,7 @@ export const serviceAreas: ServiceArea[] = [
 			{
 				question: 'Do you pull City of Miami electrical permits?',
 				answer:
-					'Yes. As a licensed Florida electrical contractor (License NO. EC13010206) we manage City of Miami permits and inspections for residential and commercial projects.',
+					`Yes. As a licensed Florida electrical contractor (${LICENSE_LABEL}) we manage City of Miami permits and inspections for residential and commercial projects.`,
 			},
 			{
 				question: 'Do you take commercial electrical projects in Miami?',
@@ -241,7 +242,7 @@ export const serviceAreas: ServiceArea[] = [
 			{
 				question: 'Who pulls the electrical permit in Miramar?',
 				answer:
-					'We do. As a licensed Florida electrical contractor (License NO. EC13010206), Battle Electric manages City of Miramar permits and inspections for every job that requires them.',
+					`We do. As a licensed Florida electrical contractor (${LICENSE_LABEL}), Battle Electric manages City of Miramar permits and inspections for every job that requires them.`,
 			},
 		],
 	},

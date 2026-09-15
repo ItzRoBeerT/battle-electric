@@ -1,8 +1,9 @@
 ---
 import Layout from "../layouts/Layout.astro"
+import { LICENSE_NUMBER, LICENSE_LABEL } from "../data/business"
 const title = "License & Insurance | Battle Electric"
 const description =
-	"Battle Electric is a Florida licensed and insured electrical contractor. License NO. EC13010206."
+	`Battle Electric is a Florida licensed and insured electrical contractor. ${LICENSE_LABEL}.`
 ---
 
 <Layout title={title} description={description}>
@@ -23,7 +24,7 @@ const description =
 					</svg>
 				</div>
 				<h2 class="text-xl font-bold uppercase mb-2">Florida Certified Electrical Contractor</h2>
-				<p class="text-3xl font-bold tracking-wide mb-6">EC13010206</p>
+				<p class="text-3xl font-bold tracking-wide mb-6">{LICENSE_NUMBER}</p>
 				<p class="text-gray-600 max-w-xl mx-auto mb-6">
 					Battle Electric, LLC holds an active Florida electrical contractor
 					license and carries insurance coverage, so every job is performed

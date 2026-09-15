@@ -6,6 +6,7 @@ import Tesla from '../sections/Tesla.astro';
 import ContactUs from '../sections/ContactUs.astro';
 import GoogleReviews from '../components/GoogleReviews.astro';
 import Faq from '../components/Faq.astro';
+import { LICENSE_LABEL } from '../data/business';
 
 const title = 'Electrical Service Experts | Battle Electric';
 const description =
@@ -34,7 +35,7 @@ const description =
 			{
 				question: 'Is Battle Electric licensed and insured?',
 				answer:
-					'Yes. Battle Electric, LLC is a Florida certified electrical contractor, License NO. EC13010206, and fully insured. You can verify our license at MyFloridaLicense.com.',
+					`Yes. Battle Electric, LLC is a Florida certified electrical contractor, ${LICENSE_LABEL}, and fully insured. You can verify our license at MyFloridaLicense.com.`,
 			},
 			{
 				question: 'Do you offer free estimates?',

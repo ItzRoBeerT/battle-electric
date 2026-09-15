@@ -6,7 +6,7 @@ import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import Faq from '../../components/Faq.astro';
 import { areasWeServe } from '../../data/service-areas';
 import { reviewStats } from '../../data/reviews';
-import { BUSINESS_ID } from '../../data/business';
+import { BUSINESS_ID, LICENSE_NUMBER, LICENSE_LABEL } from '../../data/business';
 
 import evChargingImage from '../../assets/services/ev-charging/level-2-tesla.jpeg';
 import smartPanelImage from '../../../public/span/span-smart-panel.avif';
@@ -126,7 +126,7 @@ const servicesSchema = {
 				<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
 					<path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
 				</svg>
-				Licensed &amp; Insured — EC13010206
+				Licensed &amp; Insured — {LICENSE_NUMBER}
 			</a>
 			<span class="flex items-center gap-2">
 				<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
@@ -376,7 +376,7 @@ const servicesSchema = {
 			{
 				question: 'Are your electricians licensed and insured?',
 				answer:
-					'Yes. Battle Electric, LLC is a Florida certified electrical contractor, License NO. EC13010206, and fully insured. You can verify our license at MyFloridaLicense.com.',
+					`Yes. Battle Electric, LLC is a Florida certified electrical contractor, ${LICENSE_LABEL}, and fully insured. You can verify our license at MyFloridaLicense.com.`,
 			},
 			{
 				question: 'How do I get a quote?',
