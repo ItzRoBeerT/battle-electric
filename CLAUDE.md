@@ -16,13 +16,16 @@ No lint or test tooling is configured. TypeScript uses Astro's `strict` tsconfig
 
 Marketing site for Battle Electric (electrical services, South Florida). Astro 5 with `output: 'server'` (SSR) and the Vercel adapter — pages are server-rendered serverless functions, not static. Styling is Tailwind CSS 4 via the `@tailwindcss/vite` plugin (no tailwind.config; global styles in `src/styles/global.css`).
 
-- `src/pages/` — file-based routes: home, `contact-us`, and `services/` (ev-charging with level-1/2/3 subpages, electrical-panel, smart-panel).
+- `src/pages/` — file-based routes: home, `about-us`, `contact-us`, `license`, `privacy`, `terms`, `service-areas/` (hub + per-city pages), and `services/` (ev-charging with level-1/2/3 subpages, electrical-panel, smart-panel).
 - `src/layouts/Layout.astro` — the single shared layout: SEO props (title/description/canonical/robots), Vercel Analytics + Speed Insights, Astro `ClientRouter` view transitions, and an inline Ad360 tracking pixel in `<head>`. All pages wrap in it.
 - `src/sections/` — page-specific building blocks, grouped in subfolders per service page (`ev-charging/`, `electrical-panel/`, `smart-panel/`); root-level files belong to the home page.
 - `src/components/` — reusable pieces (Header, Footer, Carousel, ContactForm, buttons/anchors).
+- `src/data/` — canonical business data: `business.ts` exports `BUSINESS_ID` (schema.org entity `@id`), `LICENSE_NUMBER`, and `LICENSE_LABEL` — the single source of truth for the Florida license (never hardcode `EC…` numbers in pages or copy); `service-areas.ts` (city page content), `reviews.ts` (hardcoded review data).
 - `src/actions/index.ts` — the only backend logic: an Astro Action (`contact`) handling the contact form with Zod validation (US phone normalization), a honeypot field (`phone_verify`) that fake-succeeds for bots, an optional Zapier webhook post, and two Resend emails (admin notification + user confirmation) with inline HTML templates.
 
 `GoogleReviews.astro` contains hardcoded review data — the Google Places API integration was deliberately removed (see commit history); don't reintroduce it.
+
+`public/llms.txt` is a static file and repeats the license number literally — if the license ever changes, update it by hand along with `src/data/business.ts`.
 
 ## Environment variables
 

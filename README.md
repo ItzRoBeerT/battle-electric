@@ -17,7 +17,7 @@ This website showcases Battle Electric's comprehensive electrical services inclu
 - **Deployment**: [Vercel](https://vercel.com) - Serverless deployment platform
 - **Image Optimization**: [Sharp](https://sharp.pixelplumbing.com/) - High-performance image processing
 - **Email Service**: [Resend](https://resend.com/) - Modern email API
-- **APIs**: Google APIs (OAuth & Sheets integration)
+- **Lead Forwarding**: Zapier webhook (optional)
 - **Language**: TypeScript with strict type checking
 
 ## 📁 Project Structure
@@ -29,16 +29,25 @@ battle-electric/
 │   ├── favicon.svg       # Site favicon
 │   └── span/            # Product images
 ├── src/
+│   ├── actions/         # Astro Actions (contact form backend)
 │   ├── assets/          # Optimized images
 │   │   └── services/    # Service-specific images
 │   ├── components/      # Reusable Astro components
-│   │   ├── Anchor.astro
-│   │   └── FreeQuoteButton.astro
+│   │   ├── Header.astro / Footer.astro
+│   │   ├── ContactForm.astro
+│   │   └── CityPage.astro
+│   ├── data/            # Canonical business data
+│   │   ├── business.ts  # BUSINESS_ID, LICENSE_NUMBER, LICENSE_LABEL
+│   │   ├── service-areas.ts
+│   │   └── reviews.ts
 │   ├── layouts/         # Page layouts
 │   │   └── Layout.astro
 │   ├── pages/           # File-based routing
 │   │   ├── index.astro
-│   │   ├── contact.astro
+│   │   ├── about-us/
+│   │   ├── contact-us/
+│   │   ├── license.astro
+│   │   ├── service-areas/
 │   │   └── services/
 │   │       ├── index.astro
 │   │       ├── ev-charging/
@@ -47,7 +56,8 @@ battle-electric/
 │   └── sections/        # Page sections
 │       ├── Services.astro
 │       ├── electrical-panel/
-│       └── ev-charging/
+│       ├── ev-charging/
+│       └── smart-panel/
 ├── .gitignore
 ├── astro.config.mjs     # Astro configuration
 ├── package.json
@@ -161,23 +171,24 @@ The website is fully responsive and optimized for:
 Required environment variables for full functionality:
 
 ```env
-# Email Service
+# Email Service (required for contact-form emails)
 RESEND_API_KEY=your_resend_api_key
 
-# Google APIs (if using)
-GOOGLE_CLIENT_ID=your_google_client_id
-GOOGLE_CLIENT_SECRET=your_google_client_secret
+# Zapier lead forwarding (optional)
+ZAPIER_WEBHOOK_URL=your_zapier_webhook_url
 ```
 
 ## 🤝 Contributing
 
 If you're part of the development team:
 
-1. Create a feature branch from `main`
+1. Create a `fix/` or `feature/` branch from `dev` (one per Linear `BAT-*` issue)
 2. Make your changes
 3. Test locally with `pnpm dev`
 4. Build and test production with `pnpm build && pnpm preview`
-5. Submit a pull request
+5. Submit a pull request into `dev`
+
+Releases: merging `dev` → `main` auto-deploys to production on Vercel, so treat `dev` as near-production.
 
 ## 📄 License
 
@@ -202,6 +213,9 @@ For technical issues or questions about the website:
 - Meta tags for all pages
 - Canonical URLs configured
 - Image alt text for accessibility
+
+### Business Data
+- The Florida license number lives in `src/data/business.ts` (`LICENSE_NUMBER` / `LICENSE_LABEL`) — every page, FAQ, and schema node imports it. To change it, edit that one file (plus the static `public/llms.txt`).
 
 ### Browser Support
 - Modern browsers (Chrome, Firefox, Safari, Edge)

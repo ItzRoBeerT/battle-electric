@@ -2,7 +2,7 @@
 import Layout from '../../../layouts/Layout.astro';
 import Faq from '../../../components/Faq.astro';
 import Breadcrumbs from '../../../components/Breadcrumbs.astro';
-import { BUSINESS_ID } from '../../../data/business';
+import { BUSINESS_ID, LICENSE_LABEL } from '../../../data/business';
 import Hero from '../../../sections/smart-panel/Hero.astro';
 import ProductFeature from '../../../sections/smart-panel/ProductFeature.astro';
 import Comparison from '../../../sections/smart-panel/Comparison.astro';
@@ -54,7 +54,7 @@ const structuredData = {
 			{
 				question: 'How long does a SPAN smart panel installation take?',
 				answer:
-					'The on-site installation typically takes about one day, performed by our licensed electricians (Florida License NO. EC13010206). As with any panel work, a permit and inspection are required — we manage that process for you from start to finish.',
+					`The on-site installation typically takes about one day, performed by our licensed electricians (Florida ${LICENSE_LABEL}). As with any panel work, a permit and inspection are required — we manage that process for you from start to finish.`,
 			},
 		]}
 	/>

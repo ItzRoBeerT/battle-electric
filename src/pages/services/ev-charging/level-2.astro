@@ -2,7 +2,7 @@
 import Layout from '../../../layouts/Layout.astro';
 import Breadcrumbs from '../../../components/Breadcrumbs.astro';
 import Faq from '../../../components/Faq.astro';
-import { BUSINESS_ID } from '../../../data/business';
+import { BUSINESS_ID, LICENSE_LABEL } from '../../../data/business';
 import Chevron from '../../../assets/icons/chevron.svg';
 import Star from '../../../assets/icons/star.svg';
 import MobilePhone from '../../../assets/icons/mobile-phone.svg';
@@ -464,7 +464,7 @@ const structuredData = {
 			{
 				question: 'Do I need a permit to install a Level 2 charger in Florida?',
 				answer:
-					'Yes. EV charger installations require an electrical permit and inspection. As a licensed Florida electrical contractor (License NO. EC13010206), Battle Electric handles the permit process and inspection for you.',
+					`Yes. EV charger installations require an electrical permit and inspection. As a licensed Florida electrical contractor (${LICENSE_LABEL}), Battle Electric handles the permit process and inspection for you.`,
 			},
 			{
 				question: 'Can you install Tesla Wall Connectors?',
