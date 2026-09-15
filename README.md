@@ -12,7 +12,7 @@ This website showcases Battle Electric's comprehensive electrical services inclu
 
 ## 🛠️ Tech Stack
 
-- **Framework**: [Astro 5.9.4](https://astro.build) - Static Site Generator with Server-Side Rendering
+- **Framework**: [Astro 5.9.4](https://astro.build) - Static Site Generator
 - **Styling**: [Tailwind CSS 4.1.10](https://tailwindcss.com) - Utility-first CSS framework
 - **Deployment**: [Vercel](https://vercel.com) - Serverless deployment platform
 - **Image Optimization**: [Sharp](https://sharp.pixelplumbing.com/) - High-performance image processing
@@ -103,8 +103,8 @@ The site will be available at `http://localhost:4321`
 ## 🎨 Key Features
 
 ### Performance Optimizations
-- Server-side rendering (SSR) with Astro
-- Optimized image loading with Sharp
+- Fully static build — every page prerendered and served from Vercel's CDN
+- Optimized image loading via Vercel's image CDN
 - Tailwind CSS for minimal CSS bundle size
 - Lazy loading for images and components
 
@@ -189,7 +189,7 @@ For technical issues or questions about the website:
 ### Server Configuration
 - Default port: 4321
 - Host configuration allows ngrok tunneling for testing
-- Vercel adapter handles serverless functions
+- Vercel adapter emits a static build with image optimization (`imageService: true`)
 
 ### SEO Optimization
 - Structured data for services

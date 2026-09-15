@@ -6,7 +6,9 @@ import vercelAdapter from '@astrojs/vercel';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://www.battleelectricfl.com',
-  output: 'server',
+  // Fully static: every page is prerendered at build time and served from the
+  // CDN — no serverless function in the request path (BAT-28).
+  output: 'static',
   vite: {
     plugins: [tailwindcss()],
     define: {
@@ -15,7 +17,7 @@ export default defineConfig({
       __BUILD_DATE__: JSON.stringify(new Date().toISOString().slice(0, 10))
     }
   },
-  adapter: vercelAdapter(),
+  adapter: vercelAdapter({ imageService: true }),
   server: {
     host: true,
     port: 4321,

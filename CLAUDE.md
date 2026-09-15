@@ -14,7 +14,7 @@ No lint or test tooling is configured. TypeScript uses Astro's `strict` tsconfig
 
 ## Architecture
 
-Marketing site for Battle Electric (electrical services, South Florida). Astro 5 with `output: 'server'` (SSR) and the Vercel adapter — pages are server-rendered serverless functions, not static. Styling is Tailwind CSS 4 via the `@tailwindcss/vite` plugin (no tailwind.config; global styles in `src/styles/global.css`).
+Marketing site for Battle Electric (electrical services, South Florida). Astro 5 with `output: 'static'` and the Vercel adapter (`imageService: true`) — every page is prerendered at build time and served from the CDN; there is no serverless function. Image resizing is handled by Vercel's image CDN (`/_vercel/image`). Styling is Tailwind CSS 4 via the `@tailwindcss/vite` plugin (no tailwind.config; global styles in `src/styles/global.css`).
 
 - `src/pages/` — file-based routes: home, `about-us`, `contact-us`, `license`, `privacy`, `terms`, `service-areas/` (hub + per-city pages), and `services/` (ev-charging with level-1/2/3 subpages, electrical-panel, smart-panel).
 - `src/layouts/Layout.astro` — the single shared layout: SEO props (title/description/canonical/robots), Vercel Analytics + Speed Insights, Astro `ClientRouter` view transitions, and an inline Ad360 tracking pixel in `<head>`. All pages wrap in it.
