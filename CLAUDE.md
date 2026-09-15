@@ -21,7 +21,8 @@ Marketing site for Battle Electric (electrical services, South Florida). Astro 5
 - `src/sections/` — page-specific building blocks, grouped in subfolders per service page (`ev-charging/`, `electrical-panel/`, `smart-panel/`); root-level files belong to the home page.
 - `src/components/` — reusable pieces (Header, Footer, Carousel, ContactForm, buttons/anchors).
 - `src/data/` — canonical business data: `business.ts` exports `BUSINESS_ID` (schema.org entity `@id`), `LICENSE_NUMBER`, and `LICENSE_LABEL` — the single source of truth for the Florida license (never hardcode `EC…` numbers in pages or copy); `service-areas.ts` (city page content), `reviews.ts` (hardcoded review data).
-- `src/actions/index.ts` — the only backend logic: an Astro Action (`contact`) handling the contact form with Zod validation (US phone normalization), a honeypot field (`phone_verify`) that fake-succeeds for bots, an optional Zapier webhook post, and two Resend emails (admin notification + user confirmation) with inline HTML templates.
+
+There is no backend form logic: the contact form is an embedded Housecall Pro widget (`src/components/ContactForm.astro`) — leads go straight to Housecall Pro. A previous in-house Astro Action + Resend email flow was deliberately removed (BAT-27); don't reintroduce it.
 
 `GoogleReviews.astro` contains hardcoded review data — the Google Places API integration was deliberately removed (see commit history); don't reintroduce it.
 
@@ -29,8 +30,7 @@ Marketing site for Battle Electric (electrical services, South Florida). Astro 5
 
 ## Environment variables
 
-- `RESEND_API_KEY` — required for contact-form emails
-- `ZAPIER_WEBHOOK_URL` — optional; lead forwarding to Zapier
+None required.
 
 ## Workflow
 
