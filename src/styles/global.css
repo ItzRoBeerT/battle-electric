@@ -1,11 +1,9 @@
-
-/* Inter is loaded from Layout.astro <head> with preconnect (avoids the
-   render-blocking CSS @import chain). */
 @import "tailwindcss";
 
-
 @theme {
-  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  /* --font-inter is emitted by Astro's Fonts API (see astro.config.mjs):
+     self-hosted Inter plus generated metric fallbacks. */
+  --font-sans: var(--font-inter);
   --color-battle-yellow: #f5ee31;
   --color-battle-yellow-hover: #e6d428;
 }
