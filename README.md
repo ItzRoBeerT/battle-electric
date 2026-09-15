@@ -12,7 +12,7 @@ This website showcases Battle Electric's comprehensive electrical services inclu
 
 ## 🛠️ Tech Stack
 
-- **Framework**: [Astro 5.9.4](https://astro.build) - Static Site Generator
+- **Framework**: [Astro 5](https://astro.build) - Static Site Generator
 - **Styling**: [Tailwind CSS 4.1.10](https://tailwindcss.com) - Utility-first CSS framework
 - **Deployment**: [Vercel](https://vercel.com) - Serverless deployment platform
 - **Image Optimization**: [Sharp](https://sharp.pixelplumbing.com/) - High-performance image processing
