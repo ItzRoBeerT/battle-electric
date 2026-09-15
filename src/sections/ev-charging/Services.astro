@@ -8,7 +8,7 @@ import teslaGarage from '../../assets/services/ev-charging/tesla-garage.jpeg';
 		<div class="relative lg:min-h-[700px]">
 			{/* Imagen recortada diagonalmente a la IZQUIERDA - Desktop */}
 			<div class="hidden lg:block absolute top-0 left-0 w-1/2 h-full diagonal-clip-left">
-				<Image src={teslaGarage} alt="Tesla in garage" width={1200} class="w-full h-full object-cover" loading="lazy" />
+				<Image src={teslaGarage} alt="Tesla in garage" width={1200} quality={80} class="w-full h-full object-cover" loading="lazy" />
 			</div>
 
 			{/* Imagen completa en móvil/tablet - ARRIBA */}
@@ -17,6 +17,7 @@ import teslaGarage from '../../assets/services/ev-charging/tesla-garage.jpeg';
 					src={teslaGarage}
 					alt="Tesla in garage"
 					width={800}
+					quality={80}
 					class="w-full h-64 md:h-80 object-cover rounded-lg shadow-lg"
 					loading="lazy"
 				/>
