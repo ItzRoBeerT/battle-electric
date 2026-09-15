@@ -1,11 +1,25 @@
-
-/* Inter is loaded from Layout.astro <head> with preconnect (avoids the
-   render-blocking CSS @import chain). */
 @import "tailwindcss";
 
-
 @theme {
-  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  /* --font-inter is emitted by Astro's Fonts API (see astro.config.mjs):
+     self-hosted Inter plus generated metric fallbacks. */
+  --font-sans: var(--font-inter);
   --color-battle-yellow: #f5ee31;
-  --color-battle-yellow-hover: #e6d428; 
+  --color-battle-yellow-hover: #e6d428;
+}
+
+/* Yellow display headings (was copy-pasted in 8 section components, BAT-36).
+   Unlayered on purpose: it must beat Tailwind's .text-transparent, which
+   lives in @layer utilities. The old per-component ::before with
+   content: attr(data-text) was dead code — the attribute is never set. */
+.luminance-stroke {
+  position: relative;
+  display: inline-block;
+  font-weight: 900;
+  color: #f5ee31;
+  line-height: 1;
+}
+.stroke {
+  -webkit-text-stroke: 3px black;
+  paint-order: stroke fill;
 }

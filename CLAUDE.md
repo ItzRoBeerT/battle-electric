@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Uses **pnpm** (pnpm-lock.yaml present).
 
-- `pnpm dev` — dev server at http://localhost:4321 (host exposed; allowedHosts includes an ngrok tunnel in astro.config.mjs)
+- `pnpm dev` — dev server at http://localhost:4321 (host exposed; to test through an ngrok tunnel, add its hostname to `server.allowedHosts` in astro.config.mjs locally — don't commit it)
 - `pnpm build` — production build to `./dist/`
 - `pnpm preview` — preview production build
 
@@ -27,6 +27,8 @@ There is no backend form logic: the contact form is an embedded Housecall Pro wi
 `GoogleReviews.astro` contains hardcoded review data — the Google Places API integration was deliberately removed (see commit history); don't reintroduce it.
 
 `public/llms.txt` is a static file and repeats the license number literally — if the license ever changes, update it by hand along with `src/data/business.ts`.
+
+A Content-Security-Policy runs in Report-Only mode (BAT-40): the policy lives in `vercel.json`; the generator config is the commented `security.csp` block in `astro.config.mjs`. When adding a new third-party script, add its origin to both; when editing any `is:inline` script, regenerate its sha256 hash from the built HTML (instructions in the config comment).
 
 ## Environment variables
 

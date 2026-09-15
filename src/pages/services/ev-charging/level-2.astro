@@ -47,14 +47,14 @@ const level2Images = await getLevel2Images();
 const slides: CarouselSlide[] = await Promise.all(
 	level2Images.map(async (image) => ({
 		id: image.name,
-		src: (await getImage({ src: image.image, width: 1200, format: 'webp' })).src,
+		src: (await getImage({ src: image.image, width: 1200, format: 'webp', quality: 80 })).src,
 		alt: `Level 2 EV charger installation — ${image.name.replace(/^level-2-?/, '').replace(/-/g, ' ')}`,
 	}))
 );
 
 slides.unshift({
 	id: 'tesla',
-	src: (await getImage({ src: Tesla, width: 1200, format: 'webp' })).src,
+	src: (await getImage({ src: Tesla, width: 1200, format: 'webp', quality: 80 })).src,
 	alt: 'Tesla EV Charging',
 });
 
