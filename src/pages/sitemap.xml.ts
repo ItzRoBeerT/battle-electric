@@ -5,7 +5,7 @@ declare const __BUILD_DATE__: string;
 
 // Routes are derived from the page files so new pages join the sitemap
 // automatically. Keep this list for pages that must stay out (noindex).
-const EXCLUDED = ['/contact-us/thank-you'];
+const EXCLUDED = ['/contact-us/thank-you', '/404'];
 
 const pages = import.meta.glob('./**/*.astro');
 
