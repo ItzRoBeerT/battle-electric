@@ -1,12 +1,14 @@
 ---
 import Layout from "../../layouts/Layout.astro"
+import Breadcrumbs from "../../components/Breadcrumbs.astro"
 import { LICENSE_LABEL } from "../../data/business"
 const title = "About Us | Battle Electric"
 const description =
-	"Battle Electric is a licensed and insured electrical contractor serving Miami-Dade, Broward, Monroe, Southwest Florida, and Greater Orlando. EV charging, electrical panels, smart panels, and more."
+	"Battle Electric is a licensed and insured electrical contractor in Homestead, FL serving South Florida. EV charging, electrical panels and smart panels."
 ---
 
 <Layout title={title} description={description}>
+  <Breadcrumbs crumbs={[{ name: 'About Us' }]} />
 	<!-- Header band -->
 	<section class="bg-gray-900 text-white py-20 px-4">
 		<div class="max-w-4xl mx-auto text-center">

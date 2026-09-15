@@ -1,8 +1,10 @@
 ---
+import { Image } from 'astro:assets';
 import Clock from '../../assets/icons/clock.svg';
 import Battery2 from '../../assets/icons/battery-2.svg';
 import Battery4 from '../../assets/icons/battery-4.svg';
 import CoinOff from '../../assets/icons/coin-off.svg';
+import AppInfo from '../../assets/span/app-info.png';
 ---
 
 <section class="bg-black pb-6px md:pb-16 lg:pb-20 xl:pb-24">
@@ -30,7 +32,7 @@ import CoinOff from '../../assets/icons/coin-off.svg';
 					control over your energy. Back up your entire home, change room and appliance priorities on the fly,
 					and instantly check how long your battery will last.
 				</p>
-				<img alt="App-info" src="/span/app-info.png" loading="lazy" />
+				<Image alt="SPAN app battery backup details" src={AppInfo} width={800} loading="lazy" />
 			</div>
 
 			<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">

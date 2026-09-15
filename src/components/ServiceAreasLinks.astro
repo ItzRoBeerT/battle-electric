@@ -1,0 +1,30 @@
+---
+// Service → city cross-link (BAT-34). City pages already link to services;
+// this closes the loop in the other direction on each service page.
+import { serviceAreas } from '../data/service-areas';
+---
+
+<section class="py-10 bg-gray-50">
+	<div class="container mx-auto px-4 max-w-6xl text-center">
+		<p class="text-gray-700">
+			Serving{' '}
+			{
+				serviceAreas.map((area, index) => (
+					<>
+						<a
+							href={`/service-areas/${area.slug}`}
+							class="underline underline-offset-4 hover:text-black transition-colors"
+						>
+							{area.name}
+						</a>
+						{index < serviceAreas.length - 1 ? ', ' : ''}
+					</>
+				))
+			}
+			and the rest of South Florida —{' '}
+			<a href="/service-areas" class="font-semibold underline underline-offset-4 hover:text-black transition-colors">
+				see all service areas
+			</a>.
+		</p>
+	</div>
+</section>

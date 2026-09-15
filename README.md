@@ -12,12 +12,11 @@ This website showcases Battle Electric's comprehensive electrical services inclu
 
 ## 🛠️ Tech Stack
 
-- **Framework**: [Astro 5.9.4](https://astro.build) - Static Site Generator with Server-Side Rendering
+- **Framework**: [Astro 5](https://astro.build) - Static Site Generator
 - **Styling**: [Tailwind CSS 4.1.10](https://tailwindcss.com) - Utility-first CSS framework
 - **Deployment**: [Vercel](https://vercel.com) - Serverless deployment platform
 - **Image Optimization**: [Sharp](https://sharp.pixelplumbing.com/) - High-performance image processing
-- **Email Service**: [Resend](https://resend.com/) - Modern email API
-- **Lead Forwarding**: Zapier webhook (optional)
+- **Contact & Leads**: [Housecall Pro](https://www.housecallpro.com/) embedded booking form
 - **Language**: TypeScript with strict type checking
 
 ## 📁 Project Structure
@@ -25,11 +24,10 @@ This website showcases Battle Electric's comprehensive electrical services inclu
 ```text
 battle-electric/
 ├── public/               # Static assets
-│   ├── background.jpg    # Hero backgrounds
+│   ├── background-*.webp # Hero backgrounds
 │   ├── favicon.svg       # Site favicon
 │   └── span/            # Product images
 ├── src/
-│   ├── actions/         # Astro Actions (contact form backend)
 │   ├── assets/          # Optimized images
 │   │   └── services/    # Service-specific images
 │   ├── components/      # Reusable Astro components
@@ -85,14 +83,7 @@ cd battle-electric
 pnpm install
 ```
 
-3. Set up environment variables:
-Create a `.env` file in the root directory with necessary API keys:
-```env
-# Add your environment variables here
-# Example: RESEND_API_KEY=your_api_key
-```
-
-4. Start the development server:
+3. Start the development server:
 ```bash
 pnpm dev
 ```
@@ -112,8 +103,8 @@ The site will be available at `http://localhost:4321`
 ## 🎨 Key Features
 
 ### Performance Optimizations
-- Server-side rendering (SSR) with Astro
-- Optimized image loading with Sharp
+- Fully static build — every page prerendered and served from Vercel's CDN
+- Optimized image loading via Vercel's image CDN
 - Tailwind CSS for minimal CSS bundle size
 - Lazy loading for images and components
 
@@ -168,15 +159,7 @@ The website is fully responsive and optimized for:
 
 ## 🔒 Environment Variables
 
-Required environment variables for full functionality:
-
-```env
-# Email Service (required for contact-form emails)
-RESEND_API_KEY=your_resend_api_key
-
-# Zapier lead forwarding (optional)
-ZAPIER_WEBHOOK_URL=your_zapier_webhook_url
-```
+None required. The contact form is an embedded Housecall Pro widget (`src/components/ContactForm.astro`) — leads go directly to Housecall Pro, with no server-side form handling in this repo.
 
 ## 🤝 Contributing
 
@@ -198,7 +181,7 @@ This project is proprietary and confidential. All rights reserved by Battle Elec
 
 For technical issues or questions about the website:
 - Contact: Battle Electric Development Team
-- Phone: (305) 915-1179
+- Phone: (786) 404-3885
 - Website: [battleelectricfl.com](https://battleelectricfl.com)
 
 ## 🔧 Development Notes
@@ -206,7 +189,7 @@ For technical issues or questions about the website:
 ### Server Configuration
 - Default port: 4321
 - Host configuration allows ngrok tunneling for testing
-- Vercel adapter handles serverless functions
+- Vercel adapter emits a static build with image optimization (`imageService: true`)
 
 ### SEO Optimization
 - Structured data for services

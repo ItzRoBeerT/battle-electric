@@ -13,33 +13,38 @@ import plug2 from '../../../assets/services/ev-charging/level-3-tesla.jpeg';
 import plug3 from '../../../assets/services/ev-charging/level-3-tesla-2.jpeg';
 import type { CarouselSlide } from '../../../components/Carousel.astro';
 import Carousel from '../../../components/Carousel.astro';
+import { getImage } from 'astro:assets';
 
-const title = 'Level 3 DC Fast Charging Installation | Commercial EV Superchargers | Battle Electric';
+const title = 'Level 3 DC Fast Charging Installation | Battle Electric';
 const description =
-	'Level 3 DC fast charging installation for commercial use. Charge EVs to 80% in under 30 minutes. Professional supercharger installation for businesses and fleet operations.';
+	'Commercial Level 3 DC fast charging installation in South Florida. Charge EVs to 80% in under 30 minutes — built for businesses and fleet operations.';
 
+
+// Serve resized webp via the image service; the raw JPEGs are up to ~400KB each.
+const optimize = async (src: ImageMetadata) => (await getImage({ src, width: 1200, format: 'webp' })).src;
 
 const slides: CarouselSlide[] = [
 	{
 		id: 'slide-2',
-		src: plug.src,
-		alt: 'Level 3 Charging Setup',
+		src: await optimize(plug),
+		alt: 'Level 3 DC fast charging station',
 	},
 	{
 		id: 'slide-1',
-		src: plug2.src,
-		alt: 'Level 3 Charging Setup',
+		src: await optimize(plug2),
+		alt: 'Tesla connected to a Level 3 fast charger',
 	},
 	{
 		id: 'slide-3',
-		src: plug3.src,
-		alt: 'Level 3 Charging Setup',
+		src: await optimize(plug3),
+		alt: 'Tesla charging port with Level 3 connector',
 	},
 ];
 
 const structuredData = {
 	'@context': 'https://schema.org',
 	'@type': 'Service',
+	url: new URL('/services/ev-charging/level-3', Astro.site).href,
 	name: 'Level 3 DC Fast Charger Installation',
 	serviceType: 'Commercial DC fast charging station installation',
 	provider: { '@id': BUSINESS_ID },
@@ -55,7 +60,7 @@ const structuredData = {
 		<div class="container mx-auto px-4 max-w-6xl">
 			<div class="mb-8">
 				<a
-					href="/services/ev-charging/"
+					href="/services/ev-charging"
 					class="inline-flex items-center text-gray-600 hover:text-gray-700 font-medium transition-colors"
 				>
 					<Chevron class="w-4 h-4 mr-2 rotate-180 text-gray-600" />
@@ -574,7 +579,7 @@ const structuredData = {
 
 				<AnchorOutlined
 					text="Compare Level 2 for Home Use"
-					href="/services/ev-charging/level-2/"
+					href="/services/ev-charging/level-2"
 					ariaLabel="Compare Level 2 for Home Use"
 				/>
 			</div>

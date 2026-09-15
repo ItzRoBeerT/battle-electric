@@ -2,6 +2,9 @@
   "name": "battle-electric",
   "type": "module",
   "version": "0.0.1",
+  "engines": {
+    "node": ">=22.12.0"
+  },
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
@@ -9,15 +12,16 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/vercel": "^8.2.2",
+    "@astrojs/vercel": "^11.0.10",
     "@tailwindcss/vite": "^4.1.10",
     "@vercel/analytics": "^1.5.0",
     "@vercel/speed-insights": "^1.2.0",
-    "astro": "^5.9.4",
-    "google-auth-library": "^10.3.0",
-    "googleapis": "^160.0.0",
-    "resend": "^4.7.0",
+    "astro": "^7.3.2",
     "sharp": "^0.34.3",
     "tailwindcss": "^4.1.10"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "typescript": "^6.0.3"
   }
 }
