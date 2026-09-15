@@ -5,7 +5,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Analytics from '@vercel/analytics/astro'
 import  SpeedInsights  from "@vercel/speed-insights/astro"
-import { BUSINESS_ID } from '../data/business';
+import { BUSINESS_ID, LICENSE_LABEL } from '../data/business';
 
 interface Props {
 	title: string;
@@ -78,7 +78,7 @@ const businessSchema = {
 	hasCredential: {
 		'@type': 'EducationalOccupationalCredential',
 		credentialCategory: 'license',
-		name: 'Florida Certified Electrical Contractor — License NO. EC13010206',
+		name: `Florida Certified Electrical Contractor — ${LICENSE_LABEL}`,
 	},
 };
 ---

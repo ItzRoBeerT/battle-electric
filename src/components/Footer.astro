@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import battleLogo from '../../public/battle-bg.webp';
+import { LICENSE_LABEL } from '../data/business';
 
 export interface Props {
 	class?: string;
@@ -16,7 +17,7 @@ const contactInfo = {
 		weekdays: 'Monday to Saturday 7:00 AM - 7:00 PM',
 		weekend: 'Sunday - Closed',
 	},
-	license: 'License NO. EC13010206',
+	license: LICENSE_LABEL,
 };
 
 const navigation = {

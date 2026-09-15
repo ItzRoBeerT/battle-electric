@@ -2,7 +2,7 @@
 import Layout from '../../../layouts/Layout.astro';
 import Faq from '../../../components/Faq.astro';
 import Breadcrumbs from '../../../components/Breadcrumbs.astro';
-import { BUSINESS_ID } from '../../../data/business';
+import { BUSINESS_ID, LICENSE_LABEL } from '../../../data/business';
 import Hero from '../../../sections/electrical-panel/Hero.astro';
 import WhyReplace from '../../../sections/electrical-panel/WhyReplace.astro';
 import Services from '../../../sections/electrical-panel/Services.astro';
@@ -55,7 +55,7 @@ const structuredData = {
 			{
 				question: 'Do panel upgrades require a permit and inspection?',
 				answer:
-					'Yes. Panel replacements and service upgrades require an electrical permit, inspection, and often coordination with FPL. Battle Electric is a licensed Florida electrical contractor (License NO. EC13010206) and manages the full process.',
+					`Yes. Panel replacements and service upgrades require an electrical permit, inspection, and often coordination with FPL. Battle Electric is a licensed Florida electrical contractor (${LICENSE_LABEL}) and manages the full process.`,
 			},
 			{
 				question: 'How long does a panel replacement take?',

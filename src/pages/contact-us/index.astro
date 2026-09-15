@@ -2,6 +2,7 @@
 import Layout from "../../layouts/Layout.astro"
 import ContactForm from "../../components/ContactForm.astro"
 import Faq from "../../components/Faq.astro"
+import { LICENSE_LABEL } from "../../data/business"
 const title = "Contact Us | Battle Electric"
 const description = "Contact Battle Electric in Homestead, FL. Call (786) 404-3885 or request a free quote online. Licensed electricians serving Miami-Dade, Broward, and South Florida."
 
@@ -17,7 +18,7 @@ const description = "Contact Battle Electric in Homestead, FL. Call (786) 404-38
       <div>
         <h2 class="font-semibold text-gray-900 mb-2">Battle Electric, LLC</h2>
         <p>13254 SW 263rd St<br />Homestead, FL 33032</p>
-        <p class="mt-2 text-gray-500">License NO. EC13010206</p>
+        <p class="mt-2 text-gray-500">{LICENSE_LABEL}</p>
       </div>
       <div class="space-y-2">
         <p>
@@ -40,7 +41,7 @@ const description = "Contact Battle Electric in Homestead, FL. Call (786) 404-38
       {
         question: 'Is Battle Electric licensed and insured?',
         answer:
-          'Yes. Battle Electric, LLC is a Florida certified electrical contractor, License NO. EC13010206, and fully insured. You can verify our license at MyFloridaLicense.com.',
+          `Yes. Battle Electric, LLC is a Florida certified electrical contractor, ${LICENSE_LABEL}, and fully insured. You can verify our license at MyFloridaLicense.com.`,
       },
       {
         question: 'Do you offer free estimates?',
