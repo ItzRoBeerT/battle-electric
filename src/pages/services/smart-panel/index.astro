@@ -1,5 +1,6 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
+import ServiceAreasLinks from '../../../components/ServiceAreasLinks.astro';
 import Faq from '../../../components/Faq.astro';
 import Breadcrumbs from '../../../components/Breadcrumbs.astro';
 import { BUSINESS_ID, LICENSE_LABEL } from '../../../data/business';
@@ -17,6 +18,7 @@ const description =
 const structuredData = {
 	'@context': 'https://schema.org',
 	'@type': 'Service',
+	url: new URL('/services/smart-panel', Astro.site).href,
 	name: 'SPAN Smart Panel Installation',
 	serviceType: 'Smart electrical panel installation',
 	provider: { '@id': BUSINESS_ID },
@@ -58,4 +60,5 @@ const structuredData = {
 			},
 		]}
 	/>
+	<ServiceAreasLinks />
 </Layout>

@@ -15,8 +15,8 @@ interface Props {
 }
 
 const {
-	title = 'Electrical Service Experts | Battle Electric',
-	description = 'Your trusted partner for all electrical services, from installations to repairs. Serving residential and commercial clients with expertise and reliability.',
+	title = 'Licensed Electrician in Miami, FL | Battle Electric',
+	description = 'Licensed & insured electricians serving Miami-Dade, Broward and Monroe. EV charger installation, panel upgrades, smart panels. Free estimates — (786) 404-3885.',
 	canonical,
 	robots,
 } = Astro.props;
@@ -32,6 +32,10 @@ const businessSchema = {
 	'@id': BUSINESS_ID,
 	name: 'Battle Electric',
 	legalName: 'Battle Electric, LLC',
+	// Regular hours live in openingHoursSpecification; the 24/7 emergency
+	// promise is stated here so the schema doesn't contradict the site copy.
+	description:
+		'Licensed and insured electrical contractor serving Miami-Dade, Broward and Monroe counties. Regular hours Mon–Sat 7:00 AM–7:00 PM, with 24/7 emergency service.',
 	url: Astro.site?.href,
 	telephone: '+17864043885',
 	email: 'battleelectric050@gmail.com',
@@ -114,6 +118,8 @@ const businessSchema = {
 		<meta property="og:image" content={ogImage} />
 		<meta property="og:image:width" content="1200" />
 		<meta property="og:image:height" content="630" />
+		<meta property="og:image:alt" content="Battle Electric — licensed electricians in South Florida" />
+		<meta property="og:locale" content="en_US" />
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:title" content={title} />
 		<meta name="twitter:description" content={description} />

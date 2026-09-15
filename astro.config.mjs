@@ -6,6 +6,9 @@ import vercelAdapter from '@astrojs/vercel';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://www.battleelectricfl.com',
+  // Canonical and sitemap emit slash-less URLs; make internal routing agree
+  // so a reintroduced trailing-slash link fails fast in dev (BAT-34).
+  trailingSlash: 'never',
   // Fully static: every page is prerendered at build time and served from the
   // CDN — no serverless function in the request path (BAT-28).
   output: 'static',
