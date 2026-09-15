@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import beachTeslaImg from '../../assets/services/ev-charging/tesla-beach.jpeg';
 ---
 
@@ -22,9 +23,10 @@ import beachTeslaImg from '../../assets/services/ev-charging/tesla-beach.jpeg';
 
 			<!-- Imagen recortada diagonalmente a la derecha - Desktop/Tablet landscape -->
 			<div class="hidden lg:block absolute top-0 right-0 w-1/2 h-full diagonal-clip">
-				<img
-					src={beachTeslaImg.src}
+				<Image
+					src={beachTeslaImg}
 					alt="Tesla charging at the beach"
+					width={1200}
 					class="w-full h-full object-cover"
 					loading="lazy"
 				/>
@@ -32,9 +34,10 @@ import beachTeslaImg from '../../assets/services/ev-charging/tesla-beach.jpeg';
 
 			<!-- Imagen completa en móvil y tablet -->
 			<div class="lg:hidden mt-8">
-				<img
-					src={beachTeslaImg.src}
+				<Image
+					src={beachTeslaImg}
 					alt="Tesla charging at the beach"
+					width={800}
 					class="w-full h-64 md:h-80 object-cover rounded-lg shadow-lg"
 					loading="lazy"
 				/>
