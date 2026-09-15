@@ -24,7 +24,11 @@ export default defineConfig({
       __BUILD_DATE__: JSON.stringify(new Date().toISOString().slice(0, 10))
     }
   },
-  adapter: vercelAdapter({ imageService: true }),
+  // staticHeaders lets Astro-feature headers (e.g. the CSP planned in
+  // BAT-40) reach Vercel's config for prerendered pages. Cache-Control for
+  // HTML lives in vercel.json (BAT-38) — the adapter option does not cover
+  // custom cache headers.
+  adapter: vercelAdapter({ imageService: true, staticHeaders: true }),
   // Inter is self-hosted via the Fonts API (BAT-37): downloaded at build,
   // served from our own domain with automatic preload + metric fallbacks.
   // Weights audited from actual usage; italics dropped (single decorative
