@@ -12,6 +12,7 @@ import Carousel, { type CarouselSlide } from '../../../components/Carousel.astro
 import AnchorOutlined from '../../../components/AnchorOutlined.astro';
 import Building from '../../../assets/icons/building.svg';
 import Tesla from '../../../assets/services/ev-charging/tesla.jpeg';
+import { getImage } from 'astro:assets';
 
 const title = 'Level 2 EV Charging Installation | 240V Professional Setup | Battle Electric';
 const description =
@@ -42,15 +43,18 @@ async function getLevel2Images() {
 
 const level2Images = await getLevel2Images();
 
-const slides: CarouselSlide[] = level2Images.map((image) => ({
-	id: image.name,
-	src: image.image.src,
-	alt: image.name,
-}));
+// Serve resized webp via the image service; the raw JPEGs are up to ~640KB each.
+const slides: CarouselSlide[] = await Promise.all(
+	level2Images.map(async (image) => ({
+		id: image.name,
+		src: (await getImage({ src: image.image, width: 1200, format: 'webp' })).src,
+		alt: `Level 2 EV charger installation — ${image.name.replace(/^level-2-?/, '').replace(/-/g, ' ')}`,
+	}))
+);
 
 slides.unshift({
 	id: 'tesla',
-	src: Tesla.src,
+	src: (await getImage({ src: Tesla, width: 1200, format: 'webp' })).src,
 	alt: 'Tesla EV Charging',
 });
 
