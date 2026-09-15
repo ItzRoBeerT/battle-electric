@@ -63,25 +63,4 @@ import teslaGarage from '../../assets/services/ev-charging/tesla-garage.jpeg';
 		clip-path: polygon(0% 0%, 90% 0%, 100% 100%, 0% 100%);
 	}
 
-	.luminance-stroke {
-		position: relative;
-		display: inline-block;
-		font-weight: 900;
-		color: #f5ee31;
-		line-height: 1;
-	}
-	.luminance-stroke::before {
-		content: attr(data-text);
-		position: absolute;
-		top: 0;
-		left: 0;
-		z-index: -1;
-		color: black;
-		-webkit-text-stroke: 6px black;
-		text-stroke: 6px black;
-	}
-	.stroke {
-		-webkit-text-stroke: 3px black;
-		paint-order: stroke fill;
-	}
 </style>

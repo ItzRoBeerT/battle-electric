@@ -84,27 +84,7 @@ const contactLinks = [
 	</div>
 
 	<style>
-		.luminance-stroke {
-			position: relative;
-			display: inline-block;
-			color: #f5ee31;
-			line-height: 1;
-		}
 
-		.luminance-stroke::before {
-			content: attr(data-text);
-			position: absolute;
-			top: 0;
-			left: 0;
-			z-index: -1;
-			color: black;
-			-webkit-text-stroke: 6px black;
-			text-stroke: 6px black;
-		}
-		.stroke {
-			-webkit-text-stroke: 3px black;
-			paint-order: stroke fill;
-		}
 
 		@media (prefers-reduced-motion: reduce) {
 			* {
