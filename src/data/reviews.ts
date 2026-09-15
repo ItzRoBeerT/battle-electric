@@ -5,15 +5,15 @@
 export const reviewStats = {
 	rating: '5.0',
 	countLabel: '100+',
-	// Machine-readable reviewCount for AggregateRating JSON-LD (exact GBP
-	// count; the visible label stays a rounded "100+"). Refresh from GBP.
-	count: 138,
-	// TODO(owner): replace with the exact Google Maps listing URL from GBP.
-	listingUrl:
-		'https://www.google.com/maps/search/?api=1&query=Battle+Electric+13254+SW+263rd+St+Homestead+FL',
-	// TODO(owner): replace with the "Ask for reviews" short link (g.page/r/...).
-	reviewUrl:
-		'https://www.google.com/maps/search/?api=1&query=Battle+Electric+13254+SW+263rd+St+Homestead+FL',
+	// Machine-readable reviewCount for AggregateRating JSON-LD. Kept as a
+	// conservative floor consistent with the visible "100+" label; bump both
+	// together when refreshing from GBP.
+	count: 100,
+	// Owner-generated GBP share link (stable). Canonical CID form for schema
+	// lives in Layout.astro's sameAs.
+	listingUrl: 'https://maps.app.goo.gl/uHMFZjQSoLdRQi5o7',
+	// "Ask for reviews" short link from the GBP dashboard.
+	reviewUrl: 'https://g.page/r/CVt5W0Y7Iv9REAI/review',
 };
 
 export interface Review {
