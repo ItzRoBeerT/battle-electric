@@ -24,7 +24,7 @@ This website showcases Battle Electric's comprehensive electrical services inclu
 ```text
 battle-electric/
 ├── public/               # Static assets
-│   ├── background.jpg    # Hero backgrounds
+│   ├── background-*.webp # Hero backgrounds
 │   ├── favicon.svg       # Site favicon
 │   └── span/            # Product images
 ├── src/
