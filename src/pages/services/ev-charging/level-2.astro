@@ -14,9 +14,9 @@ import Building from '../../../assets/icons/building.svg';
 import Tesla from '../../../assets/services/ev-charging/tesla.jpeg';
 import { getImage } from 'astro:assets';
 
-const title = 'Level 2 EV Charging Installation | 240V Professional Setup | Battle Electric';
+const title = 'Level 2 EV Charger Installation (240V) | Battle Electric';
 const description =
-	'Level 2 EV charging installation by licensed electricians. 240V charging delivers 20-40 miles per hour with no wait time. Smart scheduling and cost savings vs public charging.';
+	'Level 2 EV charger installation by licensed South Florida electricians. 240V charging adds 20-40 miles per hour at home, with smart scheduling and real savings.';
 
 async function getLevel2Images() {
 	const images = import.meta.glob<{ default: ImageMetadata }>(
@@ -61,6 +61,7 @@ slides.unshift({
 const structuredData = {
 	'@context': 'https://schema.org',
 	'@type': 'Service',
+	url: new URL('/services/ev-charging/level-2', Astro.site).href,
 	name: 'Level 2 EV Charger Installation',
 	serviceType: 'Level 2 (240V) electric vehicle charger installation',
 	provider: { '@id': BUSINESS_ID },
@@ -76,7 +77,7 @@ const structuredData = {
 		<div class="container mx-auto px-4 max-w-6xl">
 			<div class="mb-8">
 				<a
-					href="/services/ev-charging/"
+					href="/services/ev-charging"
 					class="inline-flex items-center text-gray-600 hover:text-gray-700 font-medium transition-colors"
 				>
 					<Chevron class="w-4 h-4 mr-2 rotate-180 text-gray-600" />
@@ -451,7 +452,7 @@ const structuredData = {
 					ariaLabel="Get a quote for professional EV charging installation"
 				/>
 				<AnchorOutlined
-					href="/services/ev-charging/level-3/"
+					href="/services/ev-charging/level-3"
 					text="Compare Level 3 Charging"
 					ariaLabel="Compare Level 3 Charging"
 				/>

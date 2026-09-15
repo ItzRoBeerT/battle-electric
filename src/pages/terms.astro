@@ -1,10 +1,12 @@
 ---
 import Layout from "../layouts/Layout.astro"
+import Breadcrumbs from "../components/Breadcrumbs.astro"
 const title = "Terms of Service | Battle Electric"
 const description = "Terms governing the use of the Battle Electric website and services."
 ---
 
 <Layout title={title} description={description}>
+  <Breadcrumbs crumbs={[{ name: 'Terms of Service' }]} />
 	<section class="bg-gray-900 text-white py-16 px-4">
 		<div class="max-w-3xl mx-auto text-center">
 			<h1 class="text-4xl font-bold uppercase tracking-tight mb-3">Terms of Service</h1>

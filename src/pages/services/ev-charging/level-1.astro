@@ -11,9 +11,9 @@ import Anchor from '../../../components/Anchor.astro';
 import Chevron from '../../../assets/icons/chevron.svg';
 import AnchorOutlined from '../../../components/AnchorOutlined.astro';
 
-const title = 'Level 1 EV Charging Installation | 120V Standard Outlet | Battle Electric';
+const title = 'Level 1 EV Charging (120V Outlet) | Battle Electric';
 const description =
-	'Level 1 EV charging uses standard 120V home outlets. Most cost-effective option with 3-5 miles per hour charging. Learn about installation requirements and limitations.';
+	'Level 1 EV charging uses a standard 120V home outlet — the most cost-effective option, adding 3-5 miles per hour. Requirements and limits explained.';
 
 const slides: CarouselSlide[] = [
 	{
@@ -31,6 +31,7 @@ const slides: CarouselSlide[] = [
 const structuredData = {
 	'@context': 'https://schema.org',
 	'@type': 'Service',
+	url: new URL('/services/ev-charging/level-1', Astro.site).href,
 	name: 'Level 1 EV Charger Consultation',
 	serviceType: 'Level 1 electric vehicle charging assessment',
 	provider: { '@id': BUSINESS_ID },
@@ -46,7 +47,7 @@ const structuredData = {
 		<div class="container mx-auto px-4 max-w-6xl">
 			<div class="mb-8">
 				<a
-					href="/services/ev-charging/"
+					href="/services/ev-charging"
 					class="inline-flex items-center text-gray-600 hover:text-gray-700 font-medium transition-colors"
 				>
 					<Chevron class="w-4 h-4 mr-2 rotate-180 text-gray-600" />
@@ -279,7 +280,7 @@ const structuredData = {
 					ariaLabel="Get a quote for Level 1 EV charging installation"
 				/>
 				<AnchorOutlined
-					href="/services/ev-charging/level-2/"
+					href="/services/ev-charging/level-2"
 					text="Compare Level 2 Charging"
 					ariaLabel="Compare Level 2 Charging"
 				/>

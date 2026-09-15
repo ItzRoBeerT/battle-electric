@@ -2,13 +2,16 @@
 import Layout from "../../layouts/Layout.astro"
 import ContactForm from "../../components/ContactForm.astro"
 import Faq from "../../components/Faq.astro"
+import Breadcrumbs from "../../components/Breadcrumbs.astro"
 import { LICENSE_LABEL } from "../../data/business"
+import { CONTACT_FAQS } from "../../data/faqs"
 const title = "Contact Us | Battle Electric"
-const description = "Contact Battle Electric in Homestead, FL. Call (786) 404-3885 or request a free quote online. Licensed electricians serving Miami-Dade, Broward, and South Florida."
+const description = "Contact Battle Electric in Homestead, FL. Call (786) 404-3885 or request a free quote online. Licensed electricians serving South Florida."
 
 ---
 
 <Layout title={title} description={description}>
+  <Breadcrumbs crumbs={[{ name: 'Contact Us' }]} />
   <ContactForm />
 
   <!-- NAP in real HTML: the lead form above is a third-party iframe, invisible
@@ -31,30 +34,7 @@ const description = "Contact Battle Electric in Homestead, FL. Call (786) 404-38
       </div>
     </div>
   </section>
-  <Faq
-    items={[
-      {
-        question: 'What areas does Battle Electric serve?',
-        answer:
-          'We serve residential and commercial clients across Miami-Dade, Broward, and Monroe County (Upper Keys), plus Southwest Florida and Greater Orlando, from our base in Homestead, Florida.',
-      },
-      {
-        question: 'Is Battle Electric licensed and insured?',
-        answer:
-          `Yes. Battle Electric, LLC is a Florida certified electrical contractor, ${LICENSE_LABEL}, and fully insured. You can verify our license at MyFloridaLicense.com.`,
-      },
-      {
-        question: 'Do you offer free estimates?',
-        answer:
-          'Yes, estimates are free. Submit the form on this page or call (786) 404-3885 and we will get back to you with a quote for your project.',
-      },
-      {
-        question: 'Do you handle emergencies?',
-        answer:
-          'Yes. Our regular hours are Monday to Saturday, 7:00 AM to 7:00 PM, and we offer 24/7 emergency service for urgent electrical issues.',
-      },
-    ]}
-  />
+  <Faq items={CONTACT_FAQS} />
 </Layout>
 
 

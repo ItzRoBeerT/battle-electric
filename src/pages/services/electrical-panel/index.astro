@@ -1,5 +1,6 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
+import ServiceAreasLinks from '../../../components/ServiceAreasLinks.astro';
 import Faq from '../../../components/Faq.astro';
 import Breadcrumbs from '../../../components/Breadcrumbs.astro';
 import { BUSINESS_ID, LICENSE_LABEL } from '../../../data/business';
@@ -9,13 +10,14 @@ import Services from '../../../sections/electrical-panel/Services.astro';
 import WhyChoose from '../../../sections/electrical-panel/WhyChoose.astro';
 import CTA from '../../../sections/electrical-panel/CTA.astro';
 
-const title = 'Electrical Panel Installation & Replacement | Battle Electric FL';
+const title = 'Electrical Panel Installation in Miami, FL | Battle Electric';
 const description =
-	'Expert electrical panel installation and replacement services in Florida. Free safety inspections, insurance-required upgrades, and modern panel solutions for homes and businesses.';
+	'Electrical panel installation and replacement in South Florida. Free safety inspections, insurance-required upgrades, homes and businesses. (786) 404-3885.';
 
 const structuredData = {
 	'@context': 'https://schema.org',
 	'@type': 'Service',
+	url: new URL('/services/electrical-panel', Astro.site).href,
 	name: 'Electrical Panel Installation',
 	serviceType: 'Electrical panel installation and replacement',
 	// Reference (not duplicate) the business entity defined in Layout.astro.
@@ -64,6 +66,7 @@ const structuredData = {
 			},
 		]}
 	/>
+	<ServiceAreasLinks />
 </Layout>
 
 <style>
